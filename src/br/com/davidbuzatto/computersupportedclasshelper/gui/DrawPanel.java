@@ -11,7 +11,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -25,28 +24,6 @@ public class DrawPanel extends JPanel {
     private int currentDrawPageIndex;
     private DrawPage currentDrawPage;
     private List<DrawPage> drawPages;
-    
-    public static class DrawPage implements Serializable {
-        
-        Color backgroundColor;
-    
-        Shape tempShape;
-        List<Shape> shapes;
-        List<Shape> redoList;
-    
-        DrawPage( Color backgroundColor ) {
-            this.backgroundColor = backgroundColor;
-            this.shapes = new ArrayList<>();
-            this.redoList = new ArrayList<>();
-        }
-        
-        void reset() {
-            tempShape = null;
-            shapes.clear();
-            redoList.clear();
-        }
-        
-    }
     
     public DrawPanel() {
         
@@ -68,14 +45,14 @@ public class DrawPanel extends JPanel {
         g2d.setRenderingHint( RenderingHints.KEY_ANTIALIASING, 
                 RenderingHints.VALUE_ANTIALIAS_ON );
         
-        g2d.setPaint( currentDrawPage.backgroundColor );
+        g2d.setPaint( currentDrawPage.getBackgroundColor() );
         g2d.fillRect( 0, 0, getWidth(), getHeight() );
         
-        if ( currentDrawPage.tempShape != null ) {
-            currentDrawPage.tempShape.draw( g2d );
+        if ( currentDrawPage.getTempShape() != null ) {
+            currentDrawPage.getTempShape().draw( g2d );
         }
         
-        for ( Shape shape : currentDrawPage.shapes ) {
+        for ( Shape shape : currentDrawPage.getShapes() ) {
             shape.draw( g2d );
         }
         
@@ -84,47 +61,47 @@ public class DrawPanel extends JPanel {
     }
 
     public void undo() {
-        if ( currentDrawPage.shapes.size() > 0 ) {
-            currentDrawPage.redoList.add( currentDrawPage.shapes.remove( currentDrawPage.shapes.size() - 1 ) );
+        if ( currentDrawPage.getShapes().size() > 0 ) {
+            currentDrawPage.getRedoList().add( currentDrawPage.getShapes().remove( currentDrawPage.getShapes().size() - 1 ) );
         }
     }
     
     public void redo() {
-        if ( currentDrawPage.redoList.size() > 0 ) {
-            currentDrawPage.shapes.add( currentDrawPage.redoList.remove( currentDrawPage.redoList.size() - 1 ) );
+        if ( currentDrawPage.getRedoList().size() > 0 ) {
+            currentDrawPage.getShapes().add( currentDrawPage.getRedoList().remove( currentDrawPage.getRedoList().size() - 1 ) );
         }
     }
     
     public void resetRedoList() {
-        currentDrawPage.redoList.clear();
+        currentDrawPage.getRedoList().clear();
     }
     
     public boolean isAbleToUndo() {
-        return currentDrawPage.shapes.size() > 0;
+        return currentDrawPage.getShapes().size() > 0;
     }
     
     public boolean isAbleToRedo() {
-        return currentDrawPage.redoList.size() > 0;
+        return currentDrawPage.getRedoList().size() > 0;
     }
     
     public Color getBackgroundColor() {
-        return currentDrawPage.backgroundColor;
+        return currentDrawPage.getBackgroundColor();
     }
 
     public void setBackgroundColor( Color backgroundColor ) {
-        this.currentDrawPage.backgroundColor = backgroundColor;
+        this.currentDrawPage.setBackgroundColor( backgroundColor );
     }
 
     public void setTempShape( Shape tempShape ) {
-        this.currentDrawPage.tempShape = tempShape;
+        this.currentDrawPage.setTempShape( tempShape );
     }
 
     public List<Shape> getShapes() {
-        return currentDrawPage.shapes;
+        return currentDrawPage.getShapes();
     }
     
     public void addShape( Shape shape ) {
-        currentDrawPage.shapes.add( shape );
+        currentDrawPage.getShapes().add( shape );
     }
     
     public void addDrawPage( Color backgroundColor ) {
