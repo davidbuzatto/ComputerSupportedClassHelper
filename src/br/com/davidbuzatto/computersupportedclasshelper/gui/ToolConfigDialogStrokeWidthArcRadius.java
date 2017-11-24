@@ -66,7 +66,7 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        toolConfigDialogContainerPanel1 = new br.com.davidbuzatto.computersupportedclasshelper.gui.ToolConfigDialogContainerPanel();
+        containerPanel = new br.com.davidbuzatto.computersupportedclasshelper.gui.CustomDialogContainerPanel();
         lblStrokeWidth = new javax.swing.JLabel();
         lblArcRadius = new javax.swing.JLabel();
         fieldStrokeWidth = new javax.swing.JTextField();
@@ -99,17 +99,17 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout toolConfigDialogContainerPanel1Layout = new javax.swing.GroupLayout(toolConfigDialogContainerPanel1);
-        toolConfigDialogContainerPanel1.setLayout(toolConfigDialogContainerPanel1Layout);
-        toolConfigDialogContainerPanel1Layout.setHorizontalGroup(
-            toolConfigDialogContainerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(toolConfigDialogContainerPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout containerPanelLayout = new javax.swing.GroupLayout(containerPanel);
+        containerPanel.setLayout(containerPanelLayout);
+        containerPanelLayout.setHorizontalGroup(
+            containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(toolConfigDialogContainerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblStrokeWidth, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblArcRadius, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(toolConfigDialogContainerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldStrokeWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fieldArcRadius, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -118,15 +118,15 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
                 .addComponent(btnCancel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        toolConfigDialogContainerPanel1Layout.setVerticalGroup(
-            toolConfigDialogContainerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(toolConfigDialogContainerPanel1Layout.createSequentialGroup()
+        containerPanelLayout.setVerticalGroup(
+            containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(toolConfigDialogContainerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStrokeWidth)
                     .addComponent(fieldStrokeWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(toolConfigDialogContainerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblArcRadius)
                     .addComponent(fieldArcRadius, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnOK)
@@ -138,11 +138,11 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolConfigDialogContainerPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolConfigDialogContainerPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -157,11 +157,11 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
             double newArcRadius = Double.parseDouble( fieldArcRadius.getText() );
             
             if ( newStrokeWith <= 0 ) {
-                JOptionPane.showMessageDialog( this.getOwner(), 
+                CustomMessageAndConfirmDialog.showMessageDialog( this.getOwner(), 
                         "The Stroke Width must be greater than zero!", 
                         "ERROR", JOptionPane.ERROR_MESSAGE );
             } else if ( newArcRadius < 0 ) {
-                JOptionPane.showMessageDialog( this.getOwner(), 
+                CustomMessageAndConfirmDialog.showMessageDialog( this.getOwner(), 
                         "The Arc Radius must be greater or equal to zero!", 
                         "ERROR", JOptionPane.ERROR_MESSAGE );
             } else {
@@ -171,7 +171,7 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
             }
             
         } catch ( NumberFormatException exc ) {
-            JOptionPane.showMessageDialog( this.getOwner(), 
+            CustomMessageAndConfirmDialog.showMessageDialog( this.getOwner(), 
                     "The Stroke Width and the Side Quantity must be a number!", 
                     "ERROR", JOptionPane.ERROR_MESSAGE );
         }
@@ -233,10 +233,10 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOK;
+    private br.com.davidbuzatto.computersupportedclasshelper.gui.CustomDialogContainerPanel containerPanel;
     private javax.swing.JTextField fieldArcRadius;
     private javax.swing.JTextField fieldStrokeWidth;
     private javax.swing.JLabel lblArcRadius;
     private javax.swing.JLabel lblStrokeWidth;
-    private br.com.davidbuzatto.computersupportedclasshelper.gui.ToolConfigDialogContainerPanel toolConfigDialogContainerPanel1;
     // End of variables declaration//GEN-END:variables
 }

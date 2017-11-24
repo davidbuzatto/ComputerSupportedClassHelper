@@ -162,8 +162,7 @@ public class MainWindow extends javax.swing.JFrame {
         popupMenuNoColor.add(menuItemNoColor);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Video Lesson Assistant");
-        setAlwaysOnTop(true);
+        setTitle("Computer Supported Class Helper");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
 
@@ -1284,27 +1283,22 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
         
-        dConfig.setProcessEventsMainWindow( false );
-        if ( JOptionPane.showConfirmDialog( this, 
-                "Really quit?", "Quit?", JOptionPane.YES_NO_OPTION ) == JOptionPane.YES_OPTION ) {
+        if ( CustomMessageAndConfirmDialog.showConfirmDialog( this, 
+                "Really quit?", "Quit?" ) == JOptionPane.YES_OPTION ) {
             System.exit( 0 );
         }
-        dConfig.setProcessEventsMainWindow( true );
         
     }//GEN-LAST:event_btnQuitActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         
-        dConfig.setProcessEventsMainWindow( false );
-        
-        if ( JOptionPane.showConfirmDialog( this, "All unsaved data will be lost.\nContinue?", "New", JOptionPane.YES_NO_OPTION ) == JOptionPane.YES_OPTION ) {
+        if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                this, "<html>All unsaved data will be lost.<br/>Continue?</html>", "New" ) == JOptionPane.YES_OPTION ) {
             drawPanel.reset();
             drawPanel.setBackgroundColor( colorPanelBackground.getColor() );
             drawPanel.repaint();
             verifyHistory();
         }
-        
-        dConfig.setProcessEventsMainWindow( true );
         
     }//GEN-LAST:event_btnNewActionPerformed
 
@@ -1546,15 +1540,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
         
-        dConfig.setProcessEventsMainWindow( false );
-        if ( JOptionPane.showConfirmDialog( 
+        if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                 this, 
-                "Clean the current draw page?", "Clear current draw page", 
-                JOptionPane.YES_NO_OPTION ) == JOptionPane.YES_OPTION ) {
+                "Clean the current draw page?", "Clear current draw page" ) == JOptionPane.YES_OPTION ) {
             drawPanel.clearCurrentDrawPage();
             drawPanel.repaint();
         }
-        dConfig.setProcessEventsMainWindow( true );
         
     }//GEN-LAST:event_btnCleanActionPerformed
 
@@ -1645,15 +1636,12 @@ public class MainWindow extends javax.swing.JFrame {
 
                             case KeyEvent.VK_DELETE:
                                 if ( drawPanel.canDeleteDrawPage() ) {
-                                    dConfig.setProcessEventsMainWindow( false );
-                                    if ( JOptionPane.showConfirmDialog( 
+                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
-                                            "Delete the current draw page?", "Delete current draw page", 
-                                            JOptionPane.YES_NO_OPTION ) == JOptionPane.YES_OPTION ) {
+                                            "Delete the current draw page?", "Delete current draw page" ) == JOptionPane.YES_OPTION ) {
                                         drawPanel.deleteCurrentDrawPage();
                                         drawPanel.repaint();
                                     }
-                                    dConfig.setProcessEventsMainWindow( true );
                                 }
                                 break;
 
@@ -1666,14 +1654,11 @@ public class MainWindow extends javax.swing.JFrame {
                             case KeyEvent.VK_RIGHT:
                                 
                                 if ( drawPanel.willCreateNewDrawPage() ) {
-                                    dConfig.setProcessEventsMainWindow( false );
-                                    if ( JOptionPane.showConfirmDialog( 
+                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
-                                            "Create a new draw page?", "New Draw Page", 
-                                            JOptionPane.YES_NO_OPTION ) == JOptionPane.YES_OPTION ) {
+                                            "Create a new draw page?", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
                                         drawPanel.nextDrawPage( colorPanelBackground.getColor() );
                                     }
-                                    dConfig.setProcessEventsMainWindow( true );
                                 } else {
                                     drawPanel.nextDrawPage( colorPanelBackground.getColor() );
                                 }
