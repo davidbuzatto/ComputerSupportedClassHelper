@@ -8,8 +8,11 @@ package br.com.davidbuzatto.computersupportedclasshelper.gui;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.DrawingConfigs;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.KeyAdapter;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,9 +22,10 @@ import javax.swing.JOptionPane;
 public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
 
     private DrawingConfigs dConfig;
+    private KeyEventDispatcher keyEventDispatcher;
     
     /**
-     * Creates new form ToolConfigDialog
+     * Creates new form ToolConfigDialogStrokeWidthArcRadius
      */
     public ToolConfigDialogStrokeWidthArcRadius( java.awt.Frame parent, boolean modal ) {
         
@@ -36,21 +40,22 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
         fieldArcRadius.setText( String.valueOf( dConfig.getArcRadius() ) );
         getRootPane().setDefaultButton( btnOK );
         
-        fieldStrokeWidth.addKeyListener( new KeyAdapter() {
+        keyEventDispatcher = new KeyEventDispatcher() {
             @Override
-            public void keyReleased( KeyEvent e ) {
+            public boolean dispatchKeyEvent( KeyEvent e ) {
                 if ( e.getKeyCode() == KeyEvent.VK_ESCAPE ) {
                     dispose();
                 }
+                return false;
             }
-        });
+        };
         
-        fieldArcRadius.addKeyListener( new KeyAdapter() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher( keyEventDispatcher );
+        
+        addWindowListener( new WindowAdapter() {
             @Override
-            public void keyReleased( KeyEvent e ) {
-                if ( e.getKeyCode() == KeyEvent.VK_ESCAPE ) {
-                    dispose();
-                }
+            public void windowClosed( WindowEvent e ) {
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher( keyEventDispatcher );
             }
         });
         
@@ -158,11 +163,11 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
             
             if ( newStrokeWith <= 0 ) {
                 CustomMessageAndConfirmDialog.showMessageDialog( this.getOwner(), 
-                        "The Stroke Width must be greater than zero!", 
+                        "<html>The stroke width must be<br/> greater than zero!</html>", 
                         "ERROR", JOptionPane.ERROR_MESSAGE );
             } else if ( newArcRadius < 0 ) {
                 CustomMessageAndConfirmDialog.showMessageDialog( this.getOwner(), 
-                        "The Arc Radius must be greater or equal to zero!", 
+                        "<html>The arc radius must be<br/> greater or equal to zero!</html>", 
                         "ERROR", JOptionPane.ERROR_MESSAGE );
             } else {
                 dc.setStrokeWidth( newStrokeWith );
@@ -172,7 +177,7 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
             
         } catch ( NumberFormatException exc ) {
             CustomMessageAndConfirmDialog.showMessageDialog( this.getOwner(), 
-                    "The Stroke Width and the Side Quantity must be a number!", 
+                    "<html>The stroke width and the arc radius<br/> must be a number!</html>", 
                     "ERROR", JOptionPane.ERROR_MESSAGE );
         }
         
@@ -186,48 +191,6 @@ public class ToolConfigDialogStrokeWidthArcRadius extends javax.swing.JDialog {
     public void dispose() {
         super.dispose();
         dConfig.setProcessEventsMainWindow( true );
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main( String args[] ) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for ( javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels() ) {
-                if ( "Nimbus".equals( info.getName() ) ) {
-                    javax.swing.UIManager.setLookAndFeel( info.getClassName() );
-                    break;
-                }
-            }
-        } catch ( ClassNotFoundException ex ) {
-            java.util.logging.Logger.getLogger(ToolConfigDialogStrokeWidthArcRadius.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-        } catch ( InstantiationException ex ) {
-            java.util.logging.Logger.getLogger(ToolConfigDialogStrokeWidthArcRadius.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-        } catch ( IllegalAccessException ex ) {
-            java.util.logging.Logger.getLogger(ToolConfigDialogStrokeWidthArcRadius.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-        } catch ( javax.swing.UnsupportedLookAndFeelException ex ) {
-            java.util.logging.Logger.getLogger(ToolConfigDialogStrokeWidthArcRadius.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ToolConfigDialogStrokeWidthArcRadius dialog = new ToolConfigDialogStrokeWidthArcRadius( new javax.swing.JFrame(), true );
-                dialog.addWindowListener( new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing( java.awt.event.WindowEvent e ) {
-                        System.exit( 0 );
-                    }
-                } );
-                dialog.setVisible( true );
-            }
-        } );
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

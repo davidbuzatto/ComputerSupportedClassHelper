@@ -64,6 +64,13 @@ public class ToolBar extends JToolBar {
                 p.closePath();
                 break;
             case TOP:
+                p.moveTo( 0, -2 );
+                p.lineTo( 0, 0 );
+                p.lineTo( 7, getHeight() - 1 );
+                p.lineTo( getWidth() - 7 , getHeight() - 1 );
+                p.lineTo( getWidth(), 0 );
+                p.lineTo( getWidth(), -2 );
+                p.closePath();
                 break;
             case DOWN:
                 break;

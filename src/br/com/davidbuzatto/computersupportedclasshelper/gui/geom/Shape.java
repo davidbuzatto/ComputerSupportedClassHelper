@@ -5,8 +5,10 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
 
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 /**
@@ -15,18 +17,29 @@ import java.io.Serializable;
  */
 public abstract class Shape implements Serializable {
     
+    private static int idCount;
+    private int id;
+    
     protected double xStart;
     protected double yStart;
     protected double xEnd;
     protected double yEnd;
     
+    protected double xStartD;
+    protected double yStartD;
+    protected double xEndD;
+    protected double yEndD;
+    
     protected Color strokeColor;
     protected Color fillColor;
     protected double strokeWidth;
+    protected boolean selected;
+    private int selectedPhase;
     
     public Shape() {
         strokeColor = Color.BLACK;
         fillColor = Color.WHITE;
+        id = idCount++;
     }
     
     public abstract void draw( Graphics2D g2d );
@@ -37,6 +50,32 @@ public abstract class Shape implements Serializable {
         xEnd += difX;
         yStart += difY;
         yEnd += difY;
+    }
+    
+    public void drawSelection( Graphics2D g2d ) {
+        
+        g2d = (Graphics2D) g2d.create();
+        
+        if ( selected ) {
+            g2d.setPaint( Constants.SELECTED_COLOR );
+            g2d.setStroke( Constants.SELECTED_STROKES[selectedPhase++] );
+            g2d.draw( new Rectangle2D.Double( xStartD, yStartD, xEndD-xStartD, yEndD-yStartD ) );
+            if ( selectedPhase == Constants.SELECTED_STROKES.length ) {
+                selectedPhase = 0;
+            }
+        }
+        
+        g2d.dispose();
+        
+    }
+    
+    protected void calculateDrawingBounds() {
+        
+        xStartD = xStart < xEnd ? xStart : xEnd;
+        xEndD = xStart < xEnd ? xEnd : xStart;
+        yStartD = yStart < yEnd ? yStart : yEnd;
+        yEndD = yStart < yEnd ? yEnd : yStart;
+        
     }
     
     public void setStrokeColor( Color corTraco ) {
@@ -89,6 +128,39 @@ public abstract class Shape implements Serializable {
     
     public double getHeight() {
         return yEnd - yStart;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected( boolean selected ) {
+        this.selected = selected;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals( Object obj ) {
+        if ( this == obj ) {
+            return true;
+        }
+        if ( obj == null ) {
+            return false;
+        }
+        if ( getClass() != obj.getClass() ) {
+            return false;
+        }
+        final Shape other = ( Shape ) obj;
+        if ( this.id != other.id ) {
+            return false;
+        }
+        return true;
     }
     
 }

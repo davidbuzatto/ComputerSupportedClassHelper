@@ -17,6 +17,7 @@ import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.DrawingConfigs;
 import java.awt.AWTException;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
@@ -32,6 +33,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
@@ -57,6 +59,8 @@ public class MainWindow extends javax.swing.JFrame {
     private double xPrev;
     private double yPrev;
     
+    private SelectedRepaintRunnable selectedRepaintRunnable;
+    
     /**
      * Creates new form MainWindowa
      */
@@ -67,7 +71,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         dConfig = DrawingConfigs.getInstance();
         drawPanel.setCursor( Cursors.getCursor( Cursors.Type.PENCIL ) );
-        
+        updateLabelPages();
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher( new ApplicationKeyEventDispatcher( this ) );
         
@@ -98,6 +102,7 @@ public class MainWindow extends javax.swing.JFrame {
         btnRedo = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnPencil = new javax.swing.JToggleButton();
+        btnEraser = new javax.swing.JToggleButton();
         btnLine = new javax.swing.JToggleButton();
         btnRectangle = new javax.swing.JToggleButton();
         btnRoundRectangle = new javax.swing.JToggleButton();
@@ -152,6 +157,8 @@ public class MainWindow extends javax.swing.JFrame {
         panelC8 = new javax.swing.JPanel();
         colorPanelSC8 = new br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel();
         colorPanelFC8 = new br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel();
+        statusToolBar = new ToolBar( ToolBar.Side.TOP );
+        lblPages = new javax.swing.JLabel();
 
         menuItemNoColor.setText("no color");
         menuItemNoColor.addActionListener(new java.awt.event.ActionListener() {
@@ -162,7 +169,7 @@ public class MainWindow extends javax.swing.JFrame {
         popupMenuNoColor.add(menuItemNoColor);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Computer Supported Class Helper");
+        setTitle("CSCH");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
 
@@ -287,6 +294,25 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         mainToolBar.add(btnPencil);
+
+        buttonGroup.add(btnEraser);
+        btnEraser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/eraser.png"))); // NOI18N
+        btnEraser.setToolTipText("eraser");
+        btnEraser.setFocusPainted(false);
+        btnEraser.setFocusable(false);
+        btnEraser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEraser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEraser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnEraserMouseReleased(evt);
+            }
+        });
+        btnEraser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEraserActionPerformed(evt);
+            }
+        });
+        mainToolBar.add(btnEraser);
 
         buttonGroup.add(btnLine);
         btnLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/line.png"))); // NOI18N
@@ -561,11 +587,16 @@ public class MainWindow extends javax.swing.JFrame {
         paletteToolBar.add(filler8);
 
         btnPalette.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png"))); // NOI18N
-        btnPalette.setToolTipText("new");
+        btnPalette.setToolTipText("palettes");
         btnPalette.setFocusPainted(false);
         btnPalette.setFocusable(false);
         btnPalette.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPalette.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPalette.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnPaletteMouseReleased(evt);
+            }
+        });
         btnPalette.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPaletteActionPerformed(evt);
@@ -988,19 +1019,37 @@ public class MainWindow extends javax.swing.JFrame {
 
         paletteToolBar.add(panelC8);
 
+        statusToolBar.setFloatable(false);
+        statusToolBar.setBorderPainted(false);
+        statusToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        statusToolBar.setFocusable(false);
+        statusToolBar.setRequestFocusEnabled(false);
+        statusToolBar.setVerifyInputWhenFocusTarget(false);
+
+        lblPages.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        lblPages.setForeground(new java.awt.Color(188, 188, 188));
+        lblPages.setText("pages");
+        lblPages.setToolTipText("current draw page / total draw pages");
+        statusToolBar.add(lblPages);
+
         javax.swing.GroupLayout drawPanelLayout = new javax.swing.GroupLayout(drawPanel);
         drawPanel.setLayout(drawPanelLayout);
         drawPanelLayout.setHorizontalGroup(
             drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(drawPanelLayout.createSequentialGroup()
                 .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 669, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 658, Short.MAX_VALUE)
+                .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(paletteToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         drawPanelLayout.setVerticalGroup(
             drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(paletteToolBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(drawPanelLayout.createSequentialGroup()
+                .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1035,6 +1084,8 @@ public class MainWindow extends javax.swing.JFrame {
 
                 if ( shape.intercepts( xPressed, yPressed ) ) {
                     selectedShape = shape;
+                    selectedShape.setSelected( true );
+                    createSelectedRepaintRunnable();
                     break;
                 }
 
@@ -1081,20 +1132,22 @@ public class MainWindow extends javax.swing.JFrame {
         if ( SwingUtilities.isLeftMouseButton( evt ) ) {
             
             drawing = false;
-            selectedShape = null;
+            if ( selectedShape != null ) {
+                selectedShape.setSelected( false );
+                destroySelectedRepaintRunnable();
+                selectedShape = null;
+            }
 
             if ( currentShape != null ) {
 
                 drawPanel.setTempShape( null );
                 drawPanel.addShape( currentShape );
-                drawPanel.repaint();
-
                 currentShape = null;
-                
                 drawPanel.resetRedoList();
 
             }
 
+            drawPanel.repaint();
             verifyHistory();
             
         }
@@ -1147,22 +1200,10 @@ public class MainWindow extends javax.swing.JFrame {
                 rectangle.setFillColor( colorPanelFill.getColor() );
 
                 rectangle.setStrokeWidth( dConfig.getStrokeWidth() );
-
-                if ( xPressed < evt.getX() ) {
-                    rectangle.setXStart( xPressed );
-                    rectangle.setXEnd( evt.getX() );
-                } else {
-                    rectangle.setXStart( evt.getX() );
-                    rectangle.setXEnd( xPressed );
-                }
-
-                if ( yPressed < evt.getY() ) {
-                    rectangle.setYStart( yPressed );
-                    rectangle.setYEnd( evt.getY() );
-                } else {
-                    rectangle.setYStart( evt.getY() );
-                    rectangle.setYEnd( yPressed );
-                }
+                rectangle.setXStart( xPressed );
+                rectangle.setYStart( yPressed );
+                rectangle.setXEnd( evt.getX() );
+                rectangle.setYEnd( evt.getY() );
 
                 currentShape = rectangle;
 
@@ -1175,22 +1216,10 @@ public class MainWindow extends javax.swing.JFrame {
 
                 rectangle.setStrokeWidth( dConfig.getStrokeWidth() );
                 rectangle.setArcRadius( dConfig.getArcRadius() );
-
-                if ( xPressed < evt.getX() ) {
-                    rectangle.setXStart( xPressed );
-                    rectangle.setXEnd( evt.getX() );
-                } else {
-                    rectangle.setXStart( evt.getX() );
-                    rectangle.setXEnd( xPressed );
-                }
-
-                if ( yPressed < evt.getY() ) {
-                    rectangle.setYStart( yPressed );
-                    rectangle.setYEnd( evt.getY() );
-                } else {
-                    rectangle.setYStart( evt.getY() );
-                    rectangle.setYEnd( yPressed );
-                }
+                rectangle.setXStart( xPressed );
+                rectangle.setYStart( yPressed );
+                rectangle.setXEnd( evt.getX() );
+                rectangle.setYEnd( evt.getY() );
 
                 currentShape = rectangle;
 
@@ -1202,22 +1231,10 @@ public class MainWindow extends javax.swing.JFrame {
                 ellipse.setFillColor( colorPanelFill.getColor() );
 
                 ellipse.setStrokeWidth( dConfig.getStrokeWidth() );
-
-                if ( xPressed < evt.getX() ) {
-                    ellipse.setXStart( xPressed );
-                    ellipse.setXEnd( evt.getX() );
-                } else {
-                    ellipse.setXStart( evt.getX() );
-                    ellipse.setXEnd( xPressed );
-                }
-
-                if ( yPressed < evt.getY() ) {
-                    ellipse.setYStart( yPressed );
-                    ellipse.setYEnd( evt.getY() );
-                } else {
-                    ellipse.setYStart( evt.getY() );
-                    ellipse.setYEnd( yPressed );
-                }
+                ellipse.setXStart( xPressed );
+                ellipse.setYStart( yPressed );
+                ellipse.setXEnd( evt.getX() );
+                ellipse.setYEnd( evt.getY() );
 
                 currentShape = ellipse;
 
@@ -1297,6 +1314,7 @@ public class MainWindow extends javax.swing.JFrame {
             drawPanel.reset();
             drawPanel.setBackgroundColor( colorPanelBackground.getColor() );
             drawPanel.repaint();
+            updateLabelPages();
             verifyHistory();
         }
         
@@ -1318,6 +1336,7 @@ public class MainWindow extends javax.swing.JFrame {
                 drawPanel.loadDrawPagesFromOutside( i.readObject() );
                 i.close();
                 drawPanel.repaint();
+                updateLabelPages();
                 verifyHistory();
             }
             
@@ -1605,6 +1624,67 @@ public class MainWindow extends javax.swing.JFrame {
         setColorOnColorPanel( evt, colorPanelFC8, "Fill Color 8" );
     }//GEN-LAST:event_colorPanelFC8MousePressed
 
+    private void btnEraserMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEraserMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEraserMouseReleased
+
+    private void btnEraserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEraserActionPerformed
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.ERASER ) );
+    }//GEN-LAST:event_btnEraserActionPerformed
+
+    private void btnPaletteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPaletteMouseReleased
+        
+        if ( SwingUtilities.isLeftMouseButton( evt ) ) {
+            
+            ToolConfigDialogPalette tcp = new ToolConfigDialogPalette( this, true );
+            Point loc = evt.getLocationOnScreen();
+            tcp.setLocation( loc.x - 520, loc.y );
+            tcp.setVisible( true );
+            
+        }
+        
+    }//GEN-LAST:event_btnPaletteMouseReleased
+
+    public void moveColors( Map<String, Color> colors ) {
+        
+        colorPanelSC1.setColor( colors.get( "s1" ) );
+        colorPanelSC2.setColor( colors.get( "s2" ) );
+        colorPanelSC3.setColor( colors.get( "s3" ) );
+        colorPanelSC4.setColor( colors.get( "s4" ) );
+        colorPanelSC5.setColor( colors.get( "s5" ) );
+        colorPanelSC6.setColor( colors.get( "s6" ) );
+        colorPanelSC7.setColor( colors.get( "s7" ) );
+        colorPanelSC8.setColor( colors.get( "s8" ) );
+        
+        colorPanelFC1.setColor( colors.get( "f1" ) );
+        colorPanelFC2.setColor( colors.get( "f2" ) );
+        colorPanelFC3.setColor( colors.get( "f3" ) );
+        colorPanelFC4.setColor( colors.get( "f4" ) );
+        colorPanelFC5.setColor( colors.get( "f5" ) );
+        colorPanelFC6.setColor( colors.get( "f6" ) );
+        colorPanelFC7.setColor( colors.get( "f7" ) );
+        colorPanelFC8.setColor( colors.get( "f8" ) );
+        
+        colorPanelSC1.repaint();
+        colorPanelSC2.repaint();
+        colorPanelSC3.repaint();
+        colorPanelSC4.repaint();
+        colorPanelSC5.repaint();
+        colorPanelSC6.repaint();
+        colorPanelSC7.repaint();
+        colorPanelSC8.repaint();
+        
+        colorPanelFC1.repaint();
+        colorPanelFC2.repaint();
+        colorPanelFC3.repaint();
+        colorPanelFC4.repaint();
+        colorPanelFC5.repaint();
+        colorPanelFC6.repaint();
+        colorPanelFC7.repaint();
+        colorPanelFC8.repaint();
+        
+    }
+    
     private class ApplicationKeyEventDispatcher implements KeyEventDispatcher {
         
         JFrame mainFrame;
@@ -1643,6 +1723,7 @@ public class MainWindow extends javax.swing.JFrame {
                                         drawPanel.repaint();
                                     }
                                 }
+                                updateLabelPages();
                                 break;
 
                         }
@@ -1664,12 +1745,13 @@ public class MainWindow extends javax.swing.JFrame {
                                 }
                                 
                                 drawPanel.repaint();
-                                
+                                updateLabelPages();
                                 break;
 
                             case KeyEvent.VK_LEFT:
                                 drawPanel.previousDrawPage();
                                 drawPanel.repaint();
+                                updateLabelPages();
                                 break;
 
                             case KeyEvent.VK_1:
@@ -1727,6 +1809,21 @@ public class MainWindow extends javax.swing.JFrame {
                                         colorPanelSC8, colorPanelFC8, 
                                         colorPanelStroke, colorPanelFill );
                                 break;
+                                
+                            case KeyEvent.VK_DELETE:
+                                if ( selectedShape != null ) {
+                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                            mainFrame, 
+                                            "Do you want to remove the selected drawing?", 
+                                            "Remove confirmation" ) == JOptionPane.YES_OPTION ) {
+                                        drawPanel.removeShape( selectedShape );
+                                    }
+                                    selectedShape.setSelected( false );
+                                    selectedShape = null;
+                                    destroySelectedRepaintRunnable();
+                                    drawPanel.repaint();
+                                }
+                                break;
 
                         }
 
@@ -1745,6 +1842,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void toggleToolBars() {
         mainToolBar.setVisible( !mainToolBar.isVisible() );
         paletteToolBar.setVisible( !paletteToolBar.isVisible() );
+        statusToolBar.setVisible( !statusToolBar.isVisible() );
     }
     
     private void setColorOnColorPanel( MouseEvent evt, ColorPanel colorPanel, String dialogTitle ) {
@@ -1830,6 +1928,51 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
     
+    private void updateLabelPages() {
+        lblPages.setText( String.format( "    %d/%d", drawPanel.getCurrentDrawPageIndex()+1, drawPanel.getDrawPages().size() ) );
+    }
+    
+    private void createSelectedRepaintRunnable() {
+        if ( selectedRepaintRunnable == null ) {
+            selectedRepaintRunnable = new SelectedRepaintRunnable();
+            new Thread( selectedRepaintRunnable ).start();
+        }
+    }
+    
+    private void destroySelectedRepaintRunnable() {
+        if ( selectedRepaintRunnable != null ) {
+            selectedRepaintRunnable.stop();
+            selectedRepaintRunnable = null;
+        }
+    }
+    
+    private class SelectedRepaintRunnable implements Runnable {
+
+        boolean running;
+        
+        @Override
+        public void run() {
+            running = true;
+            while ( running ) {
+                drawPanel.repaint();
+                try {
+                    Thread.sleep( 50 );
+                } catch ( InterruptedException exc ) {
+                    running = false;
+                }
+            }
+        }
+        
+        void stop() {
+            running = false;
+        }
+
+        public boolean isRunning() {
+            return running;
+        }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1870,6 +2013,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnClean;
     private javax.swing.JButton btnConfigs;
     private javax.swing.JToggleButton btnEllipse;
+    private javax.swing.JToggleButton btnEraser;
     private javax.swing.JButton btnHelp;
     private javax.swing.JToggleButton btnLine;
     private javax.swing.JToggleButton btnMove;
@@ -1924,6 +2068,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JToolBar.Separator jSeparator8;
     private javax.swing.JToolBar.Separator jSeparator9;
+    private javax.swing.JLabel lblPages;
     private javax.swing.JToolBar mainToolBar;
     private javax.swing.JMenuItem menuItemNoColor;
     private javax.swing.JToolBar paletteToolBar;
@@ -1936,5 +2081,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel panelC7;
     private javax.swing.JPanel panelC8;
     private javax.swing.JPopupMenu popupMenuNoColor;
+    private javax.swing.JToolBar statusToolBar;
     // End of variables declaration//GEN-END:variables
 }

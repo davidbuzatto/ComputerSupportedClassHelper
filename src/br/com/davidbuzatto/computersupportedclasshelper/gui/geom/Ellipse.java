@@ -19,26 +19,28 @@ public class Ellipse extends Shape implements Serializable {
     @Override
     public void draw( Graphics2D g2d ) {
         
-        Graphics2D g2 = (Graphics2D) g2d.create();
+        calculateDrawingBounds();
+        g2d = (Graphics2D) g2d.create();
         
         if ( fillColor != null ) {
-            g2.setPaint(fillColor );
-            g2.fill( new Ellipse2D.Double( xStart, yStart, xEnd-xStart, yEnd-yStart ) );
+            g2d.setPaint(fillColor );
+            g2d.fill( new Ellipse2D.Double( xStartD, yStartD, xEndD-xStartD, yEndD-yStartD ) );
         }
         
         if ( strokeColor != null ) {
-            g2.setPaint(strokeColor );
-            g2.setStroke( new BasicStroke( (float) strokeWidth ) );
-            g2.draw( new Ellipse2D.Double( xStart, yStart, xEnd-xStart, yEnd-yStart ) );
+            g2d.setPaint(strokeColor );
+            g2d.setStroke( new BasicStroke( (float) strokeWidth ) );
+            g2d.draw( new Ellipse2D.Double( xStartD, yStartD, xEndD-xStartD, yEndD-yStartD ) );
         }
         
-        g2.dispose();
+        drawSelection( g2d );
+        g2d.dispose();
         
     }
     
     @Override
     public boolean intercepts( double x, double y ) {
-        return x >= xStart && x <= xEnd && y >= yStart && y <= yEnd;
+        return x >= xStartD && x <= xEndD && y >= yStartD && y <= yEndD;
     }
     
 }

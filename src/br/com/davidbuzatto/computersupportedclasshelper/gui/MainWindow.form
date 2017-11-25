@@ -23,7 +23,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Computer Supported Class Helper"/>
+    <Property name="title" type="java.lang.String" value="CSCH"/>
     <Property name="extendedState" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
       <Connection code="JFrame.MAXIMIZED_BOTH" type="code"/>
     </Property>
@@ -70,7 +70,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="mainToolBar" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace pref="669" max="32767" attributes="0"/>
+                  <EmptySpace pref="658" max="32767" attributes="0"/>
+                  <Component id="statusToolBar" min="-2" pref="69" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="paletteToolBar" min="-2" pref="70" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -79,6 +81,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="mainToolBar" max="32767" attributes="0"/>
               <Component id="paletteToolBar" alignment="1" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="statusToolBar" min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -229,6 +235,25 @@
               <Events>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPencilMouseReleased"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPencilActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="btnEraser">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/eraser.png"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="eraser"/>
+                <Property name="focusPainted" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
+                <Property name="verticalTextPosition" type="int" value="3"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEraserMouseReleased"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEraserActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnLine">
@@ -654,13 +679,14 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="new"/>
+                <Property name="toolTipText" type="java.lang.String" value="palettes"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPaletteMouseReleased"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPaletteActionPerformed"/>
               </Events>
             </Component>
@@ -1213,6 +1239,37 @@
                 </Container>
               </SubComponents>
             </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JToolBar" name="statusToolBar">
+          <Properties>
+            <Property name="floatable" type="boolean" value="false"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="requestFocusEnabled" type="boolean" value="false"/>
+            <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ToolBar( ToolBar.Side.TOP );"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblPages">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new Font( &quot;Dialog&quot;, Font.BOLD, 12 )" type="code"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="bc" green="bc" red="bc" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="pages"/>
+                <Property name="toolTipText" type="java.lang.String" value="current draw page / total draw pages"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

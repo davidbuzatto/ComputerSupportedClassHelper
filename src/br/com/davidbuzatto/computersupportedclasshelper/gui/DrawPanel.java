@@ -104,6 +104,10 @@ public class DrawPanel extends JPanel {
         currentDrawPage.getShapes().add( shape );
     }
     
+    public void removeShape( Shape shape ) {
+        currentDrawPage.getShapes().remove( shape );
+    }
+    
     public void addDrawPage( Color backgroundColor ) {
         
         if ( backgroundColor == null ) {
@@ -159,12 +163,22 @@ public class DrawPanel extends JPanel {
     public List<DrawPage> getDrawPages() {
         return drawPages;
     }
+
+    public int getCurrentDrawPageIndex() {
+        return currentDrawPageIndex;
+    }
     
+    @SuppressWarnings( "unchecked" )
     public void loadDrawPagesFromOutside( Object data ) {
         
-        drawPages = (List<DrawPage>) data;
-        currentDrawPageIndex = 0;
-        currentDrawPage = drawPages.get( 0 );
+        if ( data instanceof List ) {
+            List gList = (List) data;
+            if ( !gList.isEmpty() && gList.get( 0 ) instanceof DrawPage ) {
+                drawPages = (List<DrawPage>) gList;
+                currentDrawPageIndex = 0;
+                currentDrawPage = drawPages.get( 0 );
+            }
+        }
         
     }
     

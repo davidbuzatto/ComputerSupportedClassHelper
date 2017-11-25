@@ -23,6 +23,7 @@ public class Cursors {
     private Cursor cBucket;
     private Cursor cMove;
     private Cursor cPencil;
+    private Cursor cEraser;
     private Cursor cCorss;
     
     private static final Cursors INSTANCE;
@@ -31,6 +32,7 @@ public class Cursors {
         BUCKET,
         MOVE,
         PENCIL,
+        ERASER,
         CROSS
     }
     
@@ -48,6 +50,7 @@ public class Cursors {
             BufferedImage imgBucket = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             BufferedImage imgMove = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             BufferedImage imgPencil = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
+            BufferedImage imgEraser = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             
             Graphics g = imgCross.createGraphics();
             g.setColor( Color.BLACK );
@@ -65,10 +68,13 @@ public class Cursors {
                     getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cursor_openhand.png" ) ), 0, 0, null );
             imgPencil.getGraphics().drawImage( ImageIO.read( 
                     getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/pencil.png" ) ), 0, 0, null );
+            imgEraser.getGraphics().drawImage( ImageIO.read( 
+                    getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/eraser.png" ) ), 0, 0, null );
             
             cBucket = t.createCustomCursor( imgBucket, new Point( 0, 12 ),  "bucket" );
             cMove = t.createCustomCursor( imgMove, new Point( 7, 7 ), "move" );
             cPencil = t.createCustomCursor( imgPencil, new Point( 0, 14 ), "pencil" );
+            cEraser = t.createCustomCursor( imgEraser, new Point( 0, 14 ), "eraser" );
             cCorss = t.createCustomCursor( imgCross, new Point( 11, 11 ), "cross" );
         
         } catch ( IOException exc ) {
@@ -86,6 +92,8 @@ public class Cursors {
                 return INSTANCE.cMove;
             case PENCIL:
                 return INSTANCE.cPencil;
+            case ERASER:
+                return INSTANCE.cEraser;
             case CROSS:
                 return INSTANCE.cCorss;
             

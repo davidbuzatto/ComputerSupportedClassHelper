@@ -21,46 +21,46 @@ public class Star extends Polygon implements Serializable {
         
         calculate();
         
-        Graphics2D g2 = (Graphics2D) g2d.create();
+        g2d = (Graphics2D) g2d.create();
         
-        Path2D.Double estrela = new Path2D.Double();
-        estrela.moveTo( xs[0], ys[0] );
+        Path2D.Double star = new Path2D.Double();
+        star.moveTo( xs[0], ys[0] );
         
         if ( sideQuantity % 2 == 0 ) {
             
-            // se par, faz em duas partes
             for ( int i = 2; i < sideQuantity; i += 2 ) {
-                estrela.lineTo( xs[i], ys[i] );
+                star.lineTo( xs[i], ys[i] );
             }
-            estrela.closePath();
+            star.closePath();
             
-            estrela.moveTo( xs[1], ys[1] );
+            star.moveTo( xs[1], ys[1] );
             for ( int i = 3; i < sideQuantity; i += 2 ) {
-                estrela.lineTo( xs[i], ys[i] );
+                star.lineTo( xs[i], ys[i] );
             }
             
         } else {
             
             for ( int i = 2; i < sideQuantity * 2; i += 2 ) {
-                estrela.lineTo( xs[i%sideQuantity], ys[i%sideQuantity] );
+                star.lineTo( xs[i%sideQuantity], ys[i%sideQuantity] );
             }
             
         }
         
-        estrela.closePath();
+        star.closePath();
         
         if ( fillColor != null ) {
-            g2.setPaint(fillColor );
-            g2.fill( estrela );
+            g2d.setPaint(fillColor );
+            g2d.fill( star );
         }
         
         if ( strokeColor != null ) {
-            g2.setPaint(strokeColor );
-            g2.setStroke( new BasicStroke( (float) strokeWidth ) );
-            g2.draw( estrela );
+            g2d.setPaint(strokeColor );
+            g2d.setStroke( new BasicStroke( (float) strokeWidth ) );
+            g2d.draw( star );
         }
         
-        g2.dispose();
+        drawSelection( g2d );
+        g2d.dispose();
         
     }
     

@@ -31,10 +31,35 @@ public class Polygon extends Shape implements Serializable {
         ys = new double[sideQuantity];
         double angleIncrement = 360.0 / sideQuantity;
         
+        xStartD = 0;
+        xEndD = 0;
+        yStartD = 0;
+        yEndD = 0;
+        
         for ( int i = 0; i < sideQuantity; i++ ) {
+            
             xs[i] = xCenter + Math.cos( Math.toRadians(angle ) ) * radius;
             ys[i] = yCenter + Math.sin( Math.toRadians(angle ) ) * radius;
             angle += angleIncrement;
+            
+            if ( i == 0 ) {
+                xStartD = xEndD = xs[i];
+                yStartD = yEndD = ys[i];
+            } else {
+                if ( xStartD > xs[i] ) {
+                    xStartD = xs[i];
+                }
+                if ( xEndD < xs[i] ) {
+                    xEndD = xs[i];
+                }
+                if ( yStartD > ys[i] ) {
+                    yStartD = ys[i];
+                }
+                if ( yEndD < ys[i] ) {
+                    yEndD = ys[i];
+                }
+            }
+            
         }
         
     }
@@ -44,29 +69,30 @@ public class Polygon extends Shape implements Serializable {
         
         calculate();
         
-        Graphics2D g2 = (Graphics2D) g2d.create();
+        g2d = (Graphics2D) g2d.create();
         
-        Path2D.Double poligono = new Path2D.Double();
-        poligono.moveTo( xs[0], ys[0] );
+        Path2D.Double polygon = new Path2D.Double();
+        polygon.moveTo( xs[0], ys[0] );
         
         for ( int i = 1; i < sideQuantity; i++ ) {
-            poligono.lineTo( xs[i], ys[i] );
+            polygon.lineTo( xs[i], ys[i] );
         }
         
-        poligono.closePath();
+        polygon.closePath();
         
         if ( fillColor != null ) {
-            g2.setPaint( fillColor );
-            g2.fill( poligono );
+            g2d.setPaint( fillColor );
+            g2d.fill( polygon );
         }
         
         if ( strokeColor != null ) {
-            g2.setPaint( strokeColor );
-            g2.setStroke( new BasicStroke( (float) strokeWidth ) );
-            g2.draw( poligono );
+            g2d.setPaint( strokeColor );
+            g2d.setStroke( new BasicStroke( (float) strokeWidth ) );
+            g2d.draw( polygon );
         }
         
-        g2.dispose();
+        drawSelection( g2d );
+        g2d.dispose();
         
     }
 

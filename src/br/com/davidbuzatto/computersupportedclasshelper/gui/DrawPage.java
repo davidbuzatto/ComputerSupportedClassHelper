@@ -6,6 +6,7 @@
 package br.com.davidbuzatto.computersupportedclasshelper.gui;
 
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +25,11 @@ public class DrawPage  implements Serializable {
     private List<Shape> redoList;
 
     public DrawPage( Color backgroundColor ) {
-        this.backgroundColor = backgroundColor;
+        if ( backgroundColor == null ) {
+            this.backgroundColor = Constants.TRANSPARENT_COLOR;
+        } else {
+            this.backgroundColor = backgroundColor;
+        }
         this.shapes = new ArrayList<>();
         this.redoList = new ArrayList<>();
     }
@@ -40,7 +45,11 @@ public class DrawPage  implements Serializable {
     }
 
     public void setBackgroundColor( Color backgroundColor ) {
-        this.backgroundColor = backgroundColor;
+        if ( backgroundColor == null ) {
+            this.backgroundColor = Constants.TRANSPARENT_COLOR;
+        } else {
+            this.backgroundColor = backgroundColor;
+        }
     }
 
     public Shape getTempShape() {

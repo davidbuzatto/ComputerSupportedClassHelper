@@ -12,7 +12,10 @@ import java.awt.Font;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -21,37 +24,28 @@ import javax.swing.JOptionPane;
 public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
 
     private DrawingConfigs dConfig;
+    private KeyEventDispatcher keyEventDispatcher;
     private int returnData;
     
     /**
-     * Creates new form ToolConfigDialog
+     * Creates new form CustomMessageAndConfirmDialog
      */
-    private CustomMessageAndConfirmDialog( java.awt.Window parent ) {
-        this( parent, 
-                Constants.COMPONENT_BACKGROUND_COLOR, 
-                Constants.COMPONENT_STROKE_COLOR,
-                false );
-    }
-    
-    private CustomMessageAndConfirmDialog( java.awt.Window parent,
-            Color backgroundColor, Color strokeColor, boolean showCancelOption ) {
+    private CustomMessageAndConfirmDialog( java.awt.Window parent, boolean showCancelOption ) {
         
         super( parent, ModalityType.APPLICATION_MODAL );
-        
         initComponents();
+        
         setBackground( new Color( 0, 0, 0, 0 ) );
         dConfig = DrawingConfigs.getInstance();
+        dConfig.setProcessEventsMainWindow( false );
         getRootPane().setDefaultButton( btnOK );
-        
-        containerPanel.setBackgroundColor( backgroundColor );
-        containerPanel.setStrokeColor( strokeColor );
         containerPanel.setForMessageAndInputDialogs( true );
         
         if ( !showCancelOption ) {
             btnCancel.setVisible( false );
         }
         
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher( new KeyEventDispatcher() {
+        keyEventDispatcher = new KeyEventDispatcher() {
             @Override
             public boolean dispatchKeyEvent( KeyEvent e ) {
                 if ( e.getKeyCode() == KeyEvent.VK_ESCAPE ) {
@@ -60,7 +54,17 @@ public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
                 }
                 return false;
             }
-        } );
+        };
+        
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher( keyEventDispatcher );
+        
+        addWindowListener( new WindowAdapter() {
+            @Override
+            public void windowClosed( WindowEvent e ) {
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher( keyEventDispatcher );
+            }
+        });
+        
     }
     
     
@@ -79,6 +83,7 @@ public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
         btnCancel = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         lblMessage = new javax.swing.JLabel();
+        lblIcon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -106,21 +111,24 @@ public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
         lblTitle.setForeground(new java.awt.Color(204, 204, 204));
         lblTitle.setText("title");
 
-        lblMessage.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         lblMessage.setForeground(new java.awt.Color(204, 204, 204));
-        lblMessage.setText("jLabel2");
-        lblMessage.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblMessage.setText("message");
+
+        lblIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout containerPanelLayout = new javax.swing.GroupLayout(containerPanel);
         containerPanel.setLayout(containerPanelLayout);
         containerPanelLayout.setHorizontalGroup(
             containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(containerBtns, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+            .addComponent(containerBtns, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
             .addGroup(containerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(containerPanelLayout.createSequentialGroup()
+                        .addComponent(lblIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         containerPanelLayout.setVerticalGroup(
@@ -129,8 +137,10 @@ public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(containerBtns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -145,7 +155,7 @@ public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
             .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(302, 156));
+        setSize(new java.awt.Dimension(242, 142));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -169,7 +179,7 @@ public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
             java.awt.Window owner, String message, String title, int type ) {
         
         CustomMessageAndConfirmDialog dialog = new CustomMessageAndConfirmDialog( 
-                owner );
+                owner, false );
         dialog.lblTitle.setText( title );
         dialog.lblMessage.setText( message );
         setColorTheme( dialog, type );
@@ -181,7 +191,7 @@ public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
             java.awt.Window owner, String message, String title ) {
         
         CustomMessageAndConfirmDialog dialog = new CustomMessageAndConfirmDialog( 
-                owner );
+                owner, false );
         
         dialog.lblTitle.setText( title );
         dialog.lblMessage.setText( message );
@@ -196,19 +206,29 @@ public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
     private static void setColorTheme( CustomMessageAndConfirmDialog dialog, int type ) {
         
         switch ( type ) {
+            case JOptionPane.INFORMATION_MESSAGE:
+                dialog.containerPanel.setBackgroundColor( Constants.COMPONENT_BACKGROUND_COLOR_INFORMATION );
+                dialog.containerPanel.setStrokeColor( Constants.COMPONENT_STROKE_COLOR_INFORMATION );
+                dialog.lblIcon.setIcon( UIManager.getIcon( "OptionPane.informationIcon" ) );
+                break;
             case JOptionPane.QUESTION_MESSAGE:
-                dialog.containerPanel.setBackgroundColor( new Color( 7, 70, 0, 190 ) );
-                dialog.containerPanel.setStrokeColor( new Color( 25, 104, 17 ) );
+                dialog.containerPanel.setBackgroundColor( Constants.COMPONENT_BACKGROUND_COLOR_QUESTION );
+                dialog.containerPanel.setStrokeColor( Constants.COMPONENT_STROKE_COLOR_QUESTION );
+                dialog.lblIcon.setIcon( UIManager.getIcon( "OptionPane.questionIcon" ) );
                 break;
             case JOptionPane.WARNING_MESSAGE:
-                dialog.containerPanel.setBackgroundColor( new Color( 178, 81, 0, 190 ) );
-                dialog.containerPanel.setStrokeColor( new Color( 228, 103, 0 ) );
+                dialog.containerPanel.setBackgroundColor( Constants.COMPONENT_BACKGROUND_COLOR_WARNING );
+                dialog.containerPanel.setStrokeColor( Constants.COMPONENT_STROKE_COLOR_WARNING );
+                dialog.lblIcon.setIcon( UIManager.getIcon( "OptionPane.warningIcon" ) );
                 break;
             case JOptionPane.ERROR_MESSAGE:
-                dialog.containerPanel.setBackgroundColor( new Color( 178, 13, 0, 190 ) );
-                dialog.containerPanel.setStrokeColor( new Color( 228, 17, 0 ) );
+                dialog.containerPanel.setBackgroundColor( Constants.COMPONENT_BACKGROUND_COLOR_ERROR );
+                dialog.containerPanel.setStrokeColor( Constants.COMPONENT_STROKE_COLOR_ERROR );
+                dialog.lblIcon.setIcon( UIManager.getIcon( "OptionPane.errorIcon" ) );
                 break;
-            default: // INFORMATION and PLAIN
+            default: // PLAIN
+                dialog.containerPanel.setBackgroundColor( Constants.COMPONENT_BACKGROUND_COLOR_INFORMATION );
+                dialog.containerPanel.setStrokeColor( Constants.COMPONENT_STROKE_COLOR_INFORMATION );
                 break;
         }
         
@@ -219,6 +239,7 @@ public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnOK;
     private javax.swing.JPanel containerBtns;
     private br.com.davidbuzatto.computersupportedclasshelper.gui.CustomDialogContainerPanel containerPanel;
+    private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel lblMessage;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables

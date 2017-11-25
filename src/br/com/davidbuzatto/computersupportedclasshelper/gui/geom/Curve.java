@@ -29,7 +29,8 @@ public class Curve extends Shape implements Serializable {
     @Override
     public void draw( Graphics2D g2d ) {
         
-        Graphics2D g2 = (Graphics2D) g2d.create();
+        calculateDrawingBounds();
+        g2d = (Graphics2D) g2d.create();
         
         Path2D path = new Path2D.Double();
         boolean move = true;
@@ -50,17 +51,18 @@ public class Curve extends Shape implements Serializable {
         }
             
         if ( fillColor != null ) {
-            g2.setPaint( fillColor );
-            g2.fill( path );
+            g2d.setPaint( fillColor );
+            g2d.fill( path );
         }
         
         if ( strokeColor != null ) {
-            g2.setPaint( strokeColor );
-            g2.setStroke( new BasicStroke( (float) strokeWidth ) );
-            g2.draw( path );
+            g2d.setPaint( strokeColor );
+            g2d.setStroke( new BasicStroke( (float) strokeWidth ) );
+            g2d.draw( path );
         }
         
-        g2.dispose();
+        drawSelection( g2d );
+        g2d.dispose();
         
     }
 
@@ -108,7 +110,7 @@ public class Curve extends Shape implements Serializable {
     
     @Override
     public boolean intercepts( double x, double y ) {
-        return x >= xStart && x <= xEnd && y >= yStart && y <= yEnd;
+        return x >= xStartD && x <= xEndD && y >= yStartD && y <= yEndD;
     }
     
 }
