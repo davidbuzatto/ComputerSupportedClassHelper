@@ -5,11 +5,17 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
 
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.simplify.DouglasPeuckerSimplifier;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,12 +24,10 @@ import java.util.List;
  */
 public class Curve extends Shape implements Serializable {
 
-    private List<Double> xs;
-    private List<Double> ys;
+    private List<Coordinate> coords;
     
     public Curve() {
-        xs = new ArrayList<>();
-        ys = new ArrayList<>();
+        coords = new ArrayList<>();
     }
     
     @Override
@@ -32,45 +36,63 @@ public class Curve extends Shape implements Serializable {
         calculateDrawingBounds();
         g2d = (Graphics2D) g2d.create();
         
-        Path2D path = new Path2D.Double();
-        boolean move = true;
-        int p = 0;
+        try {
+            
+            GeometryFactory f = new GeometryFactory();
 
-        for ( double x : xs ) {
+            if ( coords.size() < 2 ) {
+                return;
+            }
+            LineString ls = f.createLineString( coords.toArray( new Coordinate[0] ) );
+            Geometry simple = DouglasPeuckerSimplifier.simplify( ls, 3.0 );
+            if ( simple.getCoordinates().length < 2 ) {
+                return;
+            }
+            
+            List<Coordinate> raw = new ArrayList<>();
+            raw.addAll( Arrays.asList( simple.getCoordinates() ) );
+            List<Coordinate> spline = CatmullRom.interpolate( raw, 10 );
 
-            if ( move ) {
-                path.moveTo( x, ys.get( p ) );
-                path.lineTo( x, ys.get( p ) );
-                move = false;
-            } else {
-                path.lineTo( x, ys.get( p ) );
+            Path2D path = new Path2D.Double();
+            boolean move = true;
+
+            for ( Coordinate c : spline ) {
+
+                if ( move ) {
+                    path.moveTo( c.x, c.y );
+                    path.lineTo( c.x, c.y );
+                    move = false;
+                } else {
+                    path.lineTo( c.x, c.y );
+                }
+
             }
 
-            p++;
+            if ( fillColor != null ) {
+                g2d.setPaint( fillColor );
+                g2d.fill( path );
+            }
 
-        }
+            if ( strokeColor != null ) {
+                g2d.setPaint( strokeColor );
+                g2d.setStroke( new BasicStroke( (float) strokeWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND ) );
+                g2d.draw( path );
+            }
             
-        if ( fillColor != null ) {
-            g2d.setPaint( fillColor );
-            g2d.fill( path );
-        }
-        
-        if ( strokeColor != null ) {
-            g2d.setPaint( strokeColor );
-            g2d.setStroke( new BasicStroke( (float) strokeWidth ) );
-            g2d.draw( path );
+        } catch ( Exception exc ) {
+            exc.printStackTrace();
         }
         
         drawSelection( g2d );
         g2d.dispose();
         
     }
-
-    public void addX( double x ) {
+    
+    public void addCoordinate( double x, double y ) {
         
-        xs.add( x );
+        coords.add( new Coordinate( x, y ) );
         
-        if ( xs.size() == 1 ) {
+        if ( coords.size() == 1 ) {
             xStart = x;
             xEnd = x;
         } else if ( x < xStart ) {
@@ -79,13 +101,7 @@ public class Curve extends Shape implements Serializable {
             xEnd = x;
         }
         
-    }
-
-    public void addY( double y ) {
-        
-        ys.add( y );
-        
-        if ( ys.size() == 1 ) {
+        if ( coords.size() == 1 ) {
             yStart = y;
             yEnd = y;
         } else if ( y < yStart ) {
@@ -101,9 +117,9 @@ public class Curve extends Shape implements Serializable {
         
         super.move( difX, difY );
         
-        for ( int i = 0; i < xs.size(); i++ ) {
-            xs.set( i, xs.get( i ) + difX );
-            ys.set( i, ys.get( i ) + difY );
+        for ( Coordinate c : coords ) {
+            c.x += difX;
+            c.y += difY;
         }
         
     }

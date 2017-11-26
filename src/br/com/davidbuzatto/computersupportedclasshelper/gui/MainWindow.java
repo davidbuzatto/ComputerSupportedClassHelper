@@ -17,11 +17,16 @@ import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.DrawingConfigs;
 import java.awt.AWTException;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -35,6 +40,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import javax.imageio.ImageIO;
+import javax.swing.AbstractButton;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -102,7 +108,6 @@ public class MainWindow extends javax.swing.JFrame {
         btnRedo = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnPencil = new javax.swing.JToggleButton();
-        btnEraser = new javax.swing.JToggleButton();
         btnLine = new javax.swing.JToggleButton();
         btnRectangle = new javax.swing.JToggleButton();
         btnRoundRectangle = new javax.swing.JToggleButton();
@@ -111,9 +116,9 @@ public class MainWindow extends javax.swing.JFrame {
         btnStar = new javax.swing.JToggleButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         btnMove = new javax.swing.JToggleButton();
-        btnChangeFill = new javax.swing.JToggleButton();
+        btnFill = new javax.swing.JToggleButton();
         jSeparator8 = new javax.swing.JToolBar.Separator();
-        btnClean = new javax.swing.JButton();
+        btnClearCurrentDrawPage = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
         colorPanelStroke = new br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel();
@@ -127,8 +132,8 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JToolBar.Separator();
         filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 20), new java.awt.Dimension(5, 20), new java.awt.Dimension(5, 20));
         jSeparator7 = new javax.swing.JToolBar.Separator();
-        btnHelp = new javax.swing.JButton();
-        btnConfigs = new javax.swing.JButton();
+        btnHelpAndAcount = new javax.swing.JButton();
+        btnConfigurations = new javax.swing.JButton();
         btnQuit = new javax.swing.JButton();
         paletteToolBar = new ToolBar( ToolBar.Side.RIGHT );
         filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
@@ -168,10 +173,15 @@ public class MainWindow extends javax.swing.JFrame {
         });
         popupMenuNoColor.add(menuItemNoColor);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("CSCH");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         drawPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -195,7 +205,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainToolBar.add(filler1);
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_add.png"))); // NOI18N
-        btnNew.setToolTipText("new");
+        btnNew.setToolTipText("new (Ctrl+N)");
         btnNew.setFocusPainted(false);
         btnNew.setFocusable(false);
         btnNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -208,7 +218,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainToolBar.add(btnNew);
 
         btnOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_edit.png"))); // NOI18N
-        btnOpen.setToolTipText("open");
+        btnOpen.setToolTipText("open (Ctrl+O)");
         btnOpen.setFocusPainted(false);
         btnOpen.setFocusable(false);
         btnOpen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -221,7 +231,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainToolBar.add(btnOpen);
 
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/disk.png"))); // NOI18N
-        btnSave.setToolTipText("save");
+        btnSave.setToolTipText("save (Ctrl+S)");
         btnSave.setFocusPainted(false);
         btnSave.setFocusable(false);
         btnSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -235,7 +245,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainToolBar.add(jSeparator9);
 
         btnPrintScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/picture.png"))); // NOI18N
-        btnPrintScreen.setToolTipText("print screen");
+        btnPrintScreen.setToolTipText("print screen (PrtScn)");
         btnPrintScreen.setFocusPainted(false);
         btnPrintScreen.setFocusable(false);
         btnPrintScreen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -249,7 +259,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainToolBar.add(jSeparator1);
 
         btnUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_undo.png"))); // NOI18N
-        btnUndo.setToolTipText("undo");
+        btnUndo.setToolTipText("undo (Ctrl+Z)");
         btnUndo.setEnabled(false);
         btnUndo.setFocusPainted(false);
         btnUndo.setFocusable(false);
@@ -263,7 +273,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainToolBar.add(btnUndo);
 
         btnRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_redo.png"))); // NOI18N
-        btnRedo.setToolTipText("redo");
+        btnRedo.setToolTipText("redo (Ctrl+Y)");
         btnRedo.setEnabled(false);
         btnRedo.setFocusPainted(false);
         btnRedo.setFocusable(false);
@@ -280,7 +290,7 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup.add(btnPencil);
         btnPencil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/pencil.png"))); // NOI18N
         btnPencil.setSelected(true);
-        btnPencil.setToolTipText("pencil");
+        btnPencil.setToolTipText("pencil (P)");
         btnPencil.setFocusPainted(false);
         btnPencil.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPencil.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -295,28 +305,9 @@ public class MainWindow extends javax.swing.JFrame {
         });
         mainToolBar.add(btnPencil);
 
-        buttonGroup.add(btnEraser);
-        btnEraser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/eraser.png"))); // NOI18N
-        btnEraser.setToolTipText("eraser");
-        btnEraser.setFocusPainted(false);
-        btnEraser.setFocusable(false);
-        btnEraser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEraser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEraser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnEraserMouseReleased(evt);
-            }
-        });
-        btnEraser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEraserActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnEraser);
-
         buttonGroup.add(btnLine);
         btnLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/line.png"))); // NOI18N
-        btnLine.setToolTipText("line");
+        btnLine.setToolTipText("line (L)");
         btnLine.setFocusPainted(false);
         btnLine.setFocusable(false);
         btnLine.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -334,7 +325,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup.add(btnRectangle);
         btnRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/retangle.png"))); // NOI18N
-        btnRectangle.setToolTipText("rectangle");
+        btnRectangle.setToolTipText("rectangle (R)");
         btnRectangle.setFocusPainted(false);
         btnRectangle.setFocusable(false);
         btnRectangle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -352,7 +343,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup.add(btnRoundRectangle);
         btnRoundRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/roundRectangle.png"))); // NOI18N
-        btnRoundRectangle.setToolTipText("round rectangle");
+        btnRoundRectangle.setToolTipText("round rectangle (A)");
         btnRoundRectangle.setFocusPainted(false);
         btnRoundRectangle.setFocusable(false);
         btnRoundRectangle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -370,7 +361,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup.add(btnEllipse);
         btnEllipse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/ellipse.png"))); // NOI18N
-        btnEllipse.setToolTipText("ellipse");
+        btnEllipse.setToolTipText("ellipse (E)");
         btnEllipse.setFocusPainted(false);
         btnEllipse.setFocusable(false);
         btnEllipse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -389,7 +380,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup.add(btnPolygon);
         btnPolygon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/polygon.png"))); // NOI18N
-        btnPolygon.setToolTipText("polygon");
+        btnPolygon.setToolTipText("polygon (G)");
         btnPolygon.setFocusPainted(false);
         btnPolygon.setFocusable(false);
         btnPolygon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -407,7 +398,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup.add(btnStar);
         btnStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/star.png"))); // NOI18N
-        btnStar.setToolTipText("star");
+        btnStar.setToolTipText("star (S)");
         btnStar.setFocusPainted(false);
         btnStar.setFocusable(false);
         btnStar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -426,7 +417,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup.add(btnMove);
         btnMove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cursor_openhand.png"))); // NOI18N
-        btnMove.setToolTipText("move");
+        btnMove.setToolTipText("move (M)");
         btnMove.setFocusPainted(false);
         btnMove.setFocusable(false);
         btnMove.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -437,36 +428,36 @@ public class MainWindow extends javax.swing.JFrame {
         });
         mainToolBar.add(btnMove);
 
-        buttonGroup.add(btnChangeFill);
-        btnChangeFill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/bucket.png"))); // NOI18N
-        btnChangeFill.setToolTipText("change fill");
-        btnChangeFill.setFocusPainted(false);
-        btnChangeFill.setFocusable(false);
-        btnChangeFill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnChangeFill.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup.add(btnFill);
+        btnFill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/bucket.png"))); // NOI18N
+        btnFill.setToolTipText("change fill (F)");
+        btnFill.setFocusPainted(false);
+        btnFill.setFocusable(false);
+        btnFill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnFill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChangeFillActionPerformed(evt);
+                btnFillActionPerformed(evt);
             }
         });
-        mainToolBar.add(btnChangeFill);
+        mainToolBar.add(btnFill);
         mainToolBar.add(jSeparator8);
 
-        btnClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"))); // NOI18N
-        btnClean.setToolTipText("clear current draw page");
-        btnClean.setFocusPainted(false);
-        btnClean.setFocusable(false);
-        btnClean.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnClean.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnClean.addActionListener(new java.awt.event.ActionListener() {
+        btnClearCurrentDrawPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"))); // NOI18N
+        btnClearCurrentDrawPage.setToolTipText("clear current draw page (Ctrl+Backspace)");
+        btnClearCurrentDrawPage.setFocusPainted(false);
+        btnClearCurrentDrawPage.setFocusable(false);
+        btnClearCurrentDrawPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClearCurrentDrawPage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnClearCurrentDrawPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCleanActionPerformed(evt);
+                btnClearCurrentDrawPageActionPerformed(evt);
             }
         });
-        mainToolBar.add(btnClean);
+        mainToolBar.add(btnClearCurrentDrawPage);
         mainToolBar.add(jSeparator4);
         mainToolBar.add(filler2);
 
-        colorPanelStroke.setToolTipText("stroke color");
+        colorPanelStroke.setToolTipText("stroke color (Shift+S)");
         colorPanelStroke.setAlignmentX(0.0F);
         colorPanelStroke.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -488,7 +479,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainToolBar.add(colorPanelStroke);
         mainToolBar.add(filler3);
 
-        colorPanelFill.setToolTipText("fill color");
+        colorPanelFill.setToolTipText("fill color (Shift+F)");
         colorPanelFill.setAlignmentX(0.0F);
         colorPanelFill.setColor(null);
         colorPanelFill.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -513,7 +504,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainToolBar.add(jSeparator5);
         mainToolBar.add(filler6);
 
-        colorPanelBackground.setToolTipText("background color");
+        colorPanelBackground.setToolTipText("background color (Shift+B)");
         colorPanelBackground.setAlignmentX(0.0F);
         colorPanelBackground.setColor(null);
         colorPanelBackground.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -539,34 +530,34 @@ public class MainWindow extends javax.swing.JFrame {
         mainToolBar.add(filler5);
         mainToolBar.add(jSeparator7);
 
-        btnHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/help.png"))); // NOI18N
-        btnHelp.setToolTipText("help and about");
-        btnHelp.setFocusPainted(false);
-        btnHelp.setFocusable(false);
-        btnHelp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHelp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+        btnHelpAndAcount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/help.png"))); // NOI18N
+        btnHelpAndAcount.setToolTipText("help and about (F1)");
+        btnHelpAndAcount.setFocusPainted(false);
+        btnHelpAndAcount.setFocusable(false);
+        btnHelpAndAcount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHelpAndAcount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHelpAndAcount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHelpActionPerformed(evt);
+                btnHelpAndAcountActionPerformed(evt);
             }
         });
-        mainToolBar.add(btnHelp);
+        mainToolBar.add(btnHelpAndAcount);
 
-        btnConfigs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cog.png"))); // NOI18N
-        btnConfigs.setToolTipText("configuration");
-        btnConfigs.setFocusPainted(false);
-        btnConfigs.setFocusable(false);
-        btnConfigs.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnConfigs.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnConfigs.addActionListener(new java.awt.event.ActionListener() {
+        btnConfigurations.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cog.png"))); // NOI18N
+        btnConfigurations.setToolTipText("configuration (F2)");
+        btnConfigurations.setFocusPainted(false);
+        btnConfigurations.setFocusable(false);
+        btnConfigurations.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnConfigurations.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConfigurations.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfigsActionPerformed(evt);
+                btnConfigurationsActionPerformed(evt);
             }
         });
-        mainToolBar.add(btnConfigs);
+        mainToolBar.add(btnConfigurations);
 
         btnQuit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cancel.png"))); // NOI18N
-        btnQuit.setToolTipText("quit");
+        btnQuit.setToolTipText("quit (Alt+F4)");
         btnQuit.setFocusPainted(false);
         btnQuit.setFocusable(false);
         btnQuit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -587,16 +578,11 @@ public class MainWindow extends javax.swing.JFrame {
         paletteToolBar.add(filler8);
 
         btnPalette.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png"))); // NOI18N
-        btnPalette.setToolTipText("palettes");
+        btnPalette.setToolTipText("palettes (C)");
         btnPalette.setFocusPainted(false);
         btnPalette.setFocusable(false);
         btnPalette.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPalette.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnPalette.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnPaletteMouseReleased(evt);
-            }
-        });
         btnPalette.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPaletteActionPerformed(evt);
@@ -610,7 +596,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelC1.setOpaque(false);
         panelC1.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        colorPanelSC1.setToolTipText("stroke color 1");
+        colorPanelSC1.setToolTipText("stroke color 1 (Shift+1)");
         colorPanelSC1.setAlignmentX(0.0F);
         colorPanelSC1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -631,7 +617,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelC1.add(colorPanelSC1);
 
-        colorPanelFC1.setToolTipText("fill color 1");
+        colorPanelFC1.setToolTipText("fill color 1 (Ctrl+1)");
         colorPanelFC1.setAlignmentX(0.0F);
         colorPanelFC1.setColor(null);
         colorPanelFC1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -661,7 +647,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelC2.setOpaque(false);
         panelC2.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        colorPanelSC2.setToolTipText("stroke color 2");
+        colorPanelSC2.setToolTipText("stroke color 2 (Shift+2)");
         colorPanelSC2.setAlignmentX(0.0F);
         colorPanelSC2.setColor(new java.awt.Color(255, 255, 255));
         colorPanelSC2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -683,7 +669,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelC2.add(colorPanelSC2);
 
-        colorPanelFC2.setToolTipText("fill color 2");
+        colorPanelFC2.setToolTipText("fill color 2 (Ctrl+2)");
         colorPanelFC2.setAlignmentX(0.0F);
         colorPanelFC2.setColor(null);
         colorPanelFC2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -713,7 +699,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelC3.setOpaque(false);
         panelC3.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        colorPanelSC3.setToolTipText("stroke color 3");
+        colorPanelSC3.setToolTipText("stroke color 3 (Shift+3)");
         colorPanelSC3.setAlignmentX(0.0F);
         colorPanelSC3.setColor(new java.awt.Color(0, 153, 255));
         colorPanelSC3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -735,7 +721,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelC3.add(colorPanelSC3);
 
-        colorPanelFC3.setToolTipText("fill color 3");
+        colorPanelFC3.setToolTipText("fill color 3 (Ctrl+3)");
         colorPanelFC3.setAlignmentX(0.0F);
         colorPanelFC3.setColor(null);
         colorPanelFC3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -765,7 +751,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelC4.setOpaque(false);
         panelC4.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        colorPanelSC4.setToolTipText("stroke color 4");
+        colorPanelSC4.setToolTipText("stroke color 4 (Shift+4)");
         colorPanelSC4.setAlignmentX(0.0F);
         colorPanelSC4.setColor(new java.awt.Color(0, 204, 51));
         colorPanelSC4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -787,7 +773,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelC4.add(colorPanelSC4);
 
-        colorPanelFC4.setToolTipText("fill color 4");
+        colorPanelFC4.setToolTipText("fill color 4 (Ctrl+4)");
         colorPanelFC4.setAlignmentX(0.0F);
         colorPanelFC4.setColor(null);
         colorPanelFC4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -817,7 +803,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelC5.setOpaque(false);
         panelC5.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        colorPanelSC5.setToolTipText("stroke color 5");
+        colorPanelSC5.setToolTipText("stroke color 5 (Shift+5)");
         colorPanelSC5.setAlignmentX(0.0F);
         colorPanelSC5.setColor(new java.awt.Color(255, 102, 0));
         colorPanelSC5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -839,7 +825,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelC5.add(colorPanelSC5);
 
-        colorPanelFC5.setToolTipText("fill color 5");
+        colorPanelFC5.setToolTipText("fill color 5 (Ctrl+5)");
         colorPanelFC5.setAlignmentX(0.0F);
         colorPanelFC5.setColor(null);
         colorPanelFC5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -869,7 +855,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelC6.setOpaque(false);
         panelC6.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        colorPanelSC6.setToolTipText("stroke color 6");
+        colorPanelSC6.setToolTipText("stroke color 6 (Shift+6)");
         colorPanelSC6.setAlignmentX(0.0F);
         colorPanelSC6.setColor(new java.awt.Color(255, 0, 51));
         colorPanelSC6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -891,7 +877,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelC6.add(colorPanelSC6);
 
-        colorPanelFC6.setToolTipText("fill color 6");
+        colorPanelFC6.setToolTipText("fill color 6 (Ctrl+6)");
         colorPanelFC6.setAlignmentX(0.0F);
         colorPanelFC6.setColor(null);
         colorPanelFC6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -921,7 +907,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelC7.setOpaque(false);
         panelC7.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        colorPanelSC7.setToolTipText("stroke color 7");
+        colorPanelSC7.setToolTipText("stroke color 7 (Shift+7)");
         colorPanelSC7.setAlignmentX(0.0F);
         colorPanelSC7.setColor(new java.awt.Color(255, 0, 204));
         colorPanelSC7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -943,7 +929,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelC7.add(colorPanelSC7);
 
-        colorPanelFC7.setToolTipText("fill color 7");
+        colorPanelFC7.setToolTipText("fill color 7 (Ctrl+7)");
         colorPanelFC7.setAlignmentX(0.0F);
         colorPanelFC7.setColor(null);
         colorPanelFC7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -973,7 +959,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelC8.setOpaque(false);
         panelC8.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        colorPanelSC8.setToolTipText("stroke color 8");
+        colorPanelSC8.setToolTipText("stroke color 8 (Shift+8)");
         colorPanelSC8.setAlignmentX(0.0F);
         colorPanelSC8.setColor(new java.awt.Color(102, 0, 204));
         colorPanelSC8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -995,7 +981,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelC8.add(colorPanelSC8);
 
-        colorPanelFC8.setToolTipText("fill color 8");
+        colorPanelFC8.setToolTipText("fill color 8 (Ctrl+8)");
         colorPanelFC8.setAlignmentX(0.0F);
         colorPanelFC8.setColor(null);
         colorPanelFC8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1084,8 +1070,6 @@ public class MainWindow extends javax.swing.JFrame {
 
                 if ( shape.intercepts( xPressed, yPressed ) ) {
                     selectedShape = shape;
-                    selectedShape.setSelected( true );
-                    createSelectedRepaintRunnable();
                     break;
                 }
 
@@ -1096,9 +1080,11 @@ public class MainWindow extends javax.swing.JFrame {
                 if ( selectedShape != null ) {
                     xPrev = xPressed;
                     yPrev = yPressed;
+                    selectedShape.setSelected( true );
+                    createSelectedRepaintRunnable();
                 }
 
-            } else if ( btnChangeFill.isSelected() ) {
+            } else if ( btnFill.isSelected() ) {
 
                 if ( selectedShape != null ) {
                     selectedShape.setStrokeColor( colorPanelStroke.getColor() );
@@ -1111,8 +1097,7 @@ public class MainWindow extends javax.swing.JFrame {
                 if ( btnPencil.isSelected() ) {
                     if ( currentShape == null ) {
                         Curve c = new Curve();
-                        c.addX( xPressed );
-                        c.addY( yPressed );
+                        c.addCoordinate( xPressed, yPressed );
                         currentShape = c;
                     }
                 }
@@ -1132,6 +1117,7 @@ public class MainWindow extends javax.swing.JFrame {
         if ( SwingUtilities.isLeftMouseButton( evt ) ) {
             
             drawing = false;
+            
             if ( selectedShape != null ) {
                 selectedShape.setSelected( false );
                 destroySelectedRepaintRunnable();
@@ -1139,12 +1125,10 @@ public class MainWindow extends javax.swing.JFrame {
             }
 
             if ( currentShape != null ) {
-
                 drawPanel.setTempShape( null );
                 drawPanel.addShape( currentShape );
                 currentShape = null;
                 drawPanel.resetRedoList();
-
             }
 
             drawPanel.repaint();
@@ -1172,9 +1156,7 @@ public class MainWindow extends javax.swing.JFrame {
                 curve.setFillColor( colorPanelFill.getColor() );
 
                 curve.setStrokeWidth( dConfig.getStrokeWidth() );
-
-                curve.addX( evt.getX() );
-                curve.addY( evt.getY() );
+                curve.addCoordinate( evt.getX(), evt.getY() );
 
                 currentShape = curve;
 
@@ -1299,18 +1281,20 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_drawPanelMouseDragged
 
     private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
-        
-        if ( CustomMessageAndConfirmDialog.showConfirmDialog( this, 
+        close();
+    }//GEN-LAST:event_btnQuitActionPerformed
+
+    private void close() {
+        if ( CustomMessageAndConfirmDialog.showConfirmDialog( this,
                 "Really quit?", "Quit?" ) == JOptionPane.YES_OPTION ) {
             System.exit( 0 );
         }
-        
-    }//GEN-LAST:event_btnQuitActionPerformed
+    }
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         
         if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
-                this, "<html>All unsaved data will be lost.<br/>Continue?</html>", "New" ) == JOptionPane.YES_OPTION ) {
+                this, "<html>All unsaved data will be lost.<br/>Continue?</html>", "New Project" ) == JOptionPane.YES_OPTION ) {
             drawPanel.reset();
             drawPanel.setBackgroundColor( colorPanelBackground.getColor() );
             drawPanel.repaint();
@@ -1327,6 +1311,7 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             
             JFileChooser jfc = new JFileChooser();
+            jfc.setDialogTitle( "Open Project" );
             jfc.setMultiSelectionEnabled( false );
             jfc.setFileFilter( new FileNameExtensionFilter( "Computer Supported Class Helper File", "csch" ) );
             
@@ -1355,6 +1340,7 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             
             JFileChooser jfc = new JFileChooser();
+            jfc.setDialogTitle( "Save Project" );
             jfc.setMultiSelectionEnabled( false );
             jfc.setFileFilter( new FileNameExtensionFilter( "Computer Supported Class Helper File", "csch" ) );
             
@@ -1444,9 +1430,12 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menuItemNoColorActionPerformed
 
-    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHelpActionPerformed
+    private void btnHelpAndAcountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpAndAcountActionPerformed
+        
+        HelpAndAboutDialog tcd = new HelpAndAboutDialog( this, true );
+        tcd.setVisible( true );
+        
+    }//GEN-LAST:event_btnHelpAndAcountActionPerformed
 
     private void colorPanelSC1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC1MousePressed
         setColorOnColorPanel( evt, colorPanelSC1, "Stroke Color 1" );
@@ -1496,10 +1485,6 @@ public class MainWindow extends javax.swing.JFrame {
         setColorOnColorPanel( evt, colorPanelFC6, "Fill Color 6" );
     }//GEN-LAST:event_colorPanelFC6MousePressed
 
-    private void btnPaletteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaletteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPaletteActionPerformed
-
     private void btnPencilMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPencilMouseReleased
         openNewToolConfigDialogStrokeWidth( evt );
     }//GEN-LAST:event_btnPencilMouseReleased
@@ -1524,10 +1509,6 @@ public class MainWindow extends javax.swing.JFrame {
         openNewToolConfigDialogStrokeWidthSideQuantity( evt );
     }//GEN-LAST:event_btnStarMouseReleased
 
-    private void btnEllipseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEllipseMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEllipseMouseReleased
-
     private void btnPrintScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintScreenActionPerformed
         
         dConfig.setProcessEventsMainWindow( false );
@@ -1538,6 +1519,7 @@ public class MainWindow extends javax.swing.JFrame {
             BufferedImage bi = r.createScreenCapture( new java.awt.Rectangle( getWidth(), getHeight() ) );
             
             JFileChooser jfc = new JFileChooser();
+            jfc.setDialogTitle( "Save Print Screen" );
             jfc.setMultiSelectionEnabled( false );
             jfc.setFileFilter( new FileNameExtensionFilter( "Portable Network Graphics", "png" ) );
             
@@ -1557,16 +1539,16 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnPrintScreenActionPerformed
 
-    private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
+    private void btnClearCurrentDrawPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearCurrentDrawPageActionPerformed
         
         if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                 this, 
-                "Clean the current draw page?", "Clear current draw page" ) == JOptionPane.YES_OPTION ) {
+                "Clean the current draw page?", "Clear Current Draw Page" ) == JOptionPane.YES_OPTION ) {
             drawPanel.clearCurrentDrawPage();
             drawPanel.repaint();
         }
         
-    }//GEN-LAST:event_btnCleanActionPerformed
+    }//GEN-LAST:event_btnClearCurrentDrawPageActionPerformed
 
     private void btnPencilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPencilActionPerformed
         drawPanel.setCursor( Cursors.getCursor( Cursors.Type.PENCIL ) );
@@ -1600,13 +1582,13 @@ public class MainWindow extends javax.swing.JFrame {
         drawPanel.setCursor( Cursors.getCursor( Cursors.Type.MOVE ) );
     }//GEN-LAST:event_btnMoveActionPerformed
 
-    private void btnChangeFillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeFillActionPerformed
+    private void btnFillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFillActionPerformed
         drawPanel.setCursor( Cursors.getCursor( Cursors.Type.BUCKET ) );
-    }//GEN-LAST:event_btnChangeFillActionPerformed
+    }//GEN-LAST:event_btnFillActionPerformed
 
-    private void btnConfigsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConfigsActionPerformed
+    private void btnConfigurationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigurationsActionPerformed
+        JOptionPane.showMessageDialog( this, "not implemented yet");
+    }//GEN-LAST:event_btnConfigurationsActionPerformed
 
     private void colorPanelSC7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC7MousePressed
         setColorOnColorPanel( evt, colorPanelSC7, "Stroke Color 7" );
@@ -1624,26 +1606,22 @@ public class MainWindow extends javax.swing.JFrame {
         setColorOnColorPanel( evt, colorPanelFC8, "Fill Color 8" );
     }//GEN-LAST:event_colorPanelFC8MousePressed
 
-    private void btnEraserMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEraserMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEraserMouseReleased
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        close();
+    }//GEN-LAST:event_formWindowClosing
 
-    private void btnEraserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEraserActionPerformed
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.ERASER ) );
-    }//GEN-LAST:event_btnEraserActionPerformed
+    private void btnPaletteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaletteActionPerformed
+        
+        ToolConfigDialogPalette tcp = new ToolConfigDialogPalette( this, true );
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        tcp.setLocation( d.width - 560, 10 );
+        tcp.setVisible( true );
+        
+    }//GEN-LAST:event_btnPaletteActionPerformed
 
-    private void btnPaletteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPaletteMouseReleased
-        
-        if ( SwingUtilities.isLeftMouseButton( evt ) ) {
-            
-            ToolConfigDialogPalette tcp = new ToolConfigDialogPalette( this, true );
-            Point loc = evt.getLocationOnScreen();
-            tcp.setLocation( loc.x - 520, loc.y );
-            tcp.setVisible( true );
-            
-        }
-        
-    }//GEN-LAST:event_btnPaletteMouseReleased
+    private void btnEllipseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEllipseMouseReleased
+        openNewToolConfigDialogStrokeWidth( evt );
+    }//GEN-LAST:event_btnEllipseMouseReleased
 
     public void moveColors( Map<String, Color> colors ) {
         
@@ -1707,6 +1685,65 @@ public class MainWindow extends javax.swing.JFrame {
                             case KeyEvent.VK_ESCAPE:
                                 toggleToolBars();
                                 break;
+                                
+                            case KeyEvent.VK_S: // stroke color
+                                dispatchMouseEvent( colorPanelStroke, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                                
+                            case KeyEvent.VK_F: // fill color
+                                dispatchMouseEvent( colorPanelFill, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                                
+                            case KeyEvent.VK_B: // background color
+                                dispatchMouseEvent( colorPanelBackground, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                                
+                            case KeyEvent.VK_1:
+                                dispatchMouseEvent( colorPanelSC1, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_2:
+                                dispatchMouseEvent( colorPanelSC2, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_3:
+                                dispatchMouseEvent( colorPanelSC3, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_4:
+                                dispatchMouseEvent( colorPanelSC4, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_5:
+                                dispatchMouseEvent( colorPanelSC5, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_6:
+                                dispatchMouseEvent( colorPanelSC6, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_7:
+                                dispatchMouseEvent( colorPanelSC7, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_8:
+                                dispatchMouseEvent( colorPanelSC8, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
 
                         }
 
@@ -1718,14 +1755,79 @@ public class MainWindow extends javax.swing.JFrame {
                                 if ( drawPanel.canDeleteDrawPage() ) {
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
-                                            "Delete the current draw page?", "Delete current draw page" ) == JOptionPane.YES_OPTION ) {
+                                            "Delete the current draw page?", "Delete Current Draw Page" ) == JOptionPane.YES_OPTION ) {
                                         drawPanel.deleteCurrentDrawPage();
                                         drawPanel.repaint();
                                     }
                                 }
                                 updateLabelPages();
                                 break;
+                                
+                            case KeyEvent.VK_N: // new
+                                dispatchActionEvent( btnNew );
+                                break;
+                                
+                            case KeyEvent.VK_O: // open
+                                dispatchActionEvent( btnOpen );
+                                break;
+                                
+                            case KeyEvent.VK_S: // save
+                                dispatchActionEvent( btnSave );
+                                break;
+                                
+                            case KeyEvent.VK_Z: // undo
+                                dispatchActionEvent( btnUndo );
+                                break;
+                                
+                            case KeyEvent.VK_Y: // redo
+                                dispatchActionEvent( btnRedo );
+                                break;
+                                
+                            case KeyEvent.VK_BACK_SPACE: // clear current draw page
+                                dispatchActionEvent( btnClearCurrentDrawPage );
+                                break;
 
+                            case KeyEvent.VK_1:
+                                dispatchMouseEvent( colorPanelFC1, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_2:
+                                dispatchMouseEvent( colorPanelFC2, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_3:
+                                dispatchMouseEvent( colorPanelFC3, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_4:
+                                dispatchMouseEvent( colorPanelFC4, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_5:
+                                dispatchMouseEvent( colorPanelFC5, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_6:
+                                dispatchMouseEvent( colorPanelFC6, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_7:
+                                dispatchMouseEvent( colorPanelFC7, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                            case KeyEvent.VK_8:
+                                dispatchMouseEvent( colorPanelFC8, 
+                                        MouseEvent.MOUSE_PRESSED, 
+                                        MouseEvent.BUTTON1_DOWN_MASK );
+                                break;
+                                
                         }
 
                     } else {
@@ -1815,7 +1917,7 @@ public class MainWindow extends javax.swing.JFrame {
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
                                             "Do you want to remove the selected drawing?", 
-                                            "Remove confirmation" ) == JOptionPane.YES_OPTION ) {
+                                            "Remove Confirmation" ) == JOptionPane.YES_OPTION ) {
                                         drawPanel.removeShape( selectedShape );
                                     }
                                     selectedShape.setSelected( false );
@@ -1824,7 +1926,68 @@ public class MainWindow extends javax.swing.JFrame {
                                     drawPanel.repaint();
                                 }
                                 break;
-
+                                
+                            case KeyEvent.VK_PRINTSCREEN:
+                                dispatchActionEvent( btnPrintScreen );
+                                break;
+                                
+                            case KeyEvent.VK_P: // pencil
+                                btnPencil.setSelected( true );
+                                dispatchActionEvent( btnPencil );
+                                break;
+                                
+                            case KeyEvent.VK_L: // line
+                                btnLine.setSelected( true );
+                                dispatchActionEvent( btnLine );
+                                break;
+                                
+                            case KeyEvent.VK_R: // rectangle
+                                btnRectangle.setSelected( true );
+                                dispatchActionEvent( btnRectangle );
+                                break;
+                                
+                            case KeyEvent.VK_A: // round rectangle
+                                btnRoundRectangle.setSelected( true );
+                                dispatchActionEvent( btnRoundRectangle );
+                                break;
+                                
+                            case KeyEvent.VK_E: // ellipse
+                                btnEllipse.setSelected( true );
+                                dispatchActionEvent( btnEllipse );
+                                break;
+                                
+                            case KeyEvent.VK_G: // polygon
+                                btnPolygon.setSelected( true );
+                                dispatchActionEvent( btnPolygon );
+                                break;
+                                
+                            case KeyEvent.VK_S: // star
+                                btnStar.setSelected( true );
+                                dispatchActionEvent( btnStar );
+                                break;
+                                
+                            case KeyEvent.VK_M: // move
+                                btnMove.setSelected( true );
+                                dispatchActionEvent( btnMove );
+                                break;
+                                
+                            case KeyEvent.VK_F: // fill
+                                btnFill.setSelected( true );
+                                dispatchActionEvent( btnFill );
+                                break;
+                                
+                            case KeyEvent.VK_C: // palette
+                                dispatchActionEvent( btnPalette );
+                                break;
+                                
+                            case KeyEvent.VK_F1: // help and about
+                                dispatchActionEvent( btnHelpAndAcount );
+                                break;
+                                
+                            case KeyEvent.VK_F2: // configurations
+                                dispatchActionEvent( btnConfigurations );
+                                break;
+                                
                         }
 
                     }
@@ -1932,6 +2095,30 @@ public class MainWindow extends javax.swing.JFrame {
         lblPages.setText( String.format( "    %d/%d", drawPanel.getCurrentDrawPageIndex()+1, drawPanel.getDrawPages().size() ) );
     }
     
+    private void dispatchMouseEvent( Component component, int type, int button ) {
+        
+        dConfig.setProcessEventsMainWindow( false );
+        component.dispatchEvent( new MouseEvent(
+                component, type, System.currentTimeMillis(), 
+                button, 0, 0, 1, true ) );
+        dConfig.setProcessEventsMainWindow( true );
+        
+    }
+    
+    private void dispatchActionEvent( AbstractButton component ) {
+        
+        dConfig.setProcessEventsMainWindow( false );
+        
+        ActionEvent event = new ActionEvent( component, ActionEvent.ACTION_PERFORMED, "Anything", System.currentTimeMillis(), 0 );
+
+        for (ActionListener listener : component.getActionListeners() ) {
+            listener.actionPerformed(event);
+        }
+        
+        dConfig.setProcessEventsMainWindow( true );
+        
+    }
+    
     private void createSelectedRepaintRunnable() {
         if ( selectedRepaintRunnable == null ) {
             selectedRepaintRunnable = new SelectedRepaintRunnable();
@@ -2009,12 +2196,11 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnChangeFill;
-    private javax.swing.JButton btnClean;
-    private javax.swing.JButton btnConfigs;
+    private javax.swing.JButton btnClearCurrentDrawPage;
+    private javax.swing.JButton btnConfigurations;
     private javax.swing.JToggleButton btnEllipse;
-    private javax.swing.JToggleButton btnEraser;
-    private javax.swing.JButton btnHelp;
+    private javax.swing.JToggleButton btnFill;
+    private javax.swing.JButton btnHelpAndAcount;
     private javax.swing.JToggleButton btnLine;
     private javax.swing.JToggleButton btnMove;
     private javax.swing.JButton btnNew;

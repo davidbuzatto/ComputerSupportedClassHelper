@@ -59,7 +59,11 @@ public abstract class Shape implements Serializable {
         if ( selected ) {
             g2d.setPaint( Constants.SELECTED_COLOR );
             g2d.setStroke( Constants.SELECTED_STROKES[selectedPhase++] );
-            g2d.draw( new Rectangle2D.Double( xStartD, yStartD, xEndD-xStartD, yEndD-yStartD ) );
+            g2d.draw( new Rectangle2D.Double( 
+                    xStartD - strokeWidth/2, 
+                    yStartD - strokeWidth/2, 
+                    xEndD-xStartD + strokeWidth, 
+                    yEndD-yStartD + strokeWidth ) );
             if ( selectedPhase == Constants.SELECTED_STROKES.length ) {
                 selectedPhase = 0;
             }

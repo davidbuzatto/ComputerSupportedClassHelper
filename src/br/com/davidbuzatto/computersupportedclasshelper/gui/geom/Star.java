@@ -55,7 +55,7 @@ public class Star extends Polygon implements Serializable {
         
         if ( strokeColor != null ) {
             g2d.setPaint(strokeColor );
-            g2d.setStroke( new BasicStroke( (float) strokeWidth ) );
+            g2d.setStroke( new BasicStroke( (float) strokeWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND ) );
             g2d.draw( star );
         }
         

@@ -22,7 +22,7 @@
     </Container>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
     <Property name="title" type="java.lang.String" value="CSCH"/>
     <Property name="extendedState" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
       <Connection code="JFrame.MAXIMIZED_BOTH" type="code"/>
@@ -33,6 +33,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -126,7 +129,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_add.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="new"/>
+                <Property name="toolTipText" type="java.lang.String" value="new (Ctrl+N)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -141,7 +144,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_edit.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="open"/>
+                <Property name="toolTipText" type="java.lang.String" value="open (Ctrl+O)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -156,7 +159,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/disk.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="save"/>
+                <Property name="toolTipText" type="java.lang.String" value="save (Ctrl+S)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -173,7 +176,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/picture.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="print screen"/>
+                <Property name="toolTipText" type="java.lang.String" value="print screen (PrtScn)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -190,7 +193,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_undo.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="undo"/>
+                <Property name="toolTipText" type="java.lang.String" value="undo (Ctrl+Z)"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -206,7 +209,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_redo.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="redo"/>
+                <Property name="toolTipText" type="java.lang.String" value="redo (Ctrl+Y)"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -228,32 +231,13 @@
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/pencil.png"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="toolTipText" type="java.lang.String" value="pencil"/>
+                <Property name="toolTipText" type="java.lang.String" value="pencil (P)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPencilMouseReleased"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPencilActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JToggleButton" name="btnEraser">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/eraser.png"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value="eraser"/>
-                <Property name="focusPainted" type="boolean" value="false"/>
-                <Property name="focusable" type="boolean" value="false"/>
-                <Property name="horizontalTextPosition" type="int" value="0"/>
-                <Property name="verticalTextPosition" type="int" value="3"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEraserMouseReleased"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEraserActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="btnLine">
@@ -264,7 +248,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/line.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="line"/>
+                <Property name="toolTipText" type="java.lang.String" value="line (L)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -282,7 +266,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/retangle.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="rectangle"/>
+                <Property name="toolTipText" type="java.lang.String" value="rectangle (R)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -300,7 +284,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/roundRectangle.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="round rectangle"/>
+                <Property name="toolTipText" type="java.lang.String" value="round rectangle (A)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -318,7 +302,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/ellipse.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="ellipse"/>
+                <Property name="toolTipText" type="java.lang.String" value="ellipse (E)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -337,7 +321,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/polygon.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="polygon"/>
+                <Property name="toolTipText" type="java.lang.String" value="polygon (G)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -355,7 +339,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/star.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="star"/>
+                <Property name="toolTipText" type="java.lang.String" value="star (S)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -375,7 +359,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cursor_openhand.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="move"/>
+                <Property name="toolTipText" type="java.lang.String" value="move (M)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -384,7 +368,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMoveActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="btnChangeFill">
+            <Component class="javax.swing.JToggleButton" name="btnFill">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup"/>
@@ -392,30 +376,30 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/bucket.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="change fill"/>
+                <Property name="toolTipText" type="java.lang.String" value="change fill (F)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChangeFillActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFillActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToolBar$Separator" name="jSeparator8">
             </Component>
-            <Component class="javax.swing.JButton" name="btnClean">
+            <Component class="javax.swing.JButton" name="btnClearCurrentDrawPage">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="clear current draw page"/>
+                <Property name="toolTipText" type="java.lang.String" value="clear current draw page (Ctrl+Backspace)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCleanActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearCurrentDrawPageActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToolBar$Separator" name="jSeparator4">
@@ -438,7 +422,7 @@
             </Component>
             <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelStroke">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="stroke color"/>
+                <Property name="toolTipText" type="java.lang.String" value="stroke color (Shift+S)"/>
                 <Property name="alignmentX" type="float" value="0.0"/>
               </Properties>
               <Events>
@@ -476,7 +460,7 @@
             </Component>
             <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelFill">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="fill color"/>
+                <Property name="toolTipText" type="java.lang.String" value="fill color (Shift+F)"/>
                 <Property name="alignmentX" type="float" value="0.0"/>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color type="null"/>
@@ -535,7 +519,7 @@
             </Component>
             <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelBackground">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="background color"/>
+                <Property name="toolTipText" type="java.lang.String" value="background color (Shift+B)"/>
                 <Property name="alignmentX" type="float" value="0.0"/>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color type="null"/>
@@ -594,34 +578,34 @@
             </Component>
             <Component class="javax.swing.JToolBar$Separator" name="jSeparator7">
             </Component>
-            <Component class="javax.swing.JButton" name="btnHelp">
+            <Component class="javax.swing.JButton" name="btnHelpAndAcount">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/help.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="help and about"/>
+                <Property name="toolTipText" type="java.lang.String" value="help and about (F1)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHelpActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHelpAndAcountActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnConfigs">
+            <Component class="javax.swing.JButton" name="btnConfigurations">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cog.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="configuration"/>
+                <Property name="toolTipText" type="java.lang.String" value="configuration (F2)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfigsActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfigurationsActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnQuit">
@@ -629,7 +613,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cancel.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="quit"/>
+                <Property name="toolTipText" type="java.lang.String" value="quit (Alt+F4)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -679,14 +663,13 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="palettes"/>
+                <Property name="toolTipText" type="java.lang.String" value="palettes (C)"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPaletteMouseReleased"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPaletteActionPerformed"/>
               </Events>
             </Component>
@@ -709,7 +692,7 @@
               <SubComponents>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelSC1">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="stroke color 1"/>
+                    <Property name="toolTipText" type="java.lang.String" value="stroke color 1 (Shift+1)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                   </Properties>
                   <Events>
@@ -731,7 +714,7 @@
                 </Container>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelFC1">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="fill color 1"/>
+                    <Property name="toolTipText" type="java.lang.String" value="fill color 1 (Ctrl+1)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color type="null"/>
@@ -775,7 +758,7 @@
               <SubComponents>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelSC2">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="stroke color 2"/>
+                    <Property name="toolTipText" type="java.lang.String" value="stroke color 2 (Shift+2)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -800,7 +783,7 @@
                 </Container>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelFC2">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="fill color 2"/>
+                    <Property name="toolTipText" type="java.lang.String" value="fill color 2 (Ctrl+2)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color type="null"/>
@@ -844,7 +827,7 @@
               <SubComponents>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelSC3">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="stroke color 3"/>
+                    <Property name="toolTipText" type="java.lang.String" value="stroke color 3 (Shift+3)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="99" red="0" type="rgb"/>
@@ -869,7 +852,7 @@
                 </Container>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelFC3">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="fill color 3"/>
+                    <Property name="toolTipText" type="java.lang.String" value="fill color 3 (Ctrl+3)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color type="null"/>
@@ -913,7 +896,7 @@
               <SubComponents>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelSC4">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="stroke color 4"/>
+                    <Property name="toolTipText" type="java.lang.String" value="stroke color 4 (Shift+4)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="cc" red="0" type="rgb"/>
@@ -938,7 +921,7 @@
                 </Container>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelFC4">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="fill color 4"/>
+                    <Property name="toolTipText" type="java.lang.String" value="fill color 4 (Ctrl+4)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color type="null"/>
@@ -982,7 +965,7 @@
               <SubComponents>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelSC5">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="stroke color 5"/>
+                    <Property name="toolTipText" type="java.lang.String" value="stroke color 5 (Shift+5)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="66" red="ff" type="rgb"/>
@@ -1007,7 +990,7 @@
                 </Container>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelFC5">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="fill color 5"/>
+                    <Property name="toolTipText" type="java.lang.String" value="fill color 5 (Ctrl+5)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color type="null"/>
@@ -1051,7 +1034,7 @@
               <SubComponents>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelSC6">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="stroke color 6"/>
+                    <Property name="toolTipText" type="java.lang.String" value="stroke color 6 (Shift+6)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
@@ -1076,7 +1059,7 @@
                 </Container>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelFC6">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="fill color 6"/>
+                    <Property name="toolTipText" type="java.lang.String" value="fill color 6 (Ctrl+6)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color type="null"/>
@@ -1120,7 +1103,7 @@
               <SubComponents>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelSC7">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="stroke color 7"/>
+                    <Property name="toolTipText" type="java.lang.String" value="stroke color 7 (Shift+7)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="0" red="ff" type="rgb"/>
@@ -1145,7 +1128,7 @@
                 </Container>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelFC7">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="fill color 7"/>
+                    <Property name="toolTipText" type="java.lang.String" value="fill color 7 (Ctrl+7)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color type="null"/>
@@ -1189,7 +1172,7 @@
               <SubComponents>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelSC8">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="stroke color 8"/>
+                    <Property name="toolTipText" type="java.lang.String" value="stroke color 8 (Shift+8)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="0" red="66" type="rgb"/>
@@ -1214,7 +1197,7 @@
                 </Container>
                 <Container class="br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel" name="colorPanelFC8">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="fill color 8"/>
+                    <Property name="toolTipText" type="java.lang.String" value="fill color 8 (Ctrl+8)"/>
                     <Property name="alignmentX" type="float" value="0.0"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color type="null"/>

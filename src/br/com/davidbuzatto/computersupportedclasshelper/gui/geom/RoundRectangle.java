@@ -31,7 +31,7 @@ public class RoundRectangle extends Shape implements Serializable {
         
         if ( strokeColor != null ) {
             g2d.setPaint( strokeColor );
-            g2d.setStroke( new BasicStroke( (float) strokeWidth ) );
+            g2d.setStroke( new BasicStroke( (float) strokeWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND ) );
             g2d.draw( new RoundRectangle2D.Double( xStartD, yStartD, xEndD-xStartD, yEndD-yStartD, arcRadius, arcRadius ) );
         }
         
