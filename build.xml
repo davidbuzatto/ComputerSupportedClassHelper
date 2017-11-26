@@ -70,4 +70,10 @@
     nbproject/build-impl.xml file. 
 
     -->
+    
+    <target name="-post-jar">
+        <move file="${dist.dir}/ComputerSupportedClassHelper.jar" tofile="${dist.dir}/CSCH.jar"/>
+        <delete file="${dist.dir}/README.TXT"/>
+    </target>
+    
 </project>
