@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
@@ -66,16 +67,18 @@ public class MainWindow extends javax.swing.JFrame {
     private double yPrev;
     
     private SelectedRepaintRunnable selectedRepaintRunnable;
+    private File currentFile;
     
     /**
      * Creates new form MainWindowa
      */
-    public MainWindow() {
+    public MainWindow( DrawingConfigs dConfig ) {
         
         initComponents();
         setBackground( new Color( 0, 0, 0, 0 ) );
         
-        dConfig = DrawingConfigs.getInstance();
+        this.dConfig = dConfig;
+        loadConfigurations();
         drawPanel.setCursor( Cursors.getCursor( Cursors.Type.PENCIL ) );
         updateLabelPages();
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
@@ -133,7 +136,6 @@ public class MainWindow extends javax.swing.JFrame {
         filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 20), new java.awt.Dimension(5, 20), new java.awt.Dimension(5, 20));
         jSeparator7 = new javax.swing.JToolBar.Separator();
         btnHelpAndAcount = new javax.swing.JButton();
-        btnConfigurations = new javax.swing.JButton();
         btnQuit = new javax.swing.JButton();
         paletteToolBar = new ToolBar( ToolBar.Side.RIGHT );
         filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
@@ -545,19 +547,6 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         }
     });
     mainToolBar.add(btnHelpAndAcount);
-
-    btnConfigurations.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cog.png"))); // NOI18N
-    btnConfigurations.setToolTipText("configuration (F2)");
-    btnConfigurations.setFocusPainted(false);
-    btnConfigurations.setFocusable(false);
-    btnConfigurations.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnConfigurations.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnConfigurations.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnConfigurationsActionPerformed(evt);
-        }
-    });
-    mainToolBar.add(btnConfigurations);
 
     btnQuit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cancel.png"))); // NOI18N
     btnQuit.setToolTipText("quit (Alt+F4)");
@@ -1291,10 +1280,20 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     }//GEN-LAST:event_btnQuitActionPerformed
 
     private void close() {
+        
         if ( CustomMessageAndConfirmDialog.showConfirmDialog( this,
                 "Really quit?", "Quit?" ) == JOptionPane.YES_OPTION ) {
+            
+            if ( CustomMessageAndConfirmDialog.showConfirmDialog( this,
+                "Save your project before quit?", "Save Before Quit?" ) == JOptionPane.YES_OPTION ) {
+                saveProject();
+            }
+            
+            dConfig.save();
             System.exit( 0 );
+            
         }
+        
     }
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -1304,6 +1303,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             drawPanel.reset();
             drawPanel.setBackgroundColor( colorPanelBackground.getColor() );
             drawPanel.repaint();
+            currentFile = null;
             Shape.setIdCount( 0 );
             updateLabelPages();
             verifyHistory();
@@ -1318,19 +1318,27 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         try {
             
             JFileChooser jfc = new JFileChooser();
+            jfc.setCurrentDirectory( dConfig.getDefaultDir() );
             jfc.setDialogTitle( "Open Project" );
             jfc.setMultiSelectionEnabled( false );
             jfc.setFileFilter( new FileNameExtensionFilter( "Computer Supported Class Helper File", "csch" ) );
             
             if ( jfc.showOpenDialog( this ) == JFileChooser.APPROVE_OPTION ) {
+                
                 File f = jfc.getSelectedFile();
-                ObjectInputStream i = new ObjectInputStream( new FileInputStream( f ) );
-                drawPanel.loadDrawPagesFromOutside( i.readObject() );
-                i.close();
-                drawPanel.repaint();
-                Shape.setIdCount( drawPanel.getMaxShapeId() + 1 );
-                updateLabelPages();
-                verifyHistory();
+                
+                if ( currentFile == null || !f.equals( currentFile ) ) {
+                    currentFile = f;
+                    dConfig.setDefaultDir( currentFile.getParentFile() );
+                    ObjectInputStream i = new ObjectInputStream( new FileInputStream( currentFile ) );
+                    drawPanel.loadDrawPagesFromOutside( i.readObject() );
+                    i.close();
+                    drawPanel.repaint();
+                    Shape.setIdCount( drawPanel.getMaxShapeId() + 1 );
+                    updateLabelPages();
+                    verifyHistory();
+                }
+                
             }
             
         } catch ( IOException | ClassNotFoundException exc ) {
@@ -1342,24 +1350,63 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     }//GEN-LAST:event_btnOpenActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        saveProject( );
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void saveProject() throws HeadlessException {
         
         dConfig.setProcessEventsMainWindow( false );
         
         try {
             
-            JFileChooser jfc = new JFileChooser();
-            jfc.setDialogTitle( "Save Project" );
-            jfc.setMultiSelectionEnabled( false );
-            jfc.setFileFilter( new FileNameExtensionFilter( "Computer Supported Class Helper File", "csch" ) );
-            
-            if ( jfc.showSaveDialog( this ) == JFileChooser.APPROVE_OPTION ) {
-                File f = jfc.getSelectedFile();
-                if ( !f.getName().endsWith( ".csch" ) ) {
-                    f = new File( f.getAbsolutePath() + ".csch" );
+            if ( currentFile == null ) {
+                
+                JFileChooser jfc = new JFileChooser();
+                jfc.setCurrentDirectory( dConfig.getDefaultDir() );
+                jfc.setDialogTitle( "Save Project" );
+                jfc.setMultiSelectionEnabled( false );
+                jfc.setFileFilter( new FileNameExtensionFilter( "Computer Supported Class Helper File", "csch" ) );
+                
+                if ( jfc.showSaveDialog( this ) == JFileChooser.APPROVE_OPTION ) {
+                    
+                    currentFile = jfc.getSelectedFile();
+                    boolean save = false;
+                    
+                    if ( currentFile.exists() ) {
+                        
+                        if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                this, 
+                                "<html>The selected file already exists.<br/>Do you want to continue?</html>", 
+                                "Overwrite Confirmation" ) == JOptionPane.YES_OPTION ) {
+                            save = true;
+                        } else {
+                            save = false;
+                            currentFile = null;
+                        }
+                        
+                    } else {
+                        save = true;
+                    }
+                    
+                    if ( save ) {
+                        
+                        if ( !currentFile.getName().endsWith( ".csch" ) ) {
+                            currentFile = new File( currentFile.getAbsolutePath() + ".csch" );
+                        }
+                        dConfig.setDefaultDir( currentFile.getParentFile() );
+                        ObjectOutputStream o = new ObjectOutputStream( new FileOutputStream( currentFile ) );
+                        o.writeObject( drawPanel.getDrawPages() );
+                        o.close();
+                        
+                    }
                 }
-                ObjectOutputStream o = new ObjectOutputStream( new FileOutputStream( f ) );
+                
+            } else {
+                
+                ObjectOutputStream o = new ObjectOutputStream( new FileOutputStream( currentFile ) );
                 o.writeObject( drawPanel.getDrawPages() );
                 o.close();
+                
             }
             
         } catch ( IOException exc ) {
@@ -1368,7 +1415,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
         dConfig.setProcessEventsMainWindow( true );
         
-    }//GEN-LAST:event_btnSaveActionPerformed
+    }
 
     private void btnUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUndoActionPerformed
         
@@ -1393,11 +1440,11 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     }//GEN-LAST:event_btnRedoActionPerformed
 
     private void colorPanelStrokeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelStrokeMousePressed
-        setColorOnColorPanel( evt, colorPanelStroke, "Stroke Color" );
+        setColorOnColorPanel( evt, colorPanelStroke, "Stroke Color", "sc" );
     }//GEN-LAST:event_colorPanelStrokeMousePressed
 
     private void colorPanelFillMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelFillMousePressed
-        setColorOnColorPanel( evt, colorPanelFill, "Fill Color" );
+        setColorOnColorPanel( evt, colorPanelFill, "Fill Color", "fc" );
     }//GEN-LAST:event_colorPanelFillMousePressed
 
     private void colorPanelBackgroundMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelBackgroundMousePressed
@@ -1416,10 +1463,12 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 drawPanel.setBackgroundColor( c );
                 colorPanelBackground.repaint();
                 drawPanel.repaint();
+                dConfig.getColors().put( "bc", c );
                 
             }
             
         } else if ( SwingUtilities.isRightMouseButton( evt ) ) {
+            popupMenuNoColor.setName( "bc" );
             popupMenuNoColor.show( evt.getComponent(), evt.getX(), evt.getY() );
         }
         
@@ -1430,6 +1479,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         ColorPanel cp = (ColorPanel) popupMenuNoColor.getInvoker();
         cp.setColor( null );
         cp.repaint();
+        
+        dConfig.getColors().put( popupMenuNoColor.getName(), null );
         
         if ( cp == colorPanelBackground ) {
             drawPanel.setBackgroundColor( Constants.TRANSPARENT_COLOR );
@@ -1446,51 +1497,51 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     }//GEN-LAST:event_btnHelpAndAcountActionPerformed
 
     private void colorPanelSC1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC1MousePressed
-        setColorOnColorPanel( evt, colorPanelSC1, "Stroke Color 1" );
+        setColorOnColorPanel( evt, colorPanelSC1, "Stroke Color 1", "sc1" );
     }//GEN-LAST:event_colorPanelSC1MousePressed
 
     private void colorPanelFC1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelFC1MousePressed
-        setColorOnColorPanel( evt, colorPanelFC1, "Fill Color 1" );
+        setColorOnColorPanel( evt, colorPanelFC1, "Fill Color 1", "fc1" );
     }//GEN-LAST:event_colorPanelFC1MousePressed
 
     private void colorPanelSC2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC2MousePressed
-        setColorOnColorPanel( evt, colorPanelSC2, "Stroke Color 2" );
+        setColorOnColorPanel( evt, colorPanelSC2, "Stroke Color 2", "sc2" );
     }//GEN-LAST:event_colorPanelSC2MousePressed
 
     private void colorPanelFC2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelFC2MousePressed
-        setColorOnColorPanel( evt, colorPanelFC2, "Fill Color 2" );
+        setColorOnColorPanel( evt, colorPanelFC2, "Fill Color 2", "fc2" );
     }//GEN-LAST:event_colorPanelFC2MousePressed
 
     private void colorPanelSC3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC3MousePressed
-        setColorOnColorPanel( evt, colorPanelSC3, "Stroke Color 3" );
+        setColorOnColorPanel( evt, colorPanelSC3, "Stroke Color 3", "sc3" );
     }//GEN-LAST:event_colorPanelSC3MousePressed
 
     private void colorPanelFC3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelFC3MousePressed
-        setColorOnColorPanel( evt, colorPanelFC3, "Fill Color 3" );
+        setColorOnColorPanel( evt, colorPanelFC3, "Fill Color 3", "fc3" );
     }//GEN-LAST:event_colorPanelFC3MousePressed
 
     private void colorPanelSC4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC4MousePressed
-        setColorOnColorPanel( evt, colorPanelSC4, "Stroke Color 4" );
+        setColorOnColorPanel( evt, colorPanelSC4, "Stroke Color 4", "sc4" );
     }//GEN-LAST:event_colorPanelSC4MousePressed
 
     private void colorPanelFC4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelFC4MousePressed
-        setColorOnColorPanel( evt, colorPanelFC4, "Fill Color 4" );
+        setColorOnColorPanel( evt, colorPanelFC4, "Fill Color 4", "fc4" );
     }//GEN-LAST:event_colorPanelFC4MousePressed
 
     private void colorPanelSC5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC5MousePressed
-        setColorOnColorPanel( evt, colorPanelSC5, "Stroke Color 5" );
+        setColorOnColorPanel( evt, colorPanelSC5, "Stroke Color 5", "sc5" );
     }//GEN-LAST:event_colorPanelSC5MousePressed
 
     private void colorPanelFC5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelFC5MousePressed
-        setColorOnColorPanel( evt, colorPanelFC5, "Fill Color 5" );
+        setColorOnColorPanel( evt, colorPanelFC5, "Fill Color 5", "fc5" );
     }//GEN-LAST:event_colorPanelFC5MousePressed
 
     private void colorPanelSC6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC6MousePressed
-        setColorOnColorPanel( evt, colorPanelSC6, "Stroke Color 6" );
+        setColorOnColorPanel( evt, colorPanelSC6, "Stroke Color 6", "sc6" );
     }//GEN-LAST:event_colorPanelSC6MousePressed
 
     private void colorPanelFC6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelFC6MousePressed
-        setColorOnColorPanel( evt, colorPanelFC6, "Fill Color 6" );
+        setColorOnColorPanel( evt, colorPanelFC6, "Fill Color 6", "fc6" );
     }//GEN-LAST:event_colorPanelFC6MousePressed
 
     private void btnPencilMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPencilMouseReleased
@@ -1527,6 +1578,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             BufferedImage bi = r.createScreenCapture( new java.awt.Rectangle( getWidth(), getHeight() ) );
             
             JFileChooser jfc = new JFileChooser();
+            jfc.setCurrentDirectory( dConfig.getDefaultDir() );
             jfc.setDialogTitle( "Save Print Screen" );
             jfc.setMultiSelectionEnabled( false );
             jfc.setFileFilter( new FileNameExtensionFilter( "Portable Network Graphics", "png" ) );
@@ -1536,6 +1588,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 if ( !f.getName().endsWith( ".png" ) ) {
                     f = new File( f.getAbsolutePath() + ".png" );
                 }
+                dConfig.setDefaultDir( f.getParentFile() );
                 ImageIO.write( bi, "png", f );
             }
             
@@ -1551,7 +1604,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
         if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                 this, 
-                "Clean the current draw page?", "Clear Current Draw Page" ) == JOptionPane.YES_OPTION ) {
+                "<html>Clean the current draw page?<br/>This operation cannot be undone!</html>", "Clear Current Draw Page" ) == JOptionPane.YES_OPTION ) {
             drawPanel.clearCurrentDrawPage();
             drawPanel.repaint();
             verifyHistory();
@@ -1595,24 +1648,20 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         drawPanel.setCursor( Cursors.getCursor( Cursors.Type.BUCKET ) );
     }//GEN-LAST:event_btnFillActionPerformed
 
-    private void btnConfigurationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigurationsActionPerformed
-        JOptionPane.showMessageDialog( this, "not implemented yet");
-    }//GEN-LAST:event_btnConfigurationsActionPerformed
-
     private void colorPanelSC7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC7MousePressed
-        setColorOnColorPanel( evt, colorPanelSC7, "Stroke Color 7" );
+        setColorOnColorPanel( evt, colorPanelSC7, "Stroke Color 7", "sc7" );
     }//GEN-LAST:event_colorPanelSC7MousePressed
 
     private void colorPanelFC7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelFC7MousePressed
-        setColorOnColorPanel( evt, colorPanelFC7, "Fill Color 7" );
+        setColorOnColorPanel( evt, colorPanelFC7, "Fill Color 7", "fc7" );
     }//GEN-LAST:event_colorPanelFC7MousePressed
 
     private void colorPanelSC8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC8MousePressed
-        setColorOnColorPanel( evt, colorPanelSC8, "Stroke Color 8" );
+        setColorOnColorPanel( evt, colorPanelSC8, "Stroke Color 8", "sc8" );
     }//GEN-LAST:event_colorPanelSC8MousePressed
 
     private void colorPanelFC8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelFC8MousePressed
-        setColorOnColorPanel( evt, colorPanelFC8, "Fill Color 8" );
+        setColorOnColorPanel( evt, colorPanelFC8, "Fill Color 8", "fc8" );
     }//GEN-LAST:event_colorPanelFC8MousePressed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -1634,41 +1683,31 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
     public void moveColors( Map<String, Color> colors ) {
         
-        colorPanelSC1.setColor( colors.get( "s1" ) );
-        colorPanelSC2.setColor( colors.get( "s2" ) );
-        colorPanelSC3.setColor( colors.get( "s3" ) );
-        colorPanelSC4.setColor( colors.get( "s4" ) );
-        colorPanelSC5.setColor( colors.get( "s5" ) );
-        colorPanelSC6.setColor( colors.get( "s6" ) );
-        colorPanelSC7.setColor( colors.get( "s7" ) );
-        colorPanelSC8.setColor( colors.get( "s8" ) );
+        colorPanelSC1.setColor( colors.get( "sc1" ) );
+        colorPanelSC2.setColor( colors.get( "sc2" ) );
+        colorPanelSC3.setColor( colors.get( "sc3" ) );
+        colorPanelSC4.setColor( colors.get( "sc4" ) );
+        colorPanelSC5.setColor( colors.get( "sc5" ) );
+        colorPanelSC6.setColor( colors.get( "sc6" ) );
+        colorPanelSC7.setColor( colors.get( "sc7" ) );
+        colorPanelSC8.setColor( colors.get( "sc8" ) );
         
-        colorPanelFC1.setColor( colors.get( "f1" ) );
-        colorPanelFC2.setColor( colors.get( "f2" ) );
-        colorPanelFC3.setColor( colors.get( "f3" ) );
-        colorPanelFC4.setColor( colors.get( "f4" ) );
-        colorPanelFC5.setColor( colors.get( "f5" ) );
-        colorPanelFC6.setColor( colors.get( "f6" ) );
-        colorPanelFC7.setColor( colors.get( "f7" ) );
-        colorPanelFC8.setColor( colors.get( "f8" ) );
+        colorPanelFC1.setColor( colors.get( "fc1" ) );
+        colorPanelFC2.setColor( colors.get( "fc2" ) );
+        colorPanelFC3.setColor( colors.get( "fc3" ) );
+        colorPanelFC4.setColor( colors.get( "fc4" ) );
+        colorPanelFC5.setColor( colors.get( "fc5" ) );
+        colorPanelFC6.setColor( colors.get( "fc6" ) );
+        colorPanelFC7.setColor( colors.get( "fc7" ) );
+        colorPanelFC8.setColor( colors.get( "fc8" ) );
         
-        colorPanelSC1.repaint();
-        colorPanelSC2.repaint();
-        colorPanelSC3.repaint();
-        colorPanelSC4.repaint();
-        colorPanelSC5.repaint();
-        colorPanelSC6.repaint();
-        colorPanelSC7.repaint();
-        colorPanelSC8.repaint();
+        Map<String, Color> dConfigColors = dConfig.getColors();
         
-        colorPanelFC1.repaint();
-        colorPanelFC2.repaint();
-        colorPanelFC3.repaint();
-        colorPanelFC4.repaint();
-        colorPanelFC5.repaint();
-        colorPanelFC6.repaint();
-        colorPanelFC7.repaint();
-        colorPanelFC8.repaint();
+        for ( Map.Entry<String, Color> e : colors.entrySet() ) {
+            dConfigColors.put( e.getKey(), e.getValue() );
+        }
+        
+        paletteToolBar.repaint();
         
     }
     
@@ -1764,7 +1803,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 if ( drawPanel.canDeleteDrawPage() ) {
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
-                                            "Delete the current draw page?", "Delete Current Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                            "<html>Delete the current draw page?<br/>This operation cannot be undone!</html>", "Delete Current Draw Page" ) == JOptionPane.YES_OPTION ) {
                                         drawPanel.deleteCurrentDrawPage();
                                         drawPanel.repaint();
                                     }
@@ -1948,7 +1987,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 if ( selectedShape != null ) {
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
-                                            "Do you want to remove the selected drawing?", 
+                                            "<html>Do you want to remove the selected drawing?<br/>This operation cannot be undone!</html>", 
                                             "Remove Confirmation" ) == JOptionPane.YES_OPTION ) {
                                         drawPanel.removeShape( selectedShape );
                                     }
@@ -2016,10 +2055,6 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 dispatchActionEvent( btnHelpAndAcount );
                                 break;
                                 
-                            case KeyEvent.VK_F2: // configurations
-                                dispatchActionEvent( btnConfigurations );
-                                break;
-                                
                         }
 
                     }
@@ -2040,15 +2075,17 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         statusToolBar.setVisible( !statusToolBar.isVisible() );
     }
     
-    private void setColorOnColorPanel( MouseEvent evt, ColorPanel colorPanel, String dialogTitle ) {
+    private void setColorOnColorPanel( MouseEvent evt, ColorPanel colorPanel, String dialogTitle, String colorName ) {
         
         if ( SwingUtilities.isLeftMouseButton( evt ) ) {
             Color c = JColorChooser.showDialog( this, dialogTitle, colorPanel.getColor() );
             if ( c != null ) {
                 colorPanel.setColor( c );
+                dConfig.getColors().put( colorName, c );
                 colorPanel.repaint();
             }
         } else if ( SwingUtilities.isRightMouseButton( evt ) ) {
+            popupMenuNoColor.setName( colorName );
             popupMenuNoColor.show( evt.getComponent(), evt.getX(), evt.getY() );
         }
         
@@ -2127,6 +2164,38 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         lblPages.setText( String.format( "    %d/%d", drawPanel.getCurrentDrawPageIndex()+1, drawPanel.getDrawPages().size() ) );
     }
     
+    private void loadConfigurations() {
+        
+        colorPanelStroke.setColor( dConfig.getColors().get( "sc" ) );
+        colorPanelFill.setColor( dConfig.getColors().get( "fc" ) );
+        colorPanelBackground.setColor( dConfig.getColors().get( "bc" ) );
+        mainToolBar.repaint();
+        
+        drawPanel.setBackgroundColor( colorPanelBackground.getColor() );
+        drawPanel.repaint();
+        
+        colorPanelSC1.setColor( dConfig.getColors().get( "sc1" ) );
+        colorPanelSC2.setColor( dConfig.getColors().get( "sc2" ) );
+        colorPanelSC3.setColor( dConfig.getColors().get( "sc3" ) );
+        colorPanelSC4.setColor( dConfig.getColors().get( "sc4" ) );
+        colorPanelSC5.setColor( dConfig.getColors().get( "sc5" ) );
+        colorPanelSC6.setColor( dConfig.getColors().get( "sc6" ) );
+        colorPanelSC7.setColor( dConfig.getColors().get( "sc7" ) );
+        colorPanelSC8.setColor( dConfig.getColors().get( "sc8" ) );
+        
+        colorPanelFC1.setColor( dConfig.getColors().get( "fc1" ) );
+        colorPanelFC2.setColor( dConfig.getColors().get( "fc2" ) );
+        colorPanelFC3.setColor( dConfig.getColors().get( "fc3" ) );
+        colorPanelFC4.setColor( dConfig.getColors().get( "fc4" ) );
+        colorPanelFC5.setColor( dConfig.getColors().get( "fc5" ) );
+        colorPanelFC6.setColor( dConfig.getColors().get( "fc6" ) );
+        colorPanelFC7.setColor( dConfig.getColors().get( "fc7" ) );
+        colorPanelFC8.setColor( dConfig.getColors().get( "fc8" ) );
+        
+        paletteToolBar.repaint();
+        
+    }
+    
     private void dispatchMouseEvent( Component component, int type, int button ) {
         
         dConfig.setProcessEventsMainWindow( false );
@@ -2191,45 +2260,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         }
         
     }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main( String args[] ) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for ( javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels() ) {
-                if ( "Nimbus".equals( info.getName() ) ) {
-                    javax.swing.UIManager.setLookAndFeel( info.getClassName() );
-                    break;
-                }
-            }
-        } catch ( ClassNotFoundException ex ) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-        } catch ( InstantiationException ex ) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-        } catch ( IllegalAccessException ex ) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-        } catch ( javax.swing.UnsupportedLookAndFeelException ex ) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible( true );
-            }
-        } );
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClearCurrentDrawPage;
-    private javax.swing.JButton btnConfigurations;
     private javax.swing.JToggleButton btnEllipse;
     private javax.swing.JToggleButton btnFill;
     private javax.swing.JButton btnHelpAndAcount;

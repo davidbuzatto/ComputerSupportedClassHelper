@@ -6,6 +6,7 @@
 package br.com.davidbuzatto.computersupportedclasshelper;
 
 import br.com.davidbuzatto.computersupportedclasshelper.gui.MainWindow;
+import br.com.davidbuzatto.computersupportedclasshelper.utils.DrawingConfigs;
 
 /**
  *
@@ -13,6 +14,8 @@ import br.com.davidbuzatto.computersupportedclasshelper.gui.MainWindow;
  */
 public class Main {
 
+    private static DrawingConfigs dConfig;
+    
     /**
      * @param args the command line arguments
      */
@@ -44,7 +47,9 @@ public class Main {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainWindow().setVisible( true );
+                dConfig = DrawingConfigs.getInstance();
+                dConfig.load();
+                new MainWindow( dConfig ).setVisible( true );
             }
         } );
     }

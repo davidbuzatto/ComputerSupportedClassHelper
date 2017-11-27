@@ -467,23 +467,23 @@ public class PalettePanel extends javax.swing.JPanel {
         
         Map<String, Color> colors = new LinkedHashMap<>();
         
-        colors.put( "s1", getStrokeColor01() );
-        colors.put( "s2", getStrokeColor02() );
-        colors.put( "s3", getStrokeColor03() );
-        colors.put( "s4", getStrokeColor04() );
-        colors.put( "s5", getStrokeColor05() );
-        colors.put( "s6", getStrokeColor06() );
-        colors.put( "s7", getStrokeColor07() );
-        colors.put( "s8", getStrokeColor08() );
+        colors.put( "sc1", getStrokeColor01() );
+        colors.put( "sc2", getStrokeColor02() );
+        colors.put( "sc3", getStrokeColor03() );
+        colors.put( "sc4", getStrokeColor04() );
+        colors.put( "sc5", getStrokeColor05() );
+        colors.put( "sc6", getStrokeColor06() );
+        colors.put( "sc7", getStrokeColor07() );
+        colors.put( "sc8", getStrokeColor08() );
         
-        colors.put( "f1", getFillColor01() );
-        colors.put( "f2", getFillColor02() );
-        colors.put( "f3", getFillColor03() );
-        colors.put( "f4", getFillColor04() );
-        colors.put( "f5", getFillColor05() );
-        colors.put( "f6", getFillColor06() );
-        colors.put( "f7", getFillColor07() );
-        colors.put( "f8", getFillColor08() );
+        colors.put( "fc1", getFillColor01() );
+        colors.put( "fc2", getFillColor02() );
+        colors.put( "fc3", getFillColor03() );
+        colors.put( "fc4", getFillColor04() );
+        colors.put( "fc5", getFillColor05() );
+        colors.put( "fc6", getFillColor06() );
+        colors.put( "fc7", getFillColor07() );
+        colors.put( "fc8", getFillColor08() );
         
         return colors;
         
