@@ -38,7 +38,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         
         lblAbout.setText( "<html>CSCH (Computer Supported Class Helper) is being developed "
                 + "as a non profit hobby and for personal use by professor "
-                + "David Buzatto from IFSP, São Paulo, Brazil. Use it at your own risk. Version 0.5.</html>" );
+                + "David Buzatto from IFSP, São Paulo, Brazil. Use it at your own risk. Version 1.0.</html>" );
         
         keyEventDispatcher = new KeyEventDispatcher() {
             @Override

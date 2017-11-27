@@ -38,36 +38,42 @@ public class Curve extends Shape implements Serializable {
         
         try {
             
-            GeometryFactory f = new GeometryFactory();
-
-            if ( coords.size() < 2 ) {
-                return;
-            }
-            LineString ls = f.createLineString( coords.toArray( new Coordinate[0] ) );
-            Geometry simple = DouglasPeuckerSimplifier.simplify( ls, 3.0 );
-            if ( simple.getCoordinates().length < 2 ) {
-                return;
-            }
-            
-            List<Coordinate> raw = new ArrayList<>();
-            raw.addAll( Arrays.asList( simple.getCoordinates() ) );
-            List<Coordinate> spline = CatmullRom.interpolate( raw, 10 );
-
             Path2D path = new Path2D.Double();
             boolean move = true;
-
-            for ( Coordinate c : spline ) {
-
-                if ( move ) {
-                    path.moveTo( c.x, c.y );
-                    path.lineTo( c.x, c.y );
-                    move = false;
-                } else {
-                    path.lineTo( c.x, c.y );
+                
+            if ( coords.size() < 2 ) {
+                
+                path.moveTo( coords.get( 0 ).x, coords.get( 0 ).y );
+                path.lineTo( coords.get( 0 ).x, coords.get( 0 ).y );
+                
+            } else {
+                
+                GeometryFactory f = new GeometryFactory();
+                LineString ls = f.createLineString( coords.toArray( new Coordinate[0] ) );
+                Geometry simple = DouglasPeuckerSimplifier.simplify( ls, 3.0 );
+                
+                if ( simple.getCoordinates().length < 2 ) {
+                    return;
                 }
 
-            }
+                List<Coordinate> raw = new ArrayList<>();
+                raw.addAll( Arrays.asList( simple.getCoordinates() ) );
+                List<Coordinate> spline = CatmullRom.interpolate( raw, 10 );
 
+                for ( Coordinate c : spline ) {
+
+                    if ( move ) {
+                        path.moveTo( c.x, c.y );
+                        path.lineTo( c.x, c.y );
+                        move = false;
+                    } else {
+                        path.lineTo( c.x, c.y );
+                    }
+
+                }
+                
+            }
+            
             if ( fillColor != null ) {
                 g2d.setPaint( fillColor );
                 g2d.fill( path );

@@ -81,6 +81,10 @@ public abstract class Shape implements Serializable {
         yEndD = yStart < yEnd ? yEnd : yStart;
         
     }
+
+    public int getId() {
+        return id;
+    }
     
     public void setStrokeColor( Color corTraco ) {
         this.strokeColor = corTraco;
@@ -142,6 +146,10 @@ public abstract class Shape implements Serializable {
         this.selected = selected;
     }
 
+    public static void setIdCount( int value ) {
+        idCount = value;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

@@ -191,4 +191,20 @@ public class DrawPanel extends JPanel {
         
     }
     
+    public int getMaxShapeId() {
+        
+        int maxId = -1;
+        
+        for ( DrawPage drawPage : drawPages ) {
+            for ( Shape shape : drawPage.getShapes() ) {
+                if ( maxId < shape.getId() ) {
+                    maxId = shape.getId();
+                }
+            }
+        }
+        
+        return maxId;
+        
+    }
+    
 }

@@ -165,6 +165,7 @@ public class MainWindow extends javax.swing.JFrame {
         statusToolBar = new ToolBar( ToolBar.Side.TOP );
         lblPages = new javax.swing.JLabel();
 
+        menuItemNoColor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"))); // NOI18N
         menuItemNoColor.setText("no color");
         menuItemNoColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,881 +177,883 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("CSCH");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
-
-        drawPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                drawPanelMouseDragged(evt);
-            }
-        });
-        drawPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                drawPanelMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                drawPanelMouseReleased(evt);
-            }
-        });
-
-        mainToolBar.setFloatable(false);
-        mainToolBar.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        mainToolBar.setRollover(true);
-        mainToolBar.setBorderPainted(false);
-        mainToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        mainToolBar.add(filler1);
-
-        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_add.png"))); // NOI18N
-        btnNew.setToolTipText("new (Ctrl+N)");
-        btnNew.setFocusPainted(false);
-        btnNew.setFocusable(false);
-        btnNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnNew);
-
-        btnOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_edit.png"))); // NOI18N
-        btnOpen.setToolTipText("open (Ctrl+O)");
-        btnOpen.setFocusPainted(false);
-        btnOpen.setFocusable(false);
-        btnOpen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnOpen.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnOpen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOpenActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnOpen);
-
-        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/disk.png"))); // NOI18N
-        btnSave.setToolTipText("save (Ctrl+S)");
-        btnSave.setFocusPainted(false);
-        btnSave.setFocusable(false);
-        btnSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnSave);
-        mainToolBar.add(jSeparator9);
-
-        btnPrintScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/picture.png"))); // NOI18N
-        btnPrintScreen.setToolTipText("print screen (PrtScn)");
-        btnPrintScreen.setFocusPainted(false);
-        btnPrintScreen.setFocusable(false);
-        btnPrintScreen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPrintScreen.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnPrintScreen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintScreenActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnPrintScreen);
-        mainToolBar.add(jSeparator1);
-
-        btnUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_undo.png"))); // NOI18N
-        btnUndo.setToolTipText("undo (Ctrl+Z)");
-        btnUndo.setEnabled(false);
-        btnUndo.setFocusPainted(false);
-        btnUndo.setFocusable(false);
-        btnUndo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnUndo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnUndo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUndoActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnUndo);
-
-        btnRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_redo.png"))); // NOI18N
-        btnRedo.setToolTipText("redo (Ctrl+Y)");
-        btnRedo.setEnabled(false);
-        btnRedo.setFocusPainted(false);
-        btnRedo.setFocusable(false);
-        btnRedo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnRedo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnRedo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRedoActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnRedo);
-        mainToolBar.add(jSeparator2);
-
-        buttonGroup.add(btnPencil);
-        btnPencil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/pencil.png"))); // NOI18N
-        btnPencil.setSelected(true);
-        btnPencil.setToolTipText("pencil (P)");
-        btnPencil.setFocusPainted(false);
-        btnPencil.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPencil.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnPencilMouseReleased(evt);
-            }
-        });
-        btnPencil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPencilActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnPencil);
-
-        buttonGroup.add(btnLine);
-        btnLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/line.png"))); // NOI18N
-        btnLine.setToolTipText("line (L)");
-        btnLine.setFocusPainted(false);
-        btnLine.setFocusable(false);
-        btnLine.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLine.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnLineMouseReleased(evt);
-            }
-        });
-        btnLine.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLineActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnLine);
-
-        buttonGroup.add(btnRectangle);
-        btnRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/retangle.png"))); // NOI18N
-        btnRectangle.setToolTipText("rectangle (R)");
-        btnRectangle.setFocusPainted(false);
-        btnRectangle.setFocusable(false);
-        btnRectangle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnRectangle.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnRectangleMouseReleased(evt);
-            }
-        });
-        btnRectangle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRectangleActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnRectangle);
-
-        buttonGroup.add(btnRoundRectangle);
-        btnRoundRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/roundRectangle.png"))); // NOI18N
-        btnRoundRectangle.setToolTipText("round rectangle (A)");
-        btnRoundRectangle.setFocusPainted(false);
-        btnRoundRectangle.setFocusable(false);
-        btnRoundRectangle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnRoundRectangle.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnRoundRectangleMouseReleased(evt);
-            }
-        });
-        btnRoundRectangle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRoundRectangleActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnRoundRectangle);
-
-        buttonGroup.add(btnEllipse);
-        btnEllipse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/ellipse.png"))); // NOI18N
-        btnEllipse.setToolTipText("ellipse (E)");
-        btnEllipse.setFocusPainted(false);
-        btnEllipse.setFocusable(false);
-        btnEllipse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEllipse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEllipse.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnEllipseMouseReleased(evt);
-            }
-        });
-        btnEllipse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEllipseActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnEllipse);
-
-        buttonGroup.add(btnPolygon);
-        btnPolygon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/polygon.png"))); // NOI18N
-        btnPolygon.setToolTipText("polygon (G)");
-        btnPolygon.setFocusPainted(false);
-        btnPolygon.setFocusable(false);
-        btnPolygon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPolygon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnPolygonMouseReleased(evt);
-            }
-        });
-        btnPolygon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPolygonActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnPolygon);
-
-        buttonGroup.add(btnStar);
-        btnStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/star.png"))); // NOI18N
-        btnStar.setToolTipText("star (S)");
-        btnStar.setFocusPainted(false);
-        btnStar.setFocusable(false);
-        btnStar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnStar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnStarMouseReleased(evt);
-            }
-        });
-        btnStar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStarActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnStar);
-        mainToolBar.add(jSeparator3);
-
-        buttonGroup.add(btnMove);
-        btnMove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cursor_openhand.png"))); // NOI18N
-        btnMove.setToolTipText("move (M)");
-        btnMove.setFocusPainted(false);
-        btnMove.setFocusable(false);
-        btnMove.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnMove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnMove);
-
-        buttonGroup.add(btnFill);
-        btnFill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/bucket.png"))); // NOI18N
-        btnFill.setToolTipText("change fill (F)");
-        btnFill.setFocusPainted(false);
-        btnFill.setFocusable(false);
-        btnFill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnFill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFillActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnFill);
-        mainToolBar.add(jSeparator8);
-
-        btnClearCurrentDrawPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"))); // NOI18N
-        btnClearCurrentDrawPage.setToolTipText("clear current draw page (Ctrl+Backspace)");
-        btnClearCurrentDrawPage.setFocusPainted(false);
-        btnClearCurrentDrawPage.setFocusable(false);
-        btnClearCurrentDrawPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnClearCurrentDrawPage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnClearCurrentDrawPage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearCurrentDrawPageActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnClearCurrentDrawPage);
-        mainToolBar.add(jSeparator4);
-        mainToolBar.add(filler2);
-
-        colorPanelStroke.setToolTipText("stroke color (Shift+S)");
-        colorPanelStroke.setAlignmentX(0.0F);
-        colorPanelStroke.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelStrokeMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelStrokeLayout = new javax.swing.GroupLayout(colorPanelStroke);
-        colorPanelStroke.setLayout(colorPanelStrokeLayout);
-        colorPanelStrokeLayout.setHorizontalGroup(
-            colorPanelStrokeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelStrokeLayout.setVerticalGroup(
-            colorPanelStrokeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        mainToolBar.add(colorPanelStroke);
-        mainToolBar.add(filler3);
-
-        colorPanelFill.setToolTipText("fill color (Shift+F)");
-        colorPanelFill.setAlignmentX(0.0F);
-        colorPanelFill.setColor(null);
-        colorPanelFill.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelFillMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelFillLayout = new javax.swing.GroupLayout(colorPanelFill);
-        colorPanelFill.setLayout(colorPanelFillLayout);
-        colorPanelFillLayout.setHorizontalGroup(
-            colorPanelFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelFillLayout.setVerticalGroup(
-            colorPanelFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        mainToolBar.add(colorPanelFill);
-        mainToolBar.add(filler4);
-        mainToolBar.add(jSeparator5);
-        mainToolBar.add(filler6);
-
-        colorPanelBackground.setToolTipText("background color (Shift+B)");
-        colorPanelBackground.setAlignmentX(0.0F);
-        colorPanelBackground.setColor(null);
-        colorPanelBackground.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelBackgroundMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelBackgroundLayout = new javax.swing.GroupLayout(colorPanelBackground);
-        colorPanelBackground.setLayout(colorPanelBackgroundLayout);
-        colorPanelBackgroundLayout.setHorizontalGroup(
-            colorPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelBackgroundLayout.setVerticalGroup(
-            colorPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        mainToolBar.add(colorPanelBackground);
-        mainToolBar.add(filler7);
-        mainToolBar.add(jSeparator6);
-        mainToolBar.add(filler5);
-        mainToolBar.add(jSeparator7);
-
-        btnHelpAndAcount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/help.png"))); // NOI18N
-        btnHelpAndAcount.setToolTipText("help and about (F1)");
-        btnHelpAndAcount.setFocusPainted(false);
-        btnHelpAndAcount.setFocusable(false);
-        btnHelpAndAcount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHelpAndAcount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHelpAndAcount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHelpAndAcountActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnHelpAndAcount);
-
-        btnConfigurations.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cog.png"))); // NOI18N
-        btnConfigurations.setToolTipText("configuration (F2)");
-        btnConfigurations.setFocusPainted(false);
-        btnConfigurations.setFocusable(false);
-        btnConfigurations.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnConfigurations.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnConfigurations.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfigurationsActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnConfigurations);
-
-        btnQuit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cancel.png"))); // NOI18N
-        btnQuit.setToolTipText("quit (Alt+F4)");
-        btnQuit.setFocusPainted(false);
-        btnQuit.setFocusable(false);
-        btnQuit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnQuit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnQuit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuitActionPerformed(evt);
-            }
-        });
-        mainToolBar.add(btnQuit);
-
-        paletteToolBar.setFloatable(false);
-        paletteToolBar.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        paletteToolBar.setRollover(true);
-        paletteToolBar.setAlignmentX(0.15151516F);
-        paletteToolBar.setBorderPainted(false);
-        paletteToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        paletteToolBar.add(filler8);
-
-        btnPalette.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png"))); // NOI18N
-        btnPalette.setToolTipText("palettes (C)");
-        btnPalette.setFocusPainted(false);
-        btnPalette.setFocusable(false);
-        btnPalette.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPalette.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnPalette.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPaletteActionPerformed(evt);
-            }
-        });
-        paletteToolBar.add(btnPalette);
-
-        panelC1.setMaximumSize(new java.awt.Dimension(60, 30));
-        panelC1.setMinimumSize(new java.awt.Dimension(60, 30));
-        panelC1.setName(""); // NOI18N
-        panelC1.setOpaque(false);
-        panelC1.setPreferredSize(new java.awt.Dimension(60, 30));
-
-        colorPanelSC1.setToolTipText("stroke color 1 (Shift+1)");
-        colorPanelSC1.setAlignmentX(0.0F);
-        colorPanelSC1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelSC1MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelSC1Layout = new javax.swing.GroupLayout(colorPanelSC1);
-        colorPanelSC1.setLayout(colorPanelSC1Layout);
-        colorPanelSC1Layout.setHorizontalGroup(
-            colorPanelSC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelSC1Layout.setVerticalGroup(
-            colorPanelSC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC1.add(colorPanelSC1);
-
-        colorPanelFC1.setToolTipText("fill color 1 (Ctrl+1)");
-        colorPanelFC1.setAlignmentX(0.0F);
-        colorPanelFC1.setColor(null);
-        colorPanelFC1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelFC1MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelFC1Layout = new javax.swing.GroupLayout(colorPanelFC1);
-        colorPanelFC1.setLayout(colorPanelFC1Layout);
-        colorPanelFC1Layout.setHorizontalGroup(
-            colorPanelFC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelFC1Layout.setVerticalGroup(
-            colorPanelFC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC1.add(colorPanelFC1);
-
-        paletteToolBar.add(panelC1);
-
-        panelC2.setMaximumSize(new java.awt.Dimension(60, 30));
-        panelC2.setMinimumSize(new java.awt.Dimension(60, 30));
-        panelC2.setName(""); // NOI18N
-        panelC2.setOpaque(false);
-        panelC2.setPreferredSize(new java.awt.Dimension(60, 30));
-
-        colorPanelSC2.setToolTipText("stroke color 2 (Shift+2)");
-        colorPanelSC2.setAlignmentX(0.0F);
-        colorPanelSC2.setColor(new java.awt.Color(255, 255, 255));
-        colorPanelSC2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelSC2MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelSC2Layout = new javax.swing.GroupLayout(colorPanelSC2);
-        colorPanelSC2.setLayout(colorPanelSC2Layout);
-        colorPanelSC2Layout.setHorizontalGroup(
-            colorPanelSC2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelSC2Layout.setVerticalGroup(
-            colorPanelSC2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC2.add(colorPanelSC2);
-
-        colorPanelFC2.setToolTipText("fill color 2 (Ctrl+2)");
-        colorPanelFC2.setAlignmentX(0.0F);
-        colorPanelFC2.setColor(null);
-        colorPanelFC2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelFC2MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelFC2Layout = new javax.swing.GroupLayout(colorPanelFC2);
-        colorPanelFC2.setLayout(colorPanelFC2Layout);
-        colorPanelFC2Layout.setHorizontalGroup(
-            colorPanelFC2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelFC2Layout.setVerticalGroup(
-            colorPanelFC2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC2.add(colorPanelFC2);
-
-        paletteToolBar.add(panelC2);
-
-        panelC3.setMaximumSize(new java.awt.Dimension(60, 30));
-        panelC3.setMinimumSize(new java.awt.Dimension(60, 30));
-        panelC3.setName(""); // NOI18N
-        panelC3.setOpaque(false);
-        panelC3.setPreferredSize(new java.awt.Dimension(60, 30));
-
-        colorPanelSC3.setToolTipText("stroke color 3 (Shift+3)");
-        colorPanelSC3.setAlignmentX(0.0F);
-        colorPanelSC3.setColor(new java.awt.Color(0, 153, 255));
-        colorPanelSC3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelSC3MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelSC3Layout = new javax.swing.GroupLayout(colorPanelSC3);
-        colorPanelSC3.setLayout(colorPanelSC3Layout);
-        colorPanelSC3Layout.setHorizontalGroup(
-            colorPanelSC3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelSC3Layout.setVerticalGroup(
-            colorPanelSC3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC3.add(colorPanelSC3);
-
-        colorPanelFC3.setToolTipText("fill color 3 (Ctrl+3)");
-        colorPanelFC3.setAlignmentX(0.0F);
-        colorPanelFC3.setColor(null);
-        colorPanelFC3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelFC3MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelFC3Layout = new javax.swing.GroupLayout(colorPanelFC3);
-        colorPanelFC3.setLayout(colorPanelFC3Layout);
-        colorPanelFC3Layout.setHorizontalGroup(
-            colorPanelFC3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelFC3Layout.setVerticalGroup(
-            colorPanelFC3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC3.add(colorPanelFC3);
-
-        paletteToolBar.add(panelC3);
-
-        panelC4.setMaximumSize(new java.awt.Dimension(60, 30));
-        panelC4.setMinimumSize(new java.awt.Dimension(60, 30));
-        panelC4.setName(""); // NOI18N
-        panelC4.setOpaque(false);
-        panelC4.setPreferredSize(new java.awt.Dimension(60, 30));
-
-        colorPanelSC4.setToolTipText("stroke color 4 (Shift+4)");
-        colorPanelSC4.setAlignmentX(0.0F);
-        colorPanelSC4.setColor(new java.awt.Color(0, 204, 51));
-        colorPanelSC4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelSC4MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelSC4Layout = new javax.swing.GroupLayout(colorPanelSC4);
-        colorPanelSC4.setLayout(colorPanelSC4Layout);
-        colorPanelSC4Layout.setHorizontalGroup(
-            colorPanelSC4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelSC4Layout.setVerticalGroup(
-            colorPanelSC4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC4.add(colorPanelSC4);
-
-        colorPanelFC4.setToolTipText("fill color 4 (Ctrl+4)");
-        colorPanelFC4.setAlignmentX(0.0F);
-        colorPanelFC4.setColor(null);
-        colorPanelFC4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelFC4MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelFC4Layout = new javax.swing.GroupLayout(colorPanelFC4);
-        colorPanelFC4.setLayout(colorPanelFC4Layout);
-        colorPanelFC4Layout.setHorizontalGroup(
-            colorPanelFC4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelFC4Layout.setVerticalGroup(
-            colorPanelFC4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC4.add(colorPanelFC4);
-
-        paletteToolBar.add(panelC4);
-
-        panelC5.setMaximumSize(new java.awt.Dimension(60, 30));
-        panelC5.setMinimumSize(new java.awt.Dimension(60, 30));
-        panelC5.setName(""); // NOI18N
-        panelC5.setOpaque(false);
-        panelC5.setPreferredSize(new java.awt.Dimension(60, 30));
-
-        colorPanelSC5.setToolTipText("stroke color 5 (Shift+5)");
-        colorPanelSC5.setAlignmentX(0.0F);
-        colorPanelSC5.setColor(new java.awt.Color(255, 102, 0));
-        colorPanelSC5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelSC5MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelSC5Layout = new javax.swing.GroupLayout(colorPanelSC5);
-        colorPanelSC5.setLayout(colorPanelSC5Layout);
-        colorPanelSC5Layout.setHorizontalGroup(
-            colorPanelSC5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelSC5Layout.setVerticalGroup(
-            colorPanelSC5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC5.add(colorPanelSC5);
-
-        colorPanelFC5.setToolTipText("fill color 5 (Ctrl+5)");
-        colorPanelFC5.setAlignmentX(0.0F);
-        colorPanelFC5.setColor(null);
-        colorPanelFC5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelFC5MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelFC5Layout = new javax.swing.GroupLayout(colorPanelFC5);
-        colorPanelFC5.setLayout(colorPanelFC5Layout);
-        colorPanelFC5Layout.setHorizontalGroup(
-            colorPanelFC5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelFC5Layout.setVerticalGroup(
-            colorPanelFC5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC5.add(colorPanelFC5);
-
-        paletteToolBar.add(panelC5);
-
-        panelC6.setMaximumSize(new java.awt.Dimension(60, 30));
-        panelC6.setMinimumSize(new java.awt.Dimension(60, 30));
-        panelC6.setName(""); // NOI18N
-        panelC6.setOpaque(false);
-        panelC6.setPreferredSize(new java.awt.Dimension(60, 30));
-
-        colorPanelSC6.setToolTipText("stroke color 6 (Shift+6)");
-        colorPanelSC6.setAlignmentX(0.0F);
-        colorPanelSC6.setColor(new java.awt.Color(255, 0, 51));
-        colorPanelSC6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelSC6MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelSC6Layout = new javax.swing.GroupLayout(colorPanelSC6);
-        colorPanelSC6.setLayout(colorPanelSC6Layout);
-        colorPanelSC6Layout.setHorizontalGroup(
-            colorPanelSC6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelSC6Layout.setVerticalGroup(
-            colorPanelSC6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC6.add(colorPanelSC6);
-
-        colorPanelFC6.setToolTipText("fill color 6 (Ctrl+6)");
-        colorPanelFC6.setAlignmentX(0.0F);
-        colorPanelFC6.setColor(null);
-        colorPanelFC6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelFC6MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelFC6Layout = new javax.swing.GroupLayout(colorPanelFC6);
-        colorPanelFC6.setLayout(colorPanelFC6Layout);
-        colorPanelFC6Layout.setHorizontalGroup(
-            colorPanelFC6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelFC6Layout.setVerticalGroup(
-            colorPanelFC6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC6.add(colorPanelFC6);
-
-        paletteToolBar.add(panelC6);
-
-        panelC7.setMaximumSize(new java.awt.Dimension(60, 30));
-        panelC7.setMinimumSize(new java.awt.Dimension(60, 30));
-        panelC7.setName(""); // NOI18N
-        panelC7.setOpaque(false);
-        panelC7.setPreferredSize(new java.awt.Dimension(60, 30));
-
-        colorPanelSC7.setToolTipText("stroke color 7 (Shift+7)");
-        colorPanelSC7.setAlignmentX(0.0F);
-        colorPanelSC7.setColor(new java.awt.Color(255, 0, 204));
-        colorPanelSC7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelSC7MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelSC7Layout = new javax.swing.GroupLayout(colorPanelSC7);
-        colorPanelSC7.setLayout(colorPanelSC7Layout);
-        colorPanelSC7Layout.setHorizontalGroup(
-            colorPanelSC7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelSC7Layout.setVerticalGroup(
-            colorPanelSC7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC7.add(colorPanelSC7);
-
-        colorPanelFC7.setToolTipText("fill color 7 (Ctrl+7)");
-        colorPanelFC7.setAlignmentX(0.0F);
-        colorPanelFC7.setColor(null);
-        colorPanelFC7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelFC7MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelFC7Layout = new javax.swing.GroupLayout(colorPanelFC7);
-        colorPanelFC7.setLayout(colorPanelFC7Layout);
-        colorPanelFC7Layout.setHorizontalGroup(
-            colorPanelFC7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelFC7Layout.setVerticalGroup(
-            colorPanelFC7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC7.add(colorPanelFC7);
-
-        paletteToolBar.add(panelC7);
-
-        panelC8.setMaximumSize(new java.awt.Dimension(60, 30));
-        panelC8.setMinimumSize(new java.awt.Dimension(60, 30));
-        panelC8.setName(""); // NOI18N
-        panelC8.setOpaque(false);
-        panelC8.setPreferredSize(new java.awt.Dimension(60, 30));
-
-        colorPanelSC8.setToolTipText("stroke color 8 (Shift+8)");
-        colorPanelSC8.setAlignmentX(0.0F);
-        colorPanelSC8.setColor(new java.awt.Color(102, 0, 204));
-        colorPanelSC8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelSC8MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelSC8Layout = new javax.swing.GroupLayout(colorPanelSC8);
-        colorPanelSC8.setLayout(colorPanelSC8Layout);
-        colorPanelSC8Layout.setHorizontalGroup(
-            colorPanelSC8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelSC8Layout.setVerticalGroup(
-            colorPanelSC8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC8.add(colorPanelSC8);
-
-        colorPanelFC8.setToolTipText("fill color 8 (Ctrl+8)");
-        colorPanelFC8.setAlignmentX(0.0F);
-        colorPanelFC8.setColor(null);
-        colorPanelFC8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                colorPanelFC8MousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout colorPanelFC8Layout = new javax.swing.GroupLayout(colorPanelFC8);
-        colorPanelFC8.setLayout(colorPanelFC8Layout);
-        colorPanelFC8Layout.setHorizontalGroup(
-            colorPanelFC8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        colorPanelFC8Layout.setVerticalGroup(
-            colorPanelFC8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        panelC8.add(colorPanelFC8);
-
-        paletteToolBar.add(panelC8);
-
-        statusToolBar.setFloatable(false);
-        statusToolBar.setBorderPainted(false);
-        statusToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        statusToolBar.setFocusable(false);
-        statusToolBar.setRequestFocusEnabled(false);
-        statusToolBar.setVerifyInputWhenFocusTarget(false);
-
-        lblPages.setFont(new Font( "Dialog", Font.BOLD, 12 ));
-        lblPages.setForeground(new java.awt.Color(188, 188, 188));
-        lblPages.setText("pages");
-        lblPages.setToolTipText("current draw page / total draw pages");
-        statusToolBar.add(lblPages);
-
-        javax.swing.GroupLayout drawPanelLayout = new javax.swing.GroupLayout(drawPanel);
-        drawPanel.setLayout(drawPanelLayout);
-        drawPanelLayout.setHorizontalGroup(
-            drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(drawPanelLayout.createSequentialGroup()
-                .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 658, Short.MAX_VALUE)
-                .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(paletteToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        drawPanelLayout.setVerticalGroup(
-            drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(paletteToolBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(drawPanelLayout.createSequentialGroup()
-                .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        pack();
-        setLocationRelativeTo(null);
+        setIconImage(Toolkit.getDefaultToolkit().getImage( getClass().getResource(
+            "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png" ) ));
+setUndecorated(true);
+addWindowListener(new java.awt.event.WindowAdapter() {
+    public void windowClosing(java.awt.event.WindowEvent evt) {
+        formWindowClosing(evt);
+    }
+    });
+
+    drawPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        public void mouseDragged(java.awt.event.MouseEvent evt) {
+            drawPanelMouseDragged(evt);
+        }
+    });
+    drawPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            drawPanelMousePressed(evt);
+        }
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            drawPanelMouseReleased(evt);
+        }
+    });
+
+    mainToolBar.setFloatable(false);
+    mainToolBar.setOrientation(javax.swing.SwingConstants.VERTICAL);
+    mainToolBar.setRollover(true);
+    mainToolBar.setBorderPainted(false);
+    mainToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    mainToolBar.add(filler1);
+
+    btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_add.png"))); // NOI18N
+    btnNew.setToolTipText("new (Ctrl+N)");
+    btnNew.setFocusPainted(false);
+    btnNew.setFocusable(false);
+    btnNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnNew.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnNewActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnNew);
+
+    btnOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_edit.png"))); // NOI18N
+    btnOpen.setToolTipText("open (Ctrl+O)");
+    btnOpen.setFocusPainted(false);
+    btnOpen.setFocusable(false);
+    btnOpen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnOpen.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnOpen.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnOpenActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnOpen);
+
+    btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/disk.png"))); // NOI18N
+    btnSave.setToolTipText("save (Ctrl+S)");
+    btnSave.setFocusPainted(false);
+    btnSave.setFocusable(false);
+    btnSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnSave.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnSaveActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnSave);
+    mainToolBar.add(jSeparator9);
+
+    btnPrintScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/picture.png"))); // NOI18N
+    btnPrintScreen.setToolTipText("print screen (PrtScn)");
+    btnPrintScreen.setFocusPainted(false);
+    btnPrintScreen.setFocusable(false);
+    btnPrintScreen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnPrintScreen.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnPrintScreen.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnPrintScreenActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnPrintScreen);
+    mainToolBar.add(jSeparator1);
+
+    btnUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_undo.png"))); // NOI18N
+    btnUndo.setToolTipText("undo (Ctrl+Z)");
+    btnUndo.setEnabled(false);
+    btnUndo.setFocusPainted(false);
+    btnUndo.setFocusable(false);
+    btnUndo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnUndo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnUndo.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnUndoActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnUndo);
+
+    btnRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_redo.png"))); // NOI18N
+    btnRedo.setToolTipText("redo (Ctrl+Y)");
+    btnRedo.setEnabled(false);
+    btnRedo.setFocusPainted(false);
+    btnRedo.setFocusable(false);
+    btnRedo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnRedo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnRedo.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnRedoActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnRedo);
+    mainToolBar.add(jSeparator2);
+
+    buttonGroup.add(btnPencil);
+    btnPencil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/pencil.png"))); // NOI18N
+    btnPencil.setSelected(true);
+    btnPencil.setToolTipText("pencil (P)");
+    btnPencil.setFocusPainted(false);
+    btnPencil.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnPencil.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnPencilMouseReleased(evt);
+        }
+    });
+    btnPencil.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnPencilActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnPencil);
+
+    buttonGroup.add(btnLine);
+    btnLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/line.png"))); // NOI18N
+    btnLine.setToolTipText("line (L)");
+    btnLine.setFocusPainted(false);
+    btnLine.setFocusable(false);
+    btnLine.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnLine.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnLineMouseReleased(evt);
+        }
+    });
+    btnLine.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnLineActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnLine);
+
+    buttonGroup.add(btnRectangle);
+    btnRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/retangle.png"))); // NOI18N
+    btnRectangle.setToolTipText("rectangle (R)");
+    btnRectangle.setFocusPainted(false);
+    btnRectangle.setFocusable(false);
+    btnRectangle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnRectangle.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnRectangleMouseReleased(evt);
+        }
+    });
+    btnRectangle.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnRectangleActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnRectangle);
+
+    buttonGroup.add(btnRoundRectangle);
+    btnRoundRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/roundRectangle.png"))); // NOI18N
+    btnRoundRectangle.setToolTipText("round rectangle (A)");
+    btnRoundRectangle.setFocusPainted(false);
+    btnRoundRectangle.setFocusable(false);
+    btnRoundRectangle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnRoundRectangle.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnRoundRectangleMouseReleased(evt);
+        }
+    });
+    btnRoundRectangle.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnRoundRectangleActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnRoundRectangle);
+
+    buttonGroup.add(btnEllipse);
+    btnEllipse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/ellipse.png"))); // NOI18N
+    btnEllipse.setToolTipText("ellipse (E)");
+    btnEllipse.setFocusPainted(false);
+    btnEllipse.setFocusable(false);
+    btnEllipse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnEllipse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnEllipse.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnEllipseMouseReleased(evt);
+        }
+    });
+    btnEllipse.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnEllipseActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnEllipse);
+
+    buttonGroup.add(btnPolygon);
+    btnPolygon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/polygon.png"))); // NOI18N
+    btnPolygon.setToolTipText("polygon (G)");
+    btnPolygon.setFocusPainted(false);
+    btnPolygon.setFocusable(false);
+    btnPolygon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnPolygon.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnPolygonMouseReleased(evt);
+        }
+    });
+    btnPolygon.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnPolygonActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnPolygon);
+
+    buttonGroup.add(btnStar);
+    btnStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/star.png"))); // NOI18N
+    btnStar.setToolTipText("star (S)");
+    btnStar.setFocusPainted(false);
+    btnStar.setFocusable(false);
+    btnStar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnStar.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnStarMouseReleased(evt);
+        }
+    });
+    btnStar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnStarActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnStar);
+    mainToolBar.add(jSeparator3);
+
+    buttonGroup.add(btnMove);
+    btnMove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cursor_openhand.png"))); // NOI18N
+    btnMove.setToolTipText("move (M)");
+    btnMove.setFocusPainted(false);
+    btnMove.setFocusable(false);
+    btnMove.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnMove.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnMoveActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnMove);
+
+    buttonGroup.add(btnFill);
+    btnFill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/bucket.png"))); // NOI18N
+    btnFill.setToolTipText("change fill (F)");
+    btnFill.setFocusPainted(false);
+    btnFill.setFocusable(false);
+    btnFill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnFill.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnFillActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnFill);
+    mainToolBar.add(jSeparator8);
+
+    btnClearCurrentDrawPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"))); // NOI18N
+    btnClearCurrentDrawPage.setToolTipText("clear current draw page (Ctrl+Backspace)");
+    btnClearCurrentDrawPage.setFocusPainted(false);
+    btnClearCurrentDrawPage.setFocusable(false);
+    btnClearCurrentDrawPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnClearCurrentDrawPage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnClearCurrentDrawPage.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnClearCurrentDrawPageActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnClearCurrentDrawPage);
+    mainToolBar.add(jSeparator4);
+    mainToolBar.add(filler2);
+
+    colorPanelStroke.setToolTipText("stroke color (Shift+S)");
+    colorPanelStroke.setAlignmentX(0.0F);
+    colorPanelStroke.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelStrokeMousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelStrokeLayout = new javax.swing.GroupLayout(colorPanelStroke);
+    colorPanelStroke.setLayout(colorPanelStrokeLayout);
+    colorPanelStrokeLayout.setHorizontalGroup(
+        colorPanelStrokeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelStrokeLayout.setVerticalGroup(
+        colorPanelStrokeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    mainToolBar.add(colorPanelStroke);
+    mainToolBar.add(filler3);
+
+    colorPanelFill.setToolTipText("fill color (Shift+F)");
+    colorPanelFill.setAlignmentX(0.0F);
+    colorPanelFill.setColor(null);
+    colorPanelFill.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelFillMousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelFillLayout = new javax.swing.GroupLayout(colorPanelFill);
+    colorPanelFill.setLayout(colorPanelFillLayout);
+    colorPanelFillLayout.setHorizontalGroup(
+        colorPanelFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelFillLayout.setVerticalGroup(
+        colorPanelFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    mainToolBar.add(colorPanelFill);
+    mainToolBar.add(filler4);
+    mainToolBar.add(jSeparator5);
+    mainToolBar.add(filler6);
+
+    colorPanelBackground.setToolTipText("background color (Shift+B)");
+    colorPanelBackground.setAlignmentX(0.0F);
+    colorPanelBackground.setColor(null);
+    colorPanelBackground.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelBackgroundMousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelBackgroundLayout = new javax.swing.GroupLayout(colorPanelBackground);
+    colorPanelBackground.setLayout(colorPanelBackgroundLayout);
+    colorPanelBackgroundLayout.setHorizontalGroup(
+        colorPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelBackgroundLayout.setVerticalGroup(
+        colorPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    mainToolBar.add(colorPanelBackground);
+    mainToolBar.add(filler7);
+    mainToolBar.add(jSeparator6);
+    mainToolBar.add(filler5);
+    mainToolBar.add(jSeparator7);
+
+    btnHelpAndAcount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/help.png"))); // NOI18N
+    btnHelpAndAcount.setToolTipText("help and about (F1)");
+    btnHelpAndAcount.setFocusPainted(false);
+    btnHelpAndAcount.setFocusable(false);
+    btnHelpAndAcount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnHelpAndAcount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnHelpAndAcount.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnHelpAndAcountActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnHelpAndAcount);
+
+    btnConfigurations.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cog.png"))); // NOI18N
+    btnConfigurations.setToolTipText("configuration (F2)");
+    btnConfigurations.setFocusPainted(false);
+    btnConfigurations.setFocusable(false);
+    btnConfigurations.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnConfigurations.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnConfigurations.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnConfigurationsActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnConfigurations);
+
+    btnQuit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cancel.png"))); // NOI18N
+    btnQuit.setToolTipText("quit (Alt+F4)");
+    btnQuit.setFocusPainted(false);
+    btnQuit.setFocusable(false);
+    btnQuit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnQuit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnQuit.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnQuitActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnQuit);
+
+    paletteToolBar.setFloatable(false);
+    paletteToolBar.setOrientation(javax.swing.SwingConstants.VERTICAL);
+    paletteToolBar.setRollover(true);
+    paletteToolBar.setAlignmentX(0.15151516F);
+    paletteToolBar.setBorderPainted(false);
+    paletteToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    paletteToolBar.add(filler8);
+
+    btnPalette.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png"))); // NOI18N
+    btnPalette.setToolTipText("palettes (C)");
+    btnPalette.setFocusPainted(false);
+    btnPalette.setFocusable(false);
+    btnPalette.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnPalette.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnPalette.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnPaletteActionPerformed(evt);
+        }
+    });
+    paletteToolBar.add(btnPalette);
+
+    panelC1.setMaximumSize(new java.awt.Dimension(60, 30));
+    panelC1.setMinimumSize(new java.awt.Dimension(60, 30));
+    panelC1.setName(""); // NOI18N
+    panelC1.setOpaque(false);
+    panelC1.setPreferredSize(new java.awt.Dimension(60, 30));
+
+    colorPanelSC1.setToolTipText("stroke color 1 (Shift+1)");
+    colorPanelSC1.setAlignmentX(0.0F);
+    colorPanelSC1.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelSC1MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelSC1Layout = new javax.swing.GroupLayout(colorPanelSC1);
+    colorPanelSC1.setLayout(colorPanelSC1Layout);
+    colorPanelSC1Layout.setHorizontalGroup(
+        colorPanelSC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelSC1Layout.setVerticalGroup(
+        colorPanelSC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC1.add(colorPanelSC1);
+
+    colorPanelFC1.setToolTipText("fill color 1 (Ctrl+1)");
+    colorPanelFC1.setAlignmentX(0.0F);
+    colorPanelFC1.setColor(null);
+    colorPanelFC1.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelFC1MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelFC1Layout = new javax.swing.GroupLayout(colorPanelFC1);
+    colorPanelFC1.setLayout(colorPanelFC1Layout);
+    colorPanelFC1Layout.setHorizontalGroup(
+        colorPanelFC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelFC1Layout.setVerticalGroup(
+        colorPanelFC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC1.add(colorPanelFC1);
+
+    paletteToolBar.add(panelC1);
+
+    panelC2.setMaximumSize(new java.awt.Dimension(60, 30));
+    panelC2.setMinimumSize(new java.awt.Dimension(60, 30));
+    panelC2.setName(""); // NOI18N
+    panelC2.setOpaque(false);
+    panelC2.setPreferredSize(new java.awt.Dimension(60, 30));
+
+    colorPanelSC2.setToolTipText("stroke color 2 (Shift+2)");
+    colorPanelSC2.setAlignmentX(0.0F);
+    colorPanelSC2.setColor(new java.awt.Color(255, 255, 255));
+    colorPanelSC2.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelSC2MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelSC2Layout = new javax.swing.GroupLayout(colorPanelSC2);
+    colorPanelSC2.setLayout(colorPanelSC2Layout);
+    colorPanelSC2Layout.setHorizontalGroup(
+        colorPanelSC2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelSC2Layout.setVerticalGroup(
+        colorPanelSC2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC2.add(colorPanelSC2);
+
+    colorPanelFC2.setToolTipText("fill color 2 (Ctrl+2)");
+    colorPanelFC2.setAlignmentX(0.0F);
+    colorPanelFC2.setColor(null);
+    colorPanelFC2.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelFC2MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelFC2Layout = new javax.swing.GroupLayout(colorPanelFC2);
+    colorPanelFC2.setLayout(colorPanelFC2Layout);
+    colorPanelFC2Layout.setHorizontalGroup(
+        colorPanelFC2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelFC2Layout.setVerticalGroup(
+        colorPanelFC2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC2.add(colorPanelFC2);
+
+    paletteToolBar.add(panelC2);
+
+    panelC3.setMaximumSize(new java.awt.Dimension(60, 30));
+    panelC3.setMinimumSize(new java.awt.Dimension(60, 30));
+    panelC3.setName(""); // NOI18N
+    panelC3.setOpaque(false);
+    panelC3.setPreferredSize(new java.awt.Dimension(60, 30));
+
+    colorPanelSC3.setToolTipText("stroke color 3 (Shift+3)");
+    colorPanelSC3.setAlignmentX(0.0F);
+    colorPanelSC3.setColor(new java.awt.Color(0, 153, 255));
+    colorPanelSC3.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelSC3MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelSC3Layout = new javax.swing.GroupLayout(colorPanelSC3);
+    colorPanelSC3.setLayout(colorPanelSC3Layout);
+    colorPanelSC3Layout.setHorizontalGroup(
+        colorPanelSC3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelSC3Layout.setVerticalGroup(
+        colorPanelSC3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC3.add(colorPanelSC3);
+
+    colorPanelFC3.setToolTipText("fill color 3 (Ctrl+3)");
+    colorPanelFC3.setAlignmentX(0.0F);
+    colorPanelFC3.setColor(null);
+    colorPanelFC3.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelFC3MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelFC3Layout = new javax.swing.GroupLayout(colorPanelFC3);
+    colorPanelFC3.setLayout(colorPanelFC3Layout);
+    colorPanelFC3Layout.setHorizontalGroup(
+        colorPanelFC3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelFC3Layout.setVerticalGroup(
+        colorPanelFC3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC3.add(colorPanelFC3);
+
+    paletteToolBar.add(panelC3);
+
+    panelC4.setMaximumSize(new java.awt.Dimension(60, 30));
+    panelC4.setMinimumSize(new java.awt.Dimension(60, 30));
+    panelC4.setName(""); // NOI18N
+    panelC4.setOpaque(false);
+    panelC4.setPreferredSize(new java.awt.Dimension(60, 30));
+
+    colorPanelSC4.setToolTipText("stroke color 4 (Shift+4)");
+    colorPanelSC4.setAlignmentX(0.0F);
+    colorPanelSC4.setColor(new java.awt.Color(0, 204, 51));
+    colorPanelSC4.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelSC4MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelSC4Layout = new javax.swing.GroupLayout(colorPanelSC4);
+    colorPanelSC4.setLayout(colorPanelSC4Layout);
+    colorPanelSC4Layout.setHorizontalGroup(
+        colorPanelSC4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelSC4Layout.setVerticalGroup(
+        colorPanelSC4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC4.add(colorPanelSC4);
+
+    colorPanelFC4.setToolTipText("fill color 4 (Ctrl+4)");
+    colorPanelFC4.setAlignmentX(0.0F);
+    colorPanelFC4.setColor(null);
+    colorPanelFC4.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelFC4MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelFC4Layout = new javax.swing.GroupLayout(colorPanelFC4);
+    colorPanelFC4.setLayout(colorPanelFC4Layout);
+    colorPanelFC4Layout.setHorizontalGroup(
+        colorPanelFC4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelFC4Layout.setVerticalGroup(
+        colorPanelFC4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC4.add(colorPanelFC4);
+
+    paletteToolBar.add(panelC4);
+
+    panelC5.setMaximumSize(new java.awt.Dimension(60, 30));
+    panelC5.setMinimumSize(new java.awt.Dimension(60, 30));
+    panelC5.setName(""); // NOI18N
+    panelC5.setOpaque(false);
+    panelC5.setPreferredSize(new java.awt.Dimension(60, 30));
+
+    colorPanelSC5.setToolTipText("stroke color 5 (Shift+5)");
+    colorPanelSC5.setAlignmentX(0.0F);
+    colorPanelSC5.setColor(new java.awt.Color(255, 102, 0));
+    colorPanelSC5.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelSC5MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelSC5Layout = new javax.swing.GroupLayout(colorPanelSC5);
+    colorPanelSC5.setLayout(colorPanelSC5Layout);
+    colorPanelSC5Layout.setHorizontalGroup(
+        colorPanelSC5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelSC5Layout.setVerticalGroup(
+        colorPanelSC5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC5.add(colorPanelSC5);
+
+    colorPanelFC5.setToolTipText("fill color 5 (Ctrl+5)");
+    colorPanelFC5.setAlignmentX(0.0F);
+    colorPanelFC5.setColor(null);
+    colorPanelFC5.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelFC5MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelFC5Layout = new javax.swing.GroupLayout(colorPanelFC5);
+    colorPanelFC5.setLayout(colorPanelFC5Layout);
+    colorPanelFC5Layout.setHorizontalGroup(
+        colorPanelFC5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelFC5Layout.setVerticalGroup(
+        colorPanelFC5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC5.add(colorPanelFC5);
+
+    paletteToolBar.add(panelC5);
+
+    panelC6.setMaximumSize(new java.awt.Dimension(60, 30));
+    panelC6.setMinimumSize(new java.awt.Dimension(60, 30));
+    panelC6.setName(""); // NOI18N
+    panelC6.setOpaque(false);
+    panelC6.setPreferredSize(new java.awt.Dimension(60, 30));
+
+    colorPanelSC6.setToolTipText("stroke color 6 (Shift+6)");
+    colorPanelSC6.setAlignmentX(0.0F);
+    colorPanelSC6.setColor(new java.awt.Color(255, 0, 51));
+    colorPanelSC6.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelSC6MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelSC6Layout = new javax.swing.GroupLayout(colorPanelSC6);
+    colorPanelSC6.setLayout(colorPanelSC6Layout);
+    colorPanelSC6Layout.setHorizontalGroup(
+        colorPanelSC6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelSC6Layout.setVerticalGroup(
+        colorPanelSC6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC6.add(colorPanelSC6);
+
+    colorPanelFC6.setToolTipText("fill color 6 (Ctrl+6)");
+    colorPanelFC6.setAlignmentX(0.0F);
+    colorPanelFC6.setColor(null);
+    colorPanelFC6.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelFC6MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelFC6Layout = new javax.swing.GroupLayout(colorPanelFC6);
+    colorPanelFC6.setLayout(colorPanelFC6Layout);
+    colorPanelFC6Layout.setHorizontalGroup(
+        colorPanelFC6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelFC6Layout.setVerticalGroup(
+        colorPanelFC6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC6.add(colorPanelFC6);
+
+    paletteToolBar.add(panelC6);
+
+    panelC7.setMaximumSize(new java.awt.Dimension(60, 30));
+    panelC7.setMinimumSize(new java.awt.Dimension(60, 30));
+    panelC7.setName(""); // NOI18N
+    panelC7.setOpaque(false);
+    panelC7.setPreferredSize(new java.awt.Dimension(60, 30));
+
+    colorPanelSC7.setToolTipText("stroke color 7 (Shift+7)");
+    colorPanelSC7.setAlignmentX(0.0F);
+    colorPanelSC7.setColor(new java.awt.Color(255, 0, 204));
+    colorPanelSC7.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelSC7MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelSC7Layout = new javax.swing.GroupLayout(colorPanelSC7);
+    colorPanelSC7.setLayout(colorPanelSC7Layout);
+    colorPanelSC7Layout.setHorizontalGroup(
+        colorPanelSC7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelSC7Layout.setVerticalGroup(
+        colorPanelSC7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC7.add(colorPanelSC7);
+
+    colorPanelFC7.setToolTipText("fill color 7 (Ctrl+7)");
+    colorPanelFC7.setAlignmentX(0.0F);
+    colorPanelFC7.setColor(null);
+    colorPanelFC7.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelFC7MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelFC7Layout = new javax.swing.GroupLayout(colorPanelFC7);
+    colorPanelFC7.setLayout(colorPanelFC7Layout);
+    colorPanelFC7Layout.setHorizontalGroup(
+        colorPanelFC7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelFC7Layout.setVerticalGroup(
+        colorPanelFC7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC7.add(colorPanelFC7);
+
+    paletteToolBar.add(panelC7);
+
+    panelC8.setMaximumSize(new java.awt.Dimension(60, 30));
+    panelC8.setMinimumSize(new java.awt.Dimension(60, 30));
+    panelC8.setName(""); // NOI18N
+    panelC8.setOpaque(false);
+    panelC8.setPreferredSize(new java.awt.Dimension(60, 30));
+
+    colorPanelSC8.setToolTipText("stroke color 8 (Shift+8)");
+    colorPanelSC8.setAlignmentX(0.0F);
+    colorPanelSC8.setColor(new java.awt.Color(102, 0, 204));
+    colorPanelSC8.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelSC8MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelSC8Layout = new javax.swing.GroupLayout(colorPanelSC8);
+    colorPanelSC8.setLayout(colorPanelSC8Layout);
+    colorPanelSC8Layout.setHorizontalGroup(
+        colorPanelSC8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelSC8Layout.setVerticalGroup(
+        colorPanelSC8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC8.add(colorPanelSC8);
+
+    colorPanelFC8.setToolTipText("fill color 8 (Ctrl+8)");
+    colorPanelFC8.setAlignmentX(0.0F);
+    colorPanelFC8.setColor(null);
+    colorPanelFC8.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            colorPanelFC8MousePressed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout colorPanelFC8Layout = new javax.swing.GroupLayout(colorPanelFC8);
+    colorPanelFC8.setLayout(colorPanelFC8Layout);
+    colorPanelFC8Layout.setHorizontalGroup(
+        colorPanelFC8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+    colorPanelFC8Layout.setVerticalGroup(
+        colorPanelFC8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 20, Short.MAX_VALUE)
+    );
+
+    panelC8.add(colorPanelFC8);
+
+    paletteToolBar.add(panelC8);
+
+    statusToolBar.setFloatable(false);
+    statusToolBar.setBorderPainted(false);
+    statusToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    statusToolBar.setFocusable(false);
+    statusToolBar.setRequestFocusEnabled(false);
+    statusToolBar.setVerifyInputWhenFocusTarget(false);
+
+    lblPages.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+    lblPages.setForeground(new java.awt.Color(188, 188, 188));
+    lblPages.setText("pages");
+    lblPages.setToolTipText("current draw page / total draw pages");
+    statusToolBar.add(lblPages);
+
+    javax.swing.GroupLayout drawPanelLayout = new javax.swing.GroupLayout(drawPanel);
+    drawPanel.setLayout(drawPanelLayout);
+    drawPanelLayout.setHorizontalGroup(
+        drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(drawPanelLayout.createSequentialGroup()
+            .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1095, Short.MAX_VALUE)
+            .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(paletteToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+    );
+    drawPanelLayout.setVerticalGroup(
+        drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(paletteToolBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGroup(drawPanelLayout.createSequentialGroup()
+            .addComponent(statusToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+
+    pack();
+    setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void drawPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drawPanelMousePressed
@@ -1097,6 +1100,9 @@ public class MainWindow extends javax.swing.JFrame {
                 if ( btnPencil.isSelected() ) {
                     if ( currentShape == null ) {
                         Curve c = new Curve();
+                        c.setStrokeColor( colorPanelStroke.getColor() );
+                        c.setFillColor( colorPanelFill.getColor() );
+                        c.setStrokeWidth( dConfig.getStrokeWidth() );
                         c.addCoordinate( xPressed, yPressed );
                         currentShape = c;
                     }
@@ -1298,6 +1304,7 @@ public class MainWindow extends javax.swing.JFrame {
             drawPanel.reset();
             drawPanel.setBackgroundColor( colorPanelBackground.getColor() );
             drawPanel.repaint();
+            Shape.setIdCount( 0 );
             updateLabelPages();
             verifyHistory();
         }
@@ -1321,6 +1328,7 @@ public class MainWindow extends javax.swing.JFrame {
                 drawPanel.loadDrawPagesFromOutside( i.readObject() );
                 i.close();
                 drawPanel.repaint();
+                Shape.setIdCount( drawPanel.getMaxShapeId() + 1 );
                 updateLabelPages();
                 verifyHistory();
             }
@@ -1546,6 +1554,7 @@ public class MainWindow extends javax.swing.JFrame {
                 "Clean the current draw page?", "Clear Current Draw Page" ) == JOptionPane.YES_OPTION ) {
             drawPanel.clearCurrentDrawPage();
             drawPanel.repaint();
+            verifyHistory();
         }
         
     }//GEN-LAST:event_btnClearCurrentDrawPageActionPerformed
@@ -1830,6 +1839,29 @@ public class MainWindow extends javax.swing.JFrame {
                                 
                         }
 
+                    } else if ( e.isAltDown() ) { 
+                        
+                        switch ( e.getKeyCode() ) {
+                            
+                            case KeyEvent.VK_S:
+                                colorPanelStroke.setColor( null );
+                                colorPanelStroke.repaint();
+                                break;
+                                
+                            case KeyEvent.VK_F:
+                                colorPanelFill.setColor( null );
+                                colorPanelFill.repaint();
+                                break;
+                                
+                            case KeyEvent.VK_B:
+                                colorPanelBackground.setColor( null );
+                                drawPanel.setBackgroundColor( null );
+                                colorPanelBackground.repaint();
+                                drawPanel.repaint();
+                                break;
+                            
+                        }
+                        
                     } else {
 
                         switch ( e.getKeyCode() ) {
