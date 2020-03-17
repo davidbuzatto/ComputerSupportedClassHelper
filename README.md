@@ -1,6 +1,6 @@
 ## Synopsis
 
-Computer Supported Class Helper is a Java desktop application that aims to act like a canvas in front of the desktop, aiming professors to record their classes and make annotations in their screen.
+Computer Supported Class Helper is a Java desktop application that acts like a canvas in front of the desktop, aiming professors to record their classes and make annotations in their screen.
 
 This tool was developed by Professor Dr. David Buzatto for application in the disciplines in which he teaches.
 
