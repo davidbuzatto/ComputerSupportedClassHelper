@@ -20,14 +20,12 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.Toolkit;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -87,7 +85,9 @@ public class MainWindow extends javax.swing.JFrame {
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher( new ApplicationKeyEventDispatcher( this ) );
         
-        setExtendedState( Frame.MAXIMIZED_BOTH );
+        //setExtendedState( Frame.MAXIMIZED_BOTH );
+        setSize( Toolkit.getDefaultToolkit().getScreenSize() );
+        setBounds( 0, 0, getWidth(), getHeight() );
         
     }
 
@@ -1909,7 +1909,11 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     } else {
 
                         switch ( e.getKeyCode() ) {
-
+                            
+                            case KeyEvent.VK_ESCAPE:
+                                setState( JFrame.ICONIFIED );
+                                break;
+                                
                             case KeyEvent.VK_RIGHT:
                                 
                                 if ( drawPanel.willCreateNewDrawPage() ) {
@@ -2064,6 +2068,24 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
                     }
 
+                } else if ( e.getID() == KeyEvent.KEY_PRESSED ) {
+                    
+                    if ( e.isShiftDown() ) {
+
+                        switch ( e.getKeyCode() ) {
+                            
+                            case KeyEvent.VK_UP:
+                                setBounds( 0, 0, getWidth(), getHeight() - 1 );
+                                break;
+                                
+                            case KeyEvent.VK_DOWN:
+                                setBounds( 0, 0, getWidth(), getHeight() + 1 );
+                                break;
+                                
+                        }
+                        
+                    }
+                    
                 }
                 
             }

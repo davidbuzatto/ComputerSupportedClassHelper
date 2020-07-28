@@ -38,7 +38,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         
         lblAbout.setText( "<html>CSCH (Computer Supported Class Helper) is being developed "
                 + "as a non profit hobby and for personal use by professor "
-                + "David Buzatto from IFSP, São Paulo, Brazil. Use it at your own risk. Version 1.0.</html>" );
+                + "David Buzatto from IFSP, São Paulo, Brazil. Use it at your own risk. Version 1.2.</html>" );
         
         keyEventDispatcher = new KeyEventDispatcher() {
             @Override
@@ -165,6 +165,12 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel87 = new javax.swing.JLabel();
         jLabel88 = new javax.swing.JLabel();
         jLabel90 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel86 = new javax.swing.JLabel();
+        jLabel89 = new javax.swing.JLabel();
+        jLabel91 = new javax.swing.JLabel();
         customDialogContainerPanel2 = new br.com.davidbuzatto.computersupportedclasshelper.gui.CustomDialogContainerPanel();
         lblTitle2 = new javax.swing.JLabel();
         lblAbout = new javax.swing.JLabel();
@@ -698,21 +704,45 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel90.setForeground(new java.awt.Color(204, 204, 204));
         jLabel90.setText("Shift+Esc");
 
+        jLabel52.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel52.setText("Minimize");
+
+        jLabel53.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel53.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel53.setText("Esc");
+
+        jLabel54.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel54.setText("Increase Window Height");
+
+        jLabel86.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel86.setText("Decrease Window Height");
+
+        jLabel89.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel89.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel89.setText("Shift+Down arrow");
+
+        jLabel91.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel91.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel91.setText("Shift+Up arrow");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel64, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel67, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel71, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel73, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel77, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel79, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel82, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel85, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel88, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel86)
+                    .addComponent(jLabel54)
+                    .addComponent(jLabel52)
+                    .addComponent(jLabel64)
+                    .addComponent(jLabel67)
+                    .addComponent(jLabel71)
+                    .addComponent(jLabel73)
+                    .addComponent(jLabel77)
+                    .addComponent(jLabel79)
+                    .addComponent(jLabel82)
+                    .addComponent(jLabel85)
+                    .addComponent(jLabel88))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel69)
@@ -726,7 +756,10 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel65)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel66)))
+                        .addComponent(jLabel66))
+                    .addComponent(jLabel53)
+                    .addComponent(jLabel89)
+                    .addComponent(jLabel91))
                 .addGap(8, 8, 8))
         );
         jPanel4Layout.setVerticalGroup(
@@ -769,7 +802,18 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel88)
                     .addComponent(jLabel90))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52)
+                    .addComponent(jLabel53))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel54)
+                    .addComponent(jLabel89))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel86)
+                    .addComponent(jLabel91)))
         );
 
         javax.swing.GroupLayout customDialogContainerPanel1Layout = new javax.swing.GroupLayout(customDialogContainerPanel1);
@@ -934,6 +978,9 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
@@ -968,10 +1015,13 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
