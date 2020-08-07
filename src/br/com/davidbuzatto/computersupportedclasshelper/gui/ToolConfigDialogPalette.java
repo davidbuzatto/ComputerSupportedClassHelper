@@ -33,6 +33,8 @@ public class ToolConfigDialogPalette extends javax.swing.JDialog {
         initComponents();
         setBackground( new Color( 0, 0, 0, 0 ) );
         
+        final MainWindow mw = (MainWindow) parent;
+        
         dConfig = DrawingConfigs.getInstance();
         dConfig.setProcessEventsMainWindow( false );
         
@@ -58,7 +60,7 @@ public class ToolConfigDialogPalette extends javax.swing.JDialog {
         palettePanelDefault.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                ( (MainWindow) parent ).moveColors( palettePanelDefault.getColors() );
+                mw.moveColors( palettePanelDefault.getColors() );
                 dispose();
             }
         });
@@ -66,7 +68,7 @@ public class ToolConfigDialogPalette extends javax.swing.JDialog {
         palettePanelEarth.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                ( (MainWindow) parent ).moveColors( palettePanelEarth.getColors() );
+                mw.moveColors( palettePanelEarth.getColors() );
                 dispose();
             }
         });
@@ -74,7 +76,7 @@ public class ToolConfigDialogPalette extends javax.swing.JDialog {
         palettePanelWater.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                ( (MainWindow) parent ).moveColors( palettePanelWater.getColors() );
+                mw.moveColors( palettePanelWater.getColors() );
                 dispose();
             }
         });
@@ -82,7 +84,7 @@ public class ToolConfigDialogPalette extends javax.swing.JDialog {
         palettePanelFire.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                ( (MainWindow) parent ).moveColors( palettePanelFire.getColors() );
+                mw.moveColors( palettePanelFire.getColors() );
                 dispose();
             }
         });
@@ -90,7 +92,7 @@ public class ToolConfigDialogPalette extends javax.swing.JDialog {
         palettePanelNature.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                ( (MainWindow) parent ).moveColors( palettePanelNature.getColors() );
+                mw.moveColors( palettePanelNature.getColors() );
                 dispose();
             }
         });
@@ -98,7 +100,7 @@ public class ToolConfigDialogPalette extends javax.swing.JDialog {
         palettePanelNocturne.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                ( (MainWindow) parent ).moveColors( palettePanelNocturne.getColors() );
+                mw.moveColors( palettePanelNocturne.getColors() );
                 dispose();
             }
         });

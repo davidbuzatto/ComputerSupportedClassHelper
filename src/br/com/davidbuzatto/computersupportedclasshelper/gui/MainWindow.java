@@ -7,6 +7,7 @@ package br.com.davidbuzatto.computersupportedclasshelper.gui;
 
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Curve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Ellipse;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.EraserCurve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Line;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Polygon;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Rectangle;
@@ -77,17 +78,30 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         setBackground( new Color( 0, 0, 0, 0 ) );
         
+        colorPanelSC1.setId( "1" );
+        colorPanelSC2.setId( "2" );
+        colorPanelSC3.setId( "3" );
+        colorPanelSC4.setId( "4" );
+        colorPanelSC5.setId( "5" );
+        colorPanelSC6.setId( "6" );
+        colorPanelSC7.setId( "7" );
+        colorPanelSC8.setId( "8" );
+        
         this.dConfig = dConfig;
         loadConfigurations();
         
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.PENCIL ) );
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.PENCIL, null ) );
         updateLabelPages();
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher( new ApplicationKeyEventDispatcher( this ) );
         
         //setExtendedState( Frame.MAXIMIZED_BOTH );
         setSize( Toolkit.getDefaultToolkit().getScreenSize() );
-        setBounds( 0, 0, getWidth(), getHeight() );
+        setBounds( 0, 0, getWidth(), getHeight() - 20 );
+        
+        btnAddImage.setVisible( false );
+        
+        updateCrossCursorIfNeeded();
         
     }
 
@@ -116,12 +130,15 @@ public class MainWindow extends javax.swing.JFrame {
         btnRedo = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnPencil = new javax.swing.JToggleButton();
+        btnEraser = new javax.swing.JToggleButton();
+        jSeparator10 = new javax.swing.JToolBar.Separator();
         btnLine = new javax.swing.JToggleButton();
         btnRectangle = new javax.swing.JToggleButton();
         btnRoundRectangle = new javax.swing.JToggleButton();
         btnEllipse = new javax.swing.JToggleButton();
         btnPolygon = new javax.swing.JToggleButton();
         btnStar = new javax.swing.JToggleButton();
+        btnAddImage = new javax.swing.JToggleButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         btnMove = new javax.swing.JToggleButton();
         btnFill = new javax.swing.JToggleButton();
@@ -315,6 +332,26 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     });
     mainToolBar.add(btnPencil);
 
+    buttonGroup.add(btnEraser);
+    btnEraser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/eraser.png"))); // NOI18N
+    btnEraser.setToolTipText("eraser (E)");
+    btnEraser.setFocusPainted(false);
+    btnEraser.setFocusable(false);
+    btnEraser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnEraser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnEraser.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnEraserMouseReleased(evt);
+        }
+    });
+    btnEraser.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnEraserActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnEraser);
+    mainToolBar.add(jSeparator10);
+
     buttonGroup.add(btnLine);
     btnLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/line.png"))); // NOI18N
     btnLine.setToolTipText("line (L)");
@@ -371,7 +408,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
     buttonGroup.add(btnEllipse);
     btnEllipse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/ellipse.png"))); // NOI18N
-    btnEllipse.setToolTipText("ellipse (E)");
+    btnEllipse.setToolTipText("ellipse (S)");
     btnEllipse.setFocusPainted(false);
     btnEllipse.setFocusable(false);
     btnEllipse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -408,7 +445,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
     buttonGroup.add(btnStar);
     btnStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/star.png"))); // NOI18N
-    btnStar.setToolTipText("star (S)");
+    btnStar.setToolTipText("star (T)");
     btnStar.setFocusPainted(false);
     btnStar.setFocusable(false);
     btnStar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -423,6 +460,20 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         }
     });
     mainToolBar.add(btnStar);
+
+    buttonGroup.add(btnAddImage);
+    btnAddImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/picture_add.png"))); // NOI18N
+    btnAddImage.setToolTipText("add image (I)");
+    btnAddImage.setFocusPainted(false);
+    btnAddImage.setFocusable(false);
+    btnAddImage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnAddImage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnAddImage.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnAddImageActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnAddImage);
     mainToolBar.add(jSeparator3);
 
     buttonGroup.add(btnMove);
@@ -1100,6 +1151,15 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                         c.addCoordinate( xPressed, yPressed );
                         currentShape = c;
                     }
+                } else if ( btnEraser.isSelected() ) {
+                    if ( currentShape == null ) {
+                        EraserCurve e = new EraserCurve();
+                        e.setStrokeColor( colorPanelBackground.getColor() );
+                        e.setFillColor( null );
+                        e.setStrokeWidth( dConfig.getEraserWidth() );
+                        e.addCoordinate( xPressed, yPressed );
+                        currentShape = e;
+                    }
                 }
 
                 drawing = true;
@@ -1156,6 +1216,24 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 curve.setFillColor( colorPanelFill.getColor() );
 
                 curve.setStrokeWidth( dConfig.getStrokeWidth() );
+                curve.addCoordinate( evt.getX(), evt.getY() );
+
+                currentShape = curve;
+
+            } else if ( btnEraser.isSelected() ) {
+
+                EraserCurve curve;
+
+                if ( currentShape != null && currentShape instanceof EraserCurve ) {
+                    curve = (EraserCurve) currentShape;
+                } else {
+                    curve = new EraserCurve();
+                }
+
+                curve.setStrokeColor( colorPanelBackground.getColor() );
+                curve.setFillColor( null );
+
+                curve.setStrokeWidth( dConfig.getEraserWidth() );
                 curve.addCoordinate( evt.getX(), evt.getY() );
 
                 currentShape = curve;
@@ -1446,10 +1524,12 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
     private void colorPanelStrokeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelStrokeMousePressed
         setColorOnColorPanel( evt, colorPanelStroke, "Stroke Color", "sc" );
+        updateCrossCursorIfNeeded();
     }//GEN-LAST:event_colorPanelStrokeMousePressed
 
     private void colorPanelFillMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelFillMousePressed
         setColorOnColorPanel( evt, colorPanelFill, "Fill Color", "fc" );
+        updateCrossCursorIfNeeded();
     }//GEN-LAST:event_colorPanelFillMousePressed
 
     private void colorPanelBackgroundMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelBackgroundMousePressed
@@ -1466,6 +1546,10 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 
                 colorPanelBackground.setColor( c );
                 drawPanel.setBackgroundColor( c );
+                
+                // update all EraserCurve shapes to match background color
+                drawPanel.updateEraserCurves( c );
+                
                 colorPanelBackground.repaint();
                 drawPanel.repaint();
                 dConfig.getColors().put( "bc", c );
@@ -1491,6 +1575,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             drawPanel.setBackgroundColor( Constants.TRANSPARENT_COLOR );
             drawPanel.repaint();
         }
+        
+        updateCrossCursorIfNeeded();
         
     }//GEN-LAST:event_menuItemNoColorActionPerformed
 
@@ -1618,39 +1704,45 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     }//GEN-LAST:event_btnClearCurrentDrawPageActionPerformed
 
     private void btnPencilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPencilActionPerformed
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.PENCIL ) );
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.PENCIL, null ) );
     }//GEN-LAST:event_btnPencilActionPerformed
 
     private void btnLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLineActionPerformed
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS ) );
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS, Color.BLACK ) );
+        updateCrossCursorIfNeeded();
     }//GEN-LAST:event_btnLineActionPerformed
 
     private void btnRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRectangleActionPerformed
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS ) );
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS, Color.BLACK ) );
+        updateCrossCursorIfNeeded();
     }//GEN-LAST:event_btnRectangleActionPerformed
 
     private void btnRoundRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoundRectangleActionPerformed
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS ) );
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS, Color.BLACK ) );
+        updateCrossCursorIfNeeded();
     }//GEN-LAST:event_btnRoundRectangleActionPerformed
 
     private void btnEllipseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEllipseActionPerformed
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS ) );
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS, Color.BLACK ) );
+        updateCrossCursorIfNeeded();
     }//GEN-LAST:event_btnEllipseActionPerformed
 
     private void btnPolygonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPolygonActionPerformed
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS ) );
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS, Color.BLACK ) );
+        updateCrossCursorIfNeeded();
     }//GEN-LAST:event_btnPolygonActionPerformed
 
     private void btnStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStarActionPerformed
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS ) );
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS, Color.BLACK ) );
+        updateCrossCursorIfNeeded();
     }//GEN-LAST:event_btnStarActionPerformed
 
     private void btnMoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveActionPerformed
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.MOVE ) );
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.MOVE, null ) );
     }//GEN-LAST:event_btnMoveActionPerformed
 
     private void btnFillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFillActionPerformed
-        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.BUCKET ) );
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.BUCKET, null ) );
     }//GEN-LAST:event_btnFillActionPerformed
 
     private void colorPanelSC7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorPanelSC7MousePressed
@@ -1685,6 +1777,18 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private void btnEllipseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEllipseMouseReleased
         openNewToolConfigDialogStrokeWidth( evt );
     }//GEN-LAST:event_btnEllipseMouseReleased
+
+    private void btnEraserMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEraserMouseReleased
+        openNewToolConfigDialogEraserWidth( evt );
+    }//GEN-LAST:event_btnEraserMouseReleased
+
+    private void btnEraserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEraserActionPerformed
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.ERASER, null ) );
+    }//GEN-LAST:event_btnEraserActionPerformed
+
+    private void btnAddImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddImageActionPerformed
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.IMAGE, null ) );
+    }//GEN-LAST:event_btnAddImageActionPerformed
 
     public void moveColors( Map<String, Color> colors ) {
         
@@ -1803,7 +1907,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     } else if ( e.isControlDown() ) {
 
                         switch ( e.getKeyCode() ) {
-
+                                
                             case KeyEvent.VK_DELETE:
                                 if ( drawPanel.canDeleteDrawPage() ) {
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
@@ -1814,6 +1918,10 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                     }
                                 }
                                 updateLabelPages();
+                                break;
+                                
+                            case KeyEvent.VK_D: // minimize
+                                setState( JFrame.ICONIFIED );
                                 break;
                                 
                             case KeyEvent.VK_N: // new
@@ -1909,10 +2017,6 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     } else {
 
                         switch ( e.getKeyCode() ) {
-                            
-                            case KeyEvent.VK_ESCAPE:
-                                setState( JFrame.ICONIFIED );
-                                break;
                                 
                             case KeyEvent.VK_RIGHT:
                                 
@@ -1941,6 +2045,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 transferCodeBetweenColorPanels( 
                                         colorPanelSC1, colorPanelFC1, 
                                         colorPanelStroke, colorPanelFill );
+                                persistColorConfig();
+                                updateCrossCursorIfNeeded();
                                 break;
 
                             case KeyEvent.VK_2:
@@ -1948,6 +2054,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 transferCodeBetweenColorPanels( 
                                         colorPanelSC2, colorPanelFC2, 
                                         colorPanelStroke, colorPanelFill );
+                                persistColorConfig();
+                                updateCrossCursorIfNeeded();
                                 break;
 
                             case KeyEvent.VK_3:
@@ -1955,6 +2063,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 transferCodeBetweenColorPanels( 
                                         colorPanelSC3, colorPanelFC3, 
                                         colorPanelStroke, colorPanelFill );
+                                persistColorConfig();
+                                updateCrossCursorIfNeeded();
                                 break;
 
                             case KeyEvent.VK_4:
@@ -1962,6 +2072,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 transferCodeBetweenColorPanels( 
                                         colorPanelSC4, colorPanelFC4, 
                                         colorPanelStroke, colorPanelFill );
+                                persistColorConfig();
+                                updateCrossCursorIfNeeded();
                                 break;
 
                             case KeyEvent.VK_5:
@@ -1969,6 +2081,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 transferCodeBetweenColorPanels( 
                                         colorPanelSC5, colorPanelFC5, 
                                         colorPanelStroke, colorPanelFill );
+                                persistColorConfig();
+                                updateCrossCursorIfNeeded();
                                 break;
 
                             case KeyEvent.VK_6:
@@ -1976,6 +2090,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 transferCodeBetweenColorPanels( 
                                         colorPanelSC6, colorPanelFC6, 
                                         colorPanelStroke, colorPanelFill );
+                                persistColorConfig();
+                                updateCrossCursorIfNeeded();
                                 break;
                                 
                             case KeyEvent.VK_7:
@@ -1983,6 +2099,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 transferCodeBetweenColorPanels( 
                                         colorPanelSC7, colorPanelFC7, 
                                         colorPanelStroke, colorPanelFill );
+                                persistColorConfig();
+                                updateCrossCursorIfNeeded();
                                 break;
                                 
                             case KeyEvent.VK_8:
@@ -1990,6 +2108,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 transferCodeBetweenColorPanels( 
                                         colorPanelSC8, colorPanelFC8, 
                                         colorPanelStroke, colorPanelFill );
+                                persistColorConfig();
+                                updateCrossCursorIfNeeded();
                                 break;
                                 
                             case KeyEvent.VK_DELETE:
@@ -2016,6 +2136,11 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 dispatchActionEvent( btnPencil );
                                 break;
                                 
+                            case KeyEvent.VK_E: // eraser
+                                btnEraser.setSelected( true );
+                                dispatchActionEvent( btnEraser );
+                                break;
+                                
                             case KeyEvent.VK_L: // line
                                 btnLine.setSelected( true );
                                 dispatchActionEvent( btnLine );
@@ -2031,7 +2156,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 dispatchActionEvent( btnRoundRectangle );
                                 break;
                                 
-                            case KeyEvent.VK_E: // ellipse
+                            case KeyEvent.VK_S: // ellipse
                                 btnEllipse.setSelected( true );
                                 dispatchActionEvent( btnEllipse );
                                 break;
@@ -2041,9 +2166,14 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 dispatchActionEvent( btnPolygon );
                                 break;
                                 
-                            case KeyEvent.VK_S: // star
+                            case KeyEvent.VK_T: // star
                                 btnStar.setSelected( true );
                                 dispatchActionEvent( btnStar );
+                                break;
+                                
+                            case KeyEvent.VK_I: // add image
+                                btnAddImage.setSelected( true );
+                                dispatchActionEvent( btnAddImage );
                                 break;
                                 
                             case KeyEvent.VK_M: // move
@@ -2095,6 +2225,27 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         }
         
     }
+
+    private void persistColorConfig() {
+        dConfig.getColors().put( "sc", colorPanelStroke.getColor() );
+        dConfig.getColors().put( "fc", colorPanelFill.getColor() );
+    }
+
+    private void updateCrossCursorIfNeeded() {
+        if ( drawPanel.getCursor().getName().equals( "cross" ) ) {
+            Color c = colorPanelStroke.getColor();
+            if ( c != null ) {
+                drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS, c ) );
+            } else {
+                c = colorPanelFill.getColor();
+                if ( c != null ) {
+                    drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS, c ) );
+                } else {
+                    drawPanel.setCursor( Cursors.getCursor( Cursors.Type.CROSS, Color.BLACK ) );
+                }
+            }
+        }
+    }
     
     private void toggleToolBars() {
         mainToolBar.setVisible( !mainToolBar.isVisible() );
@@ -2137,6 +2288,19 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         if ( SwingUtilities.isRightMouseButton( evt ) ) {
             
             ToolConfigDialogStrokeWidth tcd = new ToolConfigDialogStrokeWidth( this, true );
+            Point loc = evt.getLocationOnScreen();
+            tcd.setLocation( loc.x, loc.y - 20 );
+            tcd.setVisible( true );
+            
+        }
+        
+    }
+    
+    private void openNewToolConfigDialogEraserWidth( MouseEvent evt ) {
+        
+        if ( SwingUtilities.isRightMouseButton( evt ) ) {
+            
+            ToolConfigDialogEraserWidth tcd = new ToolConfigDialogEraserWidth( this, true );
             Point loc = evt.getLocationOnScreen();
             tcd.setLocation( loc.x, loc.y - 20 );
             tcd.setVisible( true );
@@ -2289,8 +2453,10 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnAddImage;
     private javax.swing.JButton btnClearCurrentDrawPage;
     private javax.swing.JToggleButton btnEllipse;
+    private javax.swing.JToggleButton btnEraser;
     private javax.swing.JToggleButton btnFill;
     private javax.swing.JButton btnHelpAndAcount;
     private javax.swing.JToggleButton btnLine;
@@ -2338,6 +2504,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private javax.swing.Box.Filler filler7;
     private javax.swing.Box.Filler filler8;
     private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;

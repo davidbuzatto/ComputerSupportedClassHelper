@@ -9,9 +9,12 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +24,18 @@ import javax.swing.JPanel;
 public class ColorPanel extends JPanel {
     
     private Color color;
+    private String id;
+    private int idWidth;
+    
+    private static final Font ID_FONT;
+    private static final FontMetrics ID_FONT_METRICS;
+    
+    static {
+        ID_FONT = new Font( "sans-serif", Font.BOLD, 12 );
+        BufferedImage img = new BufferedImage( 1, 1, BufferedImage.TYPE_INT_ARGB );
+        ID_FONT_METRICS = img.getGraphics().getFontMetrics( ID_FONT );
+        img = null;
+    }
 
     public ColorPanel() {
         this( Color.BLACK );
@@ -67,6 +82,12 @@ public class ColorPanel extends JPanel {
         g2d.setStroke( new BasicStroke( 1 ) );
         g2d.drawRoundRect( 0, 0, getWidth()-1, getHeight()-1, 10, 10 );
         
+        if ( id != null && color != null ) {
+            g2d.setColor( color.darker().darker() );
+            g2d.setFont( ID_FONT );
+            g2d.drawString( id, getWidth() / 2 - idWidth / 2, getHeight() / 2 + 4 );
+        }
+        
         g2d.dispose();
         
     }
@@ -77,6 +98,11 @@ public class ColorPanel extends JPanel {
 
     public void setColor( Color color ) {
         this.color = color;
+    }
+
+    public void setId( String id ) {
+        this.id = id;
+        idWidth = ID_FONT_METRICS.stringWidth( id );
     }
     
 }

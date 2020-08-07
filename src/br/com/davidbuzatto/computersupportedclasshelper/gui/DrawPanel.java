@@ -5,6 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui;
 
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.EraserCurve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import java.awt.Color;
@@ -48,18 +49,28 @@ public class DrawPanel extends JPanel {
         g2d.setPaint( currentDrawPage.getBackgroundColor() );
         g2d.fillRect( 0, 0, getWidth(), getHeight() );
         
-        if ( currentDrawPage.getTempShape() != null ) {
-            currentDrawPage.getTempShape().draw( g2d );
-        }
-        
         for ( Shape shape : currentDrawPage.getShapes() ) {
             shape.draw( g2d );
+        }
+        
+        if ( currentDrawPage.getTempShape() != null ) {
+            currentDrawPage.getTempShape().draw( g2d );
         }
         
         g2d.dispose();
         
     }
 
+    public void updateEraserCurves( Color newColor ) {
+        
+        for ( Shape shape : currentDrawPage.getShapes() ) {
+            if ( shape instanceof EraserCurve ) {
+                shape.setStrokeColor( newColor );
+            }
+        }
+        
+    }
+    
     public void undo() {
         if ( currentDrawPage.getShapes().size() > 0 ) {
             currentDrawPage.getRedoList().add( currentDrawPage.getShapes().remove( currentDrawPage.getShapes().size() - 1 ) );

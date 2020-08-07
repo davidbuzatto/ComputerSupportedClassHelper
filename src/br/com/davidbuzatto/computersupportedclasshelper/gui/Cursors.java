@@ -24,19 +24,23 @@ public class Cursors {
     private Cursor cMove;
     private Cursor cPencil;
     private Cursor cEraser;
-    private Cursor cCorss;
+    private Cursor cImage;
+    private Cursor cCross;
     
     private static final Cursors INSTANCE;
+    private static final Toolkit TOOLKIT;
     
     public enum Type {
         BUCKET,
         MOVE,
         PENCIL,
         ERASER,
+        IMAGE,
         CROSS
     }
     
     static {
+        TOOLKIT = Toolkit.getDefaultToolkit();
         INSTANCE = new Cursors();
     }
     
@@ -44,23 +48,11 @@ public class Cursors {
         
         try {
             
-            Toolkit t = Toolkit.getDefaultToolkit();
-            
-            BufferedImage imgCross = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             BufferedImage imgBucket = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             BufferedImage imgMove = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             BufferedImage imgPencil = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             BufferedImage imgEraser = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
-            
-            Graphics g = imgCross.createGraphics();
-            g.setColor( Color.BLACK );
-            g.drawOval( 8, 8, 6, 6 );
-            g.drawLine( 11, 0, 11, 8 );
-            g.drawLine( 11, 14, 11, 21 );
-            g.drawLine( 0, 11, 8, 11 );
-            g.drawLine( 14, 11, 21, 11 );
-            
-            g.dispose();
+            BufferedImage imgImage = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             
             imgBucket.getGraphics().drawImage( ImageIO.read( 
                     getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/bucket.png" ) ), 0, 0, null );
@@ -70,12 +62,15 @@ public class Cursors {
                     getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/pencil.png" ) ), 0, 0, null );
             imgEraser.getGraphics().drawImage( ImageIO.read( 
                     getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/eraser.png" ) ), 0, 0, null );
+            imgImage.getGraphics().drawImage( ImageIO.read( 
+                    getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/picture_add.png" ) ), 0, 0, null );
             
-            cBucket = t.createCustomCursor( imgBucket, new Point( 0, 12 ),  "bucket" );
-            cMove = t.createCustomCursor( imgMove, new Point( 7, 7 ), "move" );
-            cPencil = t.createCustomCursor( imgPencil, new Point( 0, 14 ), "pencil" );
-            cEraser = t.createCustomCursor( imgEraser, new Point( 0, 14 ), "eraser" );
-            cCorss = t.createCustomCursor( imgCross, new Point( 11, 11 ), "cross" );
+            cBucket = TOOLKIT.createCustomCursor( imgBucket, new Point( 0, 12 ),  "bucket" );
+            cMove = TOOLKIT.createCustomCursor( imgMove, new Point( 7, 7 ), "move" );
+            cPencil = TOOLKIT.createCustomCursor( imgPencil, new Point( 0, 14 ), "pencil" );
+            cEraser = TOOLKIT.createCustomCursor( imgEraser, new Point( 0, 14 ), "eraser" );
+            cImage = TOOLKIT.createCustomCursor( imgImage, new Point( 0, 14 ), "image" );
+            cCross = TOOLKIT.createCustomCursor( createCrossImage( Color.BLACK ), new Point( 11, 11 ), "cross" );
         
         } catch ( IOException exc ) {
             exc.printStackTrace();
@@ -83,7 +78,7 @@ public class Cursors {
         
     }
     
-    public static Cursor getCursor( Type type ) {
+    public static Cursor getCursor( Type type, Color c ) {
         
         switch ( type ) {
             case BUCKET:
@@ -94,14 +89,38 @@ public class Cursors {
                 return INSTANCE.cPencil;
             case ERASER:
                 return INSTANCE.cEraser;
+            case IMAGE:
+                return INSTANCE.cImage;
             case CROSS:
-                return INSTANCE.cCorss;
+                changeCrossColor( c );
+                return INSTANCE.cCross;
             
         }
         
-        return INSTANCE.cCorss;
+        return INSTANCE.cCross;
         
     }
     
+    private static BufferedImage createCrossImage( Color c ) {
+        
+        BufferedImage imgCross = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
+        
+        Graphics g = imgCross.createGraphics();
+        g.setColor( c );
+        g.drawOval( 8, 8, 6, 6 );
+        g.drawLine( 11, 0, 11, 8 );
+        g.drawLine( 11, 14, 11, 21 );
+        g.drawLine( 0, 11, 8, 11 );
+        g.drawLine( 14, 11, 21, 11 );
+
+        g.dispose();
+        
+        return imgCross;
+            
+    }
+    
+    public static void changeCrossColor( Color c ) {
+        INSTANCE.cCross = TOOLKIT.createCustomCursor( createCrossImage( c ), new Point( 11, 11 ), "cross" );
+    }
     
 }

@@ -25,6 +25,7 @@ public class DrawingConfigs implements Serializable {
     private static final DrawingConfigs INSTANCE;
     
     private double strokeWidth;
+    private double eraserWidth;
     private double arcRadius;
     private int sideQuantity;
     
@@ -40,6 +41,7 @@ public class DrawingConfigs implements Serializable {
     private DrawingConfigs() {
         
         strokeWidth = 5;
+        eraserWidth = 10;
         arcRadius = 10;
         sideQuantity = 5;
         
@@ -104,6 +106,7 @@ public class DrawingConfigs implements Serializable {
             i.close();
             
             this.strokeWidth = c.strokeWidth;
+            this.eraserWidth = c.eraserWidth;
             this.arcRadius = c.arcRadius;
             this.sideQuantity = c.sideQuantity;
             this.colors = c.colors;
@@ -125,6 +128,14 @@ public class DrawingConfigs implements Serializable {
 
     public void setStrokeWidth( double strokeWidth ) {
         this.strokeWidth = strokeWidth;
+    }
+
+    public double getEraserWidth() {
+        return eraserWidth;
+    }
+
+    public void setEraserWidth( double eraserWidth ) {
+        this.eraserWidth = eraserWidth;
     }
 
     public int getSideQuantity() {

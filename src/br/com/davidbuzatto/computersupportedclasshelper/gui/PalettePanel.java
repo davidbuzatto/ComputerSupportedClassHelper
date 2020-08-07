@@ -21,7 +21,18 @@ public class PalettePanel extends javax.swing.JPanel {
      * Creates new form PalettePanel
      */
     public PalettePanel() {
+        
         initComponents();
+        
+        cps1.setId( "1" );
+        cps2.setId( "2" );
+        cps3.setId( "3" );
+        cps4.setId( "4" );
+        cps5.setId( "5" );
+        cps6.setId( "6" );
+        cps7.setId( "7" );
+        cps8.setId( "8" );
+        
     }
 
     /**
