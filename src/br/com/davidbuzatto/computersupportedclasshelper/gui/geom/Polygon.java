@@ -9,12 +9,13 @@ import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  *
  * @author David
  */
-public class Polygon extends Shape implements Serializable {
+public class Polygon extends Shape implements Serializable, Cloneable {
 
     protected double xCenter;
     protected double yCenter;
@@ -147,6 +148,31 @@ public class Polygon extends Shape implements Serializable {
 
     public void setSideQuantity( int sideQuantity ) {
         this.sideQuantity = sideQuantity;
+    }
+    
+    @Override
+    public Polygon clone() throws CloneNotSupportedException {
+            
+        Polygon clone = new Polygon();
+        copyPolygonData( this, clone );
+        
+        return clone;
+        
+    }
+    
+    protected static void copyPolygonData( Polygon origin, Polygon target ) {
+        
+        copyData( origin, target );
+        
+        target.xCenter = origin.xCenter;
+        target.yCenter = origin.yCenter;
+        target.xs = Arrays.copyOf( origin.xs, origin.xs.length );
+        target.ys = Arrays.copyOf( origin.ys, origin.ys.length );
+
+        target.radius = origin.radius;
+        target.angle = origin.angle;
+        target.sideQuantity = origin.sideQuantity;
+        
     }
     
 }

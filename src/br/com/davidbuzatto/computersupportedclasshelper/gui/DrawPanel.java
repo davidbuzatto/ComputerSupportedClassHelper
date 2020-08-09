@@ -119,7 +119,7 @@ public class DrawPanel extends JPanel {
         currentDrawPage.getShapes().remove( shape );
     }
     
-    public void addDrawPage( Color backgroundColor ) {
+    public void addDrawPageEnd( Color backgroundColor ) {
         
         if ( backgroundColor == null ) {
             backgroundColor = Constants.TRANSPARENT_COLOR;
@@ -130,10 +130,21 @@ public class DrawPanel extends JPanel {
         
     }
     
+    public void addDrawPageStart( Color backgroundColor ) {
+        
+        if ( backgroundColor == null ) {
+            backgroundColor = Constants.TRANSPARENT_COLOR;
+        }
+        
+        currentDrawPage = new DrawPage( backgroundColor );
+        drawPages.add( 0, currentDrawPage );
+        
+    }
+    
     public void nextDrawPage( Color backgroundColor ) {
         
         if ( currentDrawPageIndex == drawPages.size()-1 ) {
-            addDrawPage( backgroundColor );
+            addDrawPageEnd( backgroundColor );
             currentDrawPageIndex++;
         } else {
             currentDrawPage = drawPages.get( ++currentDrawPageIndex );
@@ -141,10 +152,54 @@ public class DrawPanel extends JPanel {
         
     }
     
-    public void previousDrawPage() {
+    public void previousDrawPage( Color backgroundColor ) {
+        
+        if ( currentDrawPageIndex == 0 ) {
+            addDrawPageStart( backgroundColor );
+        } else {
+            currentDrawPage = drawPages.get( --currentDrawPageIndex );
+        }
+        
+    }
+    
+    /*public void previousDrawPage() {
         
         if ( currentDrawPageIndex != 0 ) {
             currentDrawPage = drawPages.get( --currentDrawPageIndex );
+        }
+        
+    }*/
+    
+    public void moveCurrentDrawPageToRight() {
+        
+        if ( currentDrawPageIndex != drawPages.size()-1 ) {
+            
+            DrawPage current = drawPages.get( currentDrawPageIndex );
+            DrawPage next = drawPages.get( currentDrawPageIndex + 1 );
+            
+            drawPages.set( currentDrawPageIndex, next );
+            drawPages.set( currentDrawPageIndex + 1, current );
+            
+            currentDrawPageIndex++;
+            currentDrawPage = drawPages.get( currentDrawPageIndex );
+            
+        }
+        
+    }
+    
+    public void moveCurrentDrawPageToLeft() {
+        
+        if ( currentDrawPageIndex != 0 ) {
+            
+            DrawPage current = drawPages.get( currentDrawPageIndex );
+            DrawPage previous = drawPages.get( currentDrawPageIndex - 1 );
+            
+            drawPages.set( currentDrawPageIndex, previous );
+            drawPages.set( currentDrawPageIndex - 1, current );
+            
+            currentDrawPageIndex--;
+            currentDrawPage = drawPages.get( currentDrawPageIndex );
+            
         }
         
     }
@@ -159,8 +214,46 @@ public class DrawPanel extends JPanel {
         }
     }
     
-    public boolean willCreateNewDrawPage() {
+    public void duplicateCurrentDrawPageToRight() {
+        
+        try {
+            
+            DrawPage dpc = drawPages.get( currentDrawPageIndex ).clone();
+            drawPages.add( ++currentDrawPageIndex, dpc );
+            currentDrawPage = drawPages.get( currentDrawPageIndex );
+            
+        } catch ( CloneNotSupportedException exc ) {
+            exc.printStackTrace();
+        }
+    }
+    
+    public void duplicateCurrentDrawPageToLeft() {
+        
+        try {
+            
+            DrawPage dpc = drawPages.get( currentDrawPageIndex ).clone();
+            drawPages.add( currentDrawPageIndex, dpc );
+            currentDrawPage = drawPages.get( currentDrawPageIndex );
+            
+        } catch ( CloneNotSupportedException exc ) {
+            exc.printStackTrace();
+        }
+    }
+    
+    public boolean willCreateNewEndDrawPage() {
         return currentDrawPageIndex == drawPages.size()-1;
+    }
+    
+    public boolean willCreateNewStartDrawPage() {
+        return currentDrawPageIndex == 0;
+    }
+    
+    public boolean willMoveToRightCurrentDrawPage() {
+        return currentDrawPageIndex != drawPages.size()-1;
+    }
+    
+    public boolean willMoveToLeftCurrentDrawPage() {
+        return currentDrawPageIndex != 0;
     }
     
     public boolean canDeleteDrawPage() {

@@ -10,12 +10,13 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  *
  * @author David
  */
-public abstract class Shape implements Serializable {
+public abstract class Shape implements Serializable, Cloneable {
     
     private static int idCount;
     private int id;
@@ -173,6 +174,28 @@ public abstract class Shape implements Serializable {
             return false;
         }
         return true;
+    }
+    
+    @Override
+    public abstract Shape clone() throws CloneNotSupportedException;
+    
+    protected static void copyData( Shape origin, Shape target ) {
+        
+        target.xStart = origin.xStart;
+        target.yStart = origin.yStart;
+        target.xEnd = origin.xEnd;
+        target.yEnd = origin.yEnd;
+
+        target.xStartD = origin.xStartD;
+        target.yStartD = origin.yStartD;
+        target.xEndD = origin.xEndD;
+        target.yEndD = origin.yEndD;
+
+        target.strokeColor = origin.strokeColor;
+        target.fillColor = origin.fillColor;
+        target.strokeWidth = origin.strokeWidth;
+        target.selected = false;
+        
     }
     
 }

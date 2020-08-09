@@ -14,7 +14,7 @@ import java.io.Serializable;
  *
  * @author David
  */
-public class RoundRectangle extends Shape implements Serializable {
+public class RoundRectangle extends Shape implements Serializable, Cloneable {
 
     protected double arcRadius;
     
@@ -47,6 +47,18 @@ public class RoundRectangle extends Shape implements Serializable {
 
     public void setArcRadius( double arcRadius ) {
         this.arcRadius = arcRadius;
+    }
+    
+    @Override
+    public RoundRectangle clone() throws CloneNotSupportedException {
+            
+        RoundRectangle clone = new RoundRectangle();
+        copyData( this, clone );
+        
+        clone.arcRadius = arcRadius;
+            
+        return clone;
+        
     }
     
 }

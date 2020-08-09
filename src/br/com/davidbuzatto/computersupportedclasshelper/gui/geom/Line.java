@@ -5,18 +5,16 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
 
-import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 /**
  *
  * @author David
  */
-public class Line extends Shape implements Serializable {
+public class Line extends Shape implements Serializable, Cloneable {
 
     @Override
     public void draw( Graphics2D g2d ) {
@@ -39,6 +37,16 @@ public class Line extends Shape implements Serializable {
     @Override
     public boolean intercepts( double x, double y ) {
         return x >= xStartD && x <= xEndD && y >= yStartD && y <= yEndD;
+    }
+    
+    @Override
+    public Line clone() throws CloneNotSupportedException {
+            
+        Line clone = new Line();
+        copyData( this, clone );
+        
+        return clone;
+        
     }
     
 }

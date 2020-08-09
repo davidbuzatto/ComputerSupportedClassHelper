@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author David
  */
-public class DrawPage  implements Serializable {
+public class DrawPage implements Serializable, Cloneable {
     
     private Color backgroundColor;
 
@@ -74,6 +74,19 @@ public class DrawPage  implements Serializable {
 
     public void setRedoList( List<Shape> redoList ) {
         this.redoList = redoList;
+    }
+    
+    @Override
+    public DrawPage clone() throws CloneNotSupportedException {
+        
+        DrawPage clone = new DrawPage( backgroundColor );
+        
+        for ( Shape shape : shapes ) {
+            clone.shapes.add( shape.clone() );
+        }
+        
+        return clone;
+        
     }
     
 }

@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author David
  */
-public class Curve extends Shape implements Serializable {
+public class Curve extends Shape implements Serializable, Cloneable {
 
     private List<Coordinate> coords;
     
@@ -133,6 +133,26 @@ public class Curve extends Shape implements Serializable {
     @Override
     public boolean intercepts( double x, double y ) {
         return x >= xStartD && x <= xEndD && y >= yStartD && y <= yEndD;
+    }
+    
+    @Override
+    public Curve clone() throws CloneNotSupportedException {
+            
+        Curve clone = new Curve();
+        copyCurveData( this, clone );
+        
+        return clone;
+        
+    }
+    
+    protected static void copyCurveData( Curve origin, Curve target ) {
+        
+        copyData( origin, target );
+        
+        for ( Coordinate c : origin.coords ) {
+            target.coords.add( (Coordinate) c.clone() );
+        }
+        
     }
     
 }

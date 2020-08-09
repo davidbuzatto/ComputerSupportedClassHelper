@@ -11,11 +11,21 @@ import java.io.Serializable;
  *
  * @author David
  */
-public class EraserCurve extends Curve implements Serializable {
+public class EraserCurve extends Curve implements Serializable, Cloneable {
     
     @Override
     public boolean intercepts( double x, double y ) {
         return false;
+    }
+    
+    @Override
+    public EraserCurve clone() throws CloneNotSupportedException {
+            
+        EraserCurve clone = new EraserCurve();
+        copyCurveData( this, clone );
+        
+        return clone;
+        
     }
     
 }

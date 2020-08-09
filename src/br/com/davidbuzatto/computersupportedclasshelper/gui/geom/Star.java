@@ -14,7 +14,7 @@ import java.io.Serializable;
  *
  * @author David
  */
-public class Star extends Polygon implements Serializable {
+public class Star extends Polygon implements Serializable, Cloneable {
     
     @Override
     public void draw( Graphics2D g2d ) {
@@ -61,6 +61,16 @@ public class Star extends Polygon implements Serializable {
         
         drawSelection( g2d );
         g2d.dispose();
+        
+    }
+    
+    @Override
+    public Star clone() throws CloneNotSupportedException {
+            
+        Star clone = new Star();
+        copyPolygonData( this, clone );
+            
+        return clone;
         
     }
     

@@ -69,6 +69,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
     @SuppressWarnings( "unchecked" )
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         containerPanel = new br.com.davidbuzatto.computersupportedclasshelper.gui.CustomDialogContainerPanel();
@@ -117,6 +118,9 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel95 = new javax.swing.JLabel();
         jLabel96 = new javax.swing.JLabel();
         jLabel97 = new javax.swing.JLabel();
+        jLabel98 = new javax.swing.JLabel();
+        jLabel99 = new javax.swing.JLabel();
+        jLabel100 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -151,12 +155,10 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel76 = new javax.swing.JLabel();
         jLabel80 = new javax.swing.JLabel();
         jLabel83 = new javax.swing.JLabel();
+        jLabel101 = new javax.swing.JLabel();
+        jLabel102 = new javax.swing.JLabel();
+        jLabel103 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel64 = new javax.swing.JLabel();
-        jLabel65 = new javax.swing.JLabel();
-        jLabel66 = new javax.swing.JLabel();
-        jLabel67 = new javax.swing.JLabel();
-        jLabel69 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
         jLabel72 = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
@@ -174,9 +176,37 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
-        jLabel86 = new javax.swing.JLabel();
         jLabel89 = new javax.swing.JLabel();
+        jLabel86 = new javax.swing.JLabel();
         jLabel91 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
+        jLabel104 = new javax.swing.JLabel();
+        jLabel105 = new javax.swing.JLabel();
+        jLabel106 = new javax.swing.JLabel();
+        jLabel107 = new javax.swing.JLabel();
+        jLabel108 = new javax.swing.JLabel();
+        jLabel109 = new javax.swing.JLabel();
+        jLabel110 = new javax.swing.JLabel();
+        jLabel111 = new javax.swing.JLabel();
+        jLabel112 = new javax.swing.JLabel();
+        jLabel113 = new javax.swing.JLabel();
+        jLabel114 = new javax.swing.JLabel();
+        jLabel115 = new javax.swing.JLabel();
+        jLabel116 = new javax.swing.JLabel();
+        jLabel117 = new javax.swing.JLabel();
+        jLabel118 = new javax.swing.JLabel();
+        jLabel119 = new javax.swing.JLabel();
+        jLabel120 = new javax.swing.JLabel();
+        jLabel121 = new javax.swing.JLabel();
+        jLabel122 = new javax.swing.JLabel();
+        jLabel123 = new javax.swing.JLabel();
+        jLabel124 = new javax.swing.JLabel();
+        jLabel125 = new javax.swing.JLabel();
+        jLabel126 = new javax.swing.JLabel();
         customDialogContainerPanel2 = new br.com.davidbuzatto.computersupportedclasshelper.gui.CustomDialogContainerPanel();
         lblTitle2 = new javax.swing.JLabel();
         lblAbout = new javax.swing.JLabel();
@@ -217,647 +247,1259 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setOpaque(false);
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Pencil");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel1, gridBagConstraints);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/pencil.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("P");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel3, gridBagConstraints);
 
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Line");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel4, gridBagConstraints);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/line.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel5, gridBagConstraints);
 
         jLabel6.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
         jLabel6.setText("L");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel6, gridBagConstraints);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/retangle.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel7, gridBagConstraints);
 
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("Rectangle");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel8, gridBagConstraints);
 
         jLabel9.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel9.setForeground(new java.awt.Color(204, 204, 204));
         jLabel9.setText("R");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel9, gridBagConstraints);
 
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setText("Round Rectangle");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel10, gridBagConstraints);
 
         jLabel11.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("A");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel11, gridBagConstraints);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/roundRectangle.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel12, gridBagConstraints);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/ellipse.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel13, gridBagConstraints);
 
         jLabel14.setForeground(new java.awt.Color(204, 204, 204));
         jLabel14.setText("Ellipse");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel14, gridBagConstraints);
 
         jLabel15.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel15.setForeground(new java.awt.Color(204, 204, 204));
         jLabel15.setText("S");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel15, gridBagConstraints);
 
         jLabel16.setForeground(new java.awt.Color(204, 204, 204));
         jLabel16.setText("Pollygon");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel16, gridBagConstraints);
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/polygon.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel17, gridBagConstraints);
 
         jLabel18.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel18.setForeground(new java.awt.Color(204, 204, 204));
         jLabel18.setText("G");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel18, gridBagConstraints);
 
         jLabel19.setForeground(new java.awt.Color(204, 204, 204));
         jLabel19.setText("Star");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel19, gridBagConstraints);
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/star.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel20, gridBagConstraints);
 
         jLabel21.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel21.setForeground(new java.awt.Color(204, 204, 204));
         jLabel21.setText("T");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel21, gridBagConstraints);
 
         jLabel43.setForeground(new java.awt.Color(204, 204, 204));
         jLabel43.setText("Move");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel43, gridBagConstraints);
 
         jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cursor_openhand.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel44, gridBagConstraints);
 
         jLabel45.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel45.setForeground(new java.awt.Color(204, 204, 204));
         jLabel45.setText("M");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel45, gridBagConstraints);
 
         jLabel46.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel46.setForeground(new java.awt.Color(204, 204, 204));
         jLabel46.setText("F");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel46, gridBagConstraints);
 
         jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/bucket.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel47, gridBagConstraints);
 
         jLabel48.setForeground(new java.awt.Color(204, 204, 204));
         jLabel48.setText("Change Fill");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel48, gridBagConstraints);
 
         jLabel58.setForeground(new java.awt.Color(204, 204, 204));
         jLabel58.setText("Change Stroke Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel58, gridBagConstraints);
 
         jLabel59.setForeground(new java.awt.Color(204, 204, 204));
         jLabel59.setText("Change Fill Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel59, gridBagConstraints);
 
         jLabel60.setForeground(new java.awt.Color(204, 204, 204));
         jLabel60.setText("Change Background Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel60, gridBagConstraints);
 
         jLabel61.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel61.setForeground(new java.awt.Color(204, 204, 204));
         jLabel61.setText("Shift+S");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel61, gridBagConstraints);
 
         jLabel62.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel62.setForeground(new java.awt.Color(204, 204, 204));
         jLabel62.setText("Shift+B");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel62, gridBagConstraints);
 
         jLabel63.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel63.setForeground(new java.awt.Color(204, 204, 204));
         jLabel63.setText("Shift+F");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel63, gridBagConstraints);
 
         jLabel92.setForeground(new java.awt.Color(204, 204, 204));
         jLabel92.setText("Eraser");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel92, gridBagConstraints);
 
         jLabel93.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/eraser.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel93, gridBagConstraints);
 
         jLabel94.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel94.setForeground(new java.awt.Color(204, 204, 204));
         jLabel94.setText("E");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel94, gridBagConstraints);
 
         jLabel95.setForeground(new java.awt.Color(204, 204, 204));
         jLabel95.setText("Add Image");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel2.add(jLabel95, gridBagConstraints);
 
         jLabel96.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/picture_add.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel2.add(jLabel96, gridBagConstraints);
 
         jLabel97.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel97.setForeground(new java.awt.Color(204, 204, 204));
         jLabel97.setText("I");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jLabel97, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel92, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel95, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel43, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel48, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel58, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel59, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel60, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel93)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel96)
-                            .addComponent(jLabel44)
-                            .addComponent(jLabel47))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel94)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel97)
-                            .addComponent(jLabel45)
-                            .addComponent(jLabel46)))
-                    .addComponent(jLabel63)
-                    .addComponent(jLabel61)
-                    .addComponent(jLabel62))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel92, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel93, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel94, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel95)
-                    .addComponent(jLabel96)
-                    .addComponent(jLabel97))
-                .addGap(4, 4, 4)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel44)
-                    .addComponent(jLabel43)
-                    .addComponent(jLabel45))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel47)
-                    .addComponent(jLabel48)
-                    .addComponent(jLabel46))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel61)
-                    .addComponent(jLabel58))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel59)
-                    .addComponent(jLabel63))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel62)
-                    .addComponent(jLabel60))
-                .addGap(26, 26, 26))
-        );
+        jLabel98.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel98.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel98.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.ipadx = 4;
+        gridBagConstraints.ipady = 4;
+        jPanel2.add(jLabel98, gridBagConstraints);
+
+        jLabel99.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel99.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel99.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.ipadx = 4;
+        gridBagConstraints.ipady = 4;
+        jPanel2.add(jLabel99, gridBagConstraints);
+
+        jLabel100.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel100.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel100.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.ipadx = 4;
+        gridBagConstraints.ipady = 4;
+        jPanel2.add(jLabel100, gridBagConstraints);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel3.setOpaque(false);
+        jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jLabel22.setForeground(new java.awt.Color(204, 204, 204));
         jLabel22.setText("New Project");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel22, gridBagConstraints);
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_add.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel23, gridBagConstraints);
 
         jLabel24.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel24.setForeground(new java.awt.Color(204, 204, 204));
         jLabel24.setText("Ctrl+N");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel24, gridBagConstraints);
 
         jLabel25.setForeground(new java.awt.Color(204, 204, 204));
         jLabel25.setText("Open Project");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel25, gridBagConstraints);
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_edit.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel26, gridBagConstraints);
 
         jLabel27.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel27.setForeground(new java.awt.Color(204, 204, 204));
         jLabel27.setText("Ctrl+O");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel27, gridBagConstraints);
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/disk.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel28, gridBagConstraints);
 
         jLabel29.setForeground(new java.awt.Color(204, 204, 204));
         jLabel29.setText("Save Project");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel29, gridBagConstraints);
 
         jLabel30.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel30.setForeground(new java.awt.Color(204, 204, 204));
         jLabel30.setText("Ctrl+S");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel30, gridBagConstraints);
 
         jLabel31.setForeground(new java.awt.Color(204, 204, 204));
         jLabel31.setText("Save Print Screen");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel31, gridBagConstraints);
 
         jLabel32.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel32.setForeground(new java.awt.Color(204, 204, 204));
         jLabel32.setText("PrtScn");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel32, gridBagConstraints);
 
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/picture.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel33, gridBagConstraints);
 
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_undo.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel34, gridBagConstraints);
 
         jLabel35.setForeground(new java.awt.Color(204, 204, 204));
         jLabel35.setText("Undo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel35, gridBagConstraints);
 
         jLabel36.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel36.setForeground(new java.awt.Color(204, 204, 204));
         jLabel36.setText("Ctrl+Z");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel36, gridBagConstraints);
 
         jLabel37.setForeground(new java.awt.Color(204, 204, 204));
         jLabel37.setText("Redo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel37, gridBagConstraints);
 
         jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_redo.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel38, gridBagConstraints);
 
         jLabel39.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel39.setForeground(new java.awt.Color(204, 204, 204));
         jLabel39.setText("Ctrl+Y");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel39, gridBagConstraints);
 
         jLabel40.setForeground(new java.awt.Color(204, 204, 204));
         jLabel40.setText("Clear Curr. Draw Page");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel40, gridBagConstraints);
 
         jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel41, gridBagConstraints);
 
         jLabel42.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel42.setForeground(new java.awt.Color(204, 204, 204));
         jLabel42.setText("Ctrl+Backspace");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel42, gridBagConstraints);
 
         jLabel49.setForeground(new java.awt.Color(204, 204, 204));
         jLabel49.setText("Help and About");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel49, gridBagConstraints);
 
         jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/help.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel50, gridBagConstraints);
 
         jLabel51.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel51.setForeground(new java.awt.Color(204, 204, 204));
         jLabel51.setText("F1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel51, gridBagConstraints);
 
         jLabel55.setForeground(new java.awt.Color(204, 204, 204));
         jLabel55.setText("Quit");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel55, gridBagConstraints);
 
         jLabel56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cancel.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel56, gridBagConstraints);
 
         jLabel57.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel57.setForeground(new java.awt.Color(204, 204, 204));
         jLabel57.setText("Alt+F4");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel57, gridBagConstraints);
 
         jLabel68.setForeground(new java.awt.Color(204, 204, 204));
         jLabel68.setText("Remove Stroke Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel68, gridBagConstraints);
 
         jLabel70.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel70.setForeground(new java.awt.Color(204, 204, 204));
         jLabel70.setText("Alt+S");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel70, gridBagConstraints);
 
         jLabel75.setForeground(new java.awt.Color(204, 204, 204));
         jLabel75.setText("Remove Fill Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel75, gridBagConstraints);
 
         jLabel76.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel76.setForeground(new java.awt.Color(204, 204, 204));
         jLabel76.setText("Alt+F");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel76, gridBagConstraints);
 
         jLabel80.setForeground(new java.awt.Color(204, 204, 204));
         jLabel80.setText("Remove Background Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel80, gridBagConstraints);
 
         jLabel83.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel83.setForeground(new java.awt.Color(204, 204, 204));
         jLabel83.setText("Alt+B");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel83, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel68, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel75, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel80, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel55, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel49, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel40, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel26)
-                            .addComponent(jLabel28)
-                            .addComponent(jLabel33)
-                            .addComponent(jLabel34)
-                            .addComponent(jLabel38)
-                            .addComponent(jLabel41)
-                            .addComponent(jLabel50)
-                            .addComponent(jLabel56))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel27)
-                            .addComponent(jLabel30)
-                            .addComponent(jLabel32)
-                            .addComponent(jLabel36)
-                            .addComponent(jLabel39)
-                            .addComponent(jLabel42)
-                            .addComponent(jLabel51)
-                            .addComponent(jLabel57)))
-                    .addComponent(jLabel70)
-                    .addComponent(jLabel76)
-                    .addComponent(jLabel83)))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel27))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel28)
-                    .addComponent(jLabel30))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel32))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel35)
-                    .addComponent(jLabel34)
-                    .addComponent(jLabel36))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel37)
-                    .addComponent(jLabel38)
-                    .addComponent(jLabel39))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel40)
-                    .addComponent(jLabel41)
-                    .addComponent(jLabel42))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel49)
-                    .addComponent(jLabel50)
-                    .addComponent(jLabel51))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel55)
-                    .addComponent(jLabel56)
-                    .addComponent(jLabel57))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel68)
-                    .addComponent(jLabel70))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel75)
-                    .addComponent(jLabel76))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel80)
-                    .addComponent(jLabel83))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
+        jLabel101.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel101.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel101.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.ipadx = 4;
+        gridBagConstraints.ipady = 4;
+        jPanel3.add(jLabel101, gridBagConstraints);
+
+        jLabel102.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel102.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel102.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 4;
+        gridBagConstraints.ipady = 4;
+        jPanel3.add(jLabel102, gridBagConstraints);
+
+        jLabel103.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel103.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel103.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.ipadx = 4;
+        gridBagConstraints.ipady = 4;
+        jPanel3.add(jLabel103, gridBagConstraints);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel4.setOpaque(false);
-
-        jLabel64.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel64.setText("Palettes");
-
-        jLabel65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png"))); // NOI18N
-
-        jLabel66.setFont(new Font( "Dialog", Font.BOLD, 12 ));
-        jLabel66.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel66.setText("C");
-
-        jLabel67.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel67.setText("Select Palette Color");
-
-        jLabel69.setFont(new Font( "Dialog", Font.BOLD, 12 ));
-        jLabel69.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel69.setText("1 to 8");
+        jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jLabel71.setForeground(new java.awt.Color(204, 204, 204));
         jLabel71.setText("Change Palette Stroke Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel71, gridBagConstraints);
 
         jLabel72.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel72.setForeground(new java.awt.Color(204, 204, 204));
         jLabel72.setText("Shift+1 to Shift+8");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel72, gridBagConstraints);
 
         jLabel73.setForeground(new java.awt.Color(204, 204, 204));
         jLabel73.setText("Change Palette Fill Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel73, gridBagConstraints);
 
         jLabel74.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel74.setForeground(new java.awt.Color(204, 204, 204));
         jLabel74.setText("Ctrl+1 to Ctrl+8");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel74, gridBagConstraints);
 
         jLabel77.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel77.setText("Nex/New Draw Page");
+        jLabel77.setText("Next/New Draw Page");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel77, gridBagConstraints);
 
         jLabel78.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel78.setForeground(new java.awt.Color(204, 204, 204));
         jLabel78.setText("Right arrow");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel78, gridBagConstraints);
 
         jLabel79.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel79.setText("Previous Draw Page");
+        jLabel79.setText("Duplicate Draw Page to Right");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel79, gridBagConstraints);
 
         jLabel81.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel81.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel81.setText("Left arrow");
+        jLabel81.setText("Ctrl+Right arrow");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel81, gridBagConstraints);
 
         jLabel82.setForeground(new java.awt.Color(204, 204, 204));
         jLabel82.setText("Delete Curr. Draw Page");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel82, gridBagConstraints);
 
         jLabel84.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel84.setForeground(new java.awt.Color(204, 204, 204));
         jLabel84.setText("Ctrl+Delete");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel84, gridBagConstraints);
 
         jLabel85.setForeground(new java.awt.Color(204, 204, 204));
         jLabel85.setText("Delete Selected Drawing");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel85, gridBagConstraints);
 
         jLabel87.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel87.setForeground(new java.awt.Color(204, 204, 204));
         jLabel87.setText("While moving, Delete");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel87, gridBagConstraints);
 
         jLabel88.setForeground(new java.awt.Color(204, 204, 204));
         jLabel88.setText("Toogle ToolBars");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel88, gridBagConstraints);
 
         jLabel90.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel90.setForeground(new java.awt.Color(204, 204, 204));
         jLabel90.setText("Shift+Esc");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel90, gridBagConstraints);
 
         jLabel52.setForeground(new java.awt.Color(204, 204, 204));
         jLabel52.setText("Minimize");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel52, gridBagConstraints);
 
         jLabel53.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel53.setForeground(new java.awt.Color(204, 204, 204));
         jLabel53.setText("Ctrl+D");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel53, gridBagConstraints);
 
         jLabel54.setForeground(new java.awt.Color(204, 204, 204));
         jLabel54.setText("Increase Window Height");
-
-        jLabel86.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel86.setText("Decrease Window Height");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel54, gridBagConstraints);
 
         jLabel89.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel89.setForeground(new java.awt.Color(204, 204, 204));
         jLabel89.setText("Shift+Down arrow");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel89, gridBagConstraints);
+
+        jLabel86.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel86.setText("Decrease Window Height");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel86, gridBagConstraints);
 
         jLabel91.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel91.setForeground(new java.awt.Color(204, 204, 204));
         jLabel91.setText("Shift+Up arrow");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel91, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel86)
-                    .addComponent(jLabel54)
-                    .addComponent(jLabel52)
-                    .addComponent(jLabel64)
-                    .addComponent(jLabel67)
-                    .addComponent(jLabel71)
-                    .addComponent(jLabel73)
-                    .addComponent(jLabel77)
-                    .addComponent(jLabel79)
-                    .addComponent(jLabel82)
-                    .addComponent(jLabel85)
-                    .addComponent(jLabel88))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel69)
-                    .addComponent(jLabel72)
-                    .addComponent(jLabel74)
-                    .addComponent(jLabel78)
-                    .addComponent(jLabel81)
-                    .addComponent(jLabel84)
-                    .addComponent(jLabel87)
-                    .addComponent(jLabel90)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel65)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel66))
-                    .addComponent(jLabel53)
-                    .addComponent(jLabel89)
-                    .addComponent(jLabel91))
-                .addGap(8, 8, 8))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel64)
-                        .addComponent(jLabel65))
-                    .addComponent(jLabel66))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel67)
-                    .addComponent(jLabel69))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel71)
-                    .addComponent(jLabel72))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel73)
-                    .addComponent(jLabel74))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel77)
-                    .addComponent(jLabel78))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel79)
-                    .addComponent(jLabel81))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel82)
-                    .addComponent(jLabel84))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel85)
-                    .addComponent(jLabel87))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel88)
-                    .addComponent(jLabel90))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel52)
-                    .addComponent(jLabel53))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel54)
-                    .addComponent(jLabel89))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel86)
-                    .addComponent(jLabel91))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel64.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel64.setText("Palettes");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel64, gridBagConstraints);
+
+        jLabel65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel65, gridBagConstraints);
+
+        jLabel66.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel66.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel66.setText("C");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel66, gridBagConstraints);
+
+        jLabel67.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel67.setText("Select Palette Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel67, gridBagConstraints);
+
+        jLabel69.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel69.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel69.setText("1 to 8");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel69, gridBagConstraints);
+
+        jLabel104.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel104.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel104.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel104, gridBagConstraints);
+
+        jLabel105.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel105.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel105.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel105, gridBagConstraints);
+
+        jLabel106.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel106.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel106.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel106, gridBagConstraints);
+
+        jLabel107.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel107.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel107.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel107, gridBagConstraints);
+
+        jLabel108.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel108.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel108.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel108, gridBagConstraints);
+
+        jLabel109.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel109.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel109.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel109, gridBagConstraints);
+
+        jLabel110.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel110.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel110.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel110, gridBagConstraints);
+
+        jLabel111.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel111.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel111.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel111, gridBagConstraints);
+
+        jLabel112.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel112.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel112.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel112, gridBagConstraints);
+
+        jLabel113.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel113.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel113.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel113, gridBagConstraints);
+
+        jLabel114.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel114.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel114.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel114, gridBagConstraints);
+
+        jLabel115.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel115.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel115.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel115, gridBagConstraints);
+
+        jLabel116.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel116.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel116.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel116, gridBagConstraints);
+
+        jLabel117.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel117.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel117.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel117, gridBagConstraints);
+
+        jLabel118.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel118.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel118.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel118, gridBagConstraints);
+
+        jLabel119.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel119.setText("Move Draw Page to Left");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel119, gridBagConstraints);
+
+        jLabel120.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel120.setText("Duplicate Draw Page to Left");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel120, gridBagConstraints);
+
+        jLabel121.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel121.setText("Move Draw Page to Right");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel121, gridBagConstraints);
+
+        jLabel122.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel122.setText("Previous/New Draw Page");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel122, gridBagConstraints);
+
+        jLabel123.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel123.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel123.setText("Ctrl+Left arrow");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel123, gridBagConstraints);
+
+        jLabel124.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel124.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel124.setText("Shift+Right arrow");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel124, gridBagConstraints);
+
+        jLabel125.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel125.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel125.setText("Shift+Left arrow");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel125, gridBagConstraints);
+
+        jLabel126.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel126.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel126.setText("Left arrow");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel126, gridBagConstraints);
 
         javax.swing.GroupLayout customDialogContainerPanel1Layout = new javax.swing.GroupLayout(customDialogContainerPanel1);
         customDialogContainerPanel1.setLayout(customDialogContainerPanel1Layout);
@@ -868,12 +1510,11 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
                 .addGroup(customDialogContainerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(customDialogContainerPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         customDialogContainerPanel1Layout.setVerticalGroup(
@@ -885,7 +1526,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
                 .addGroup(customDialogContainerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -914,7 +1555,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblTitle2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                .addComponent(lblAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -922,13 +1563,13 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         containerPanel.setLayout(containerPanelLayout);
         containerPanelLayout.setHorizontalGroup(
             containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(containerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(customDialogContainerPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(customDialogContainerPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(customDialogContainerPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE))
                 .addContainerGap())
         );
         containerPanelLayout.setVerticalGroup(
@@ -941,7 +1582,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(customDialogContainerPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -952,7 +1593,9 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(containerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
@@ -976,8 +1619,35 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
     private br.com.davidbuzatto.computersupportedclasshelper.gui.CustomDialogContainerPanel customDialogContainerPanel2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel100;
+    private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel103;
+    private javax.swing.JLabel jLabel104;
+    private javax.swing.JLabel jLabel105;
+    private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
+    private javax.swing.JLabel jLabel108;
+    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel110;
+    private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel112;
+    private javax.swing.JLabel jLabel113;
+    private javax.swing.JLabel jLabel114;
+    private javax.swing.JLabel jLabel115;
+    private javax.swing.JLabel jLabel116;
+    private javax.swing.JLabel jLabel117;
+    private javax.swing.JLabel jLabel118;
+    private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel120;
+    private javax.swing.JLabel jLabel121;
+    private javax.swing.JLabel jLabel122;
+    private javax.swing.JLabel jLabel123;
+    private javax.swing.JLabel jLabel124;
+    private javax.swing.JLabel jLabel125;
+    private javax.swing.JLabel jLabel126;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1071,6 +1741,8 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

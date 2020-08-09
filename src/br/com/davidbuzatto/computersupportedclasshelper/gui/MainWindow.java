@@ -8,6 +8,7 @@ package br.com.davidbuzatto.computersupportedclasshelper.gui;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Curve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Ellipse;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.EraserCurve;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Image;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Line;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Polygon;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Rectangle;
@@ -98,8 +99,6 @@ public class MainWindow extends javax.swing.JFrame {
         //setExtendedState( Frame.MAXIMIZED_BOTH );
         setSize( Toolkit.getDefaultToolkit().getScreenSize() );
         setBounds( 0, 0, getWidth(), getHeight() - 20 );
-        
-        btnAddImage.setVisible( false );
         
         updateCrossCursorIfNeeded();
         
@@ -1140,6 +1139,38 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     selectedShape.setStrokeWidth( dConfig.getStrokeWidth() );
                 }
 
+            } else if ( btnAddImage.isSelected() ) {
+                
+                try {
+                    
+                    JFileChooser jfc = new JFileChooser();
+                    jfc.setCurrentDirectory( dConfig.getDefaultDir() );
+                    jfc.setDialogTitle( "Select Image" );
+                    jfc.setMultiSelectionEnabled( false );
+                    jfc.setFileFilter( new FileNameExtensionFilter( 
+                            "Supported Image Formats", "jpg", "jpeg", "png", "gif", "bmp" ) );
+
+                    if ( jfc.showOpenDialog( this ) == JFileChooser.APPROVE_OPTION ) {
+
+                        File f = jfc.getSelectedFile();
+                        BufferedImage bi = ImageIO.read( f );
+                        
+                        Image img = new Image();
+                        img.setImage( bi );
+                        img.setFormat( f.getName().substring( f.getName().lastIndexOf( "." ) + 1 ) );
+                        img.setXStart( xPressed );
+                        img.setYStart( yPressed );
+                        img.setXEnd( xPressed + bi.getWidth() );
+                        img.setYEnd( yPressed + bi.getHeight() );
+                        
+                        drawPanel.addShape( img );
+
+                    }
+
+                } catch ( IOException exc ) {
+                    exc.printStackTrace();
+                }
+                
             } else {
 
                 if ( btnPencil.isSelected() ) {
@@ -1843,6 +1874,30 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 toggleToolBars();
                                 break;
                                 
+                            case KeyEvent.VK_RIGHT:
+                                if ( drawPanel.willMoveToRightCurrentDrawPage() ) {
+                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                            mainFrame, 
+                                            "<html>Move the current draw page to the right?</html>", "Move Current Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                        drawPanel.moveCurrentDrawPageToRight();
+                                        drawPanel.repaint();
+                                    }
+                                    updateLabelPages();
+                                }
+                                break;
+                                
+                            case KeyEvent.VK_LEFT:
+                                if ( drawPanel.willMoveToLeftCurrentDrawPage() ) {
+                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                            mainFrame, 
+                                            "<html>Move the current draw page to the left?</html>", "Move Current Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                        drawPanel.moveCurrentDrawPageToLeft();
+                                        drawPanel.repaint();
+                                    }
+                                    updateLabelPages();
+                                }
+                                break;
+                                
                             case KeyEvent.VK_S: // stroke color
                                 dispatchMouseEvent( colorPanelStroke, 
                                         MouseEvent.MOUSE_PRESSED, 
@@ -1916,6 +1971,26 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                         drawPanel.deleteCurrentDrawPage();
                                         drawPanel.repaint();
                                     }
+                                }
+                                updateLabelPages();
+                                break;
+                                
+                            case KeyEvent.VK_RIGHT:
+                                if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                        mainFrame, 
+                                        "<html>Duplicate the current draw page to the right?</html>", "Duplicate Current Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                    drawPanel.duplicateCurrentDrawPageToRight();
+                                    drawPanel.repaint();
+                                }
+                                updateLabelPages();
+                                break;
+                                
+                            case KeyEvent.VK_LEFT:
+                                if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                        mainFrame, 
+                                        "<html>Duplicate the current draw page to the left?</html>", "Duplicate Current Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                    drawPanel.duplicateCurrentDrawPageToLeft();
+                                    drawPanel.repaint();
                                 }
                                 updateLabelPages();
                                 break;
@@ -2020,10 +2095,10 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 
                             case KeyEvent.VK_RIGHT:
                                 
-                                if ( drawPanel.willCreateNewDrawPage() ) {
+                                if ( drawPanel.willCreateNewEndDrawPage() ) {
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
-                                            "Create a new draw page?", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                            "<html>Create a new draw page to the right?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
                                         drawPanel.nextDrawPage( colorPanelBackground.getColor() );
                                     }
                                 } else {
@@ -2035,7 +2110,17 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 break;
 
                             case KeyEvent.VK_LEFT:
-                                drawPanel.previousDrawPage();
+                                
+                                if ( drawPanel.willCreateNewStartDrawPage() ) {
+                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                            mainFrame, 
+                                            "<html>Create a new draw page to the left?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                        drawPanel.previousDrawPage( colorPanelBackground.getColor() );
+                                    }
+                                } else {
+                                    drawPanel.previousDrawPage( colorPanelBackground.getColor() );
+                                }
+                                
                                 drawPanel.repaint();
                                 updateLabelPages();
                                 break;

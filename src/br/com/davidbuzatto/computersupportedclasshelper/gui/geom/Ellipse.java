@@ -14,7 +14,7 @@ import java.io.Serializable;
  *
  * @author David
  */
-public class Ellipse extends Shape implements Serializable {
+public class Ellipse extends Shape implements Serializable, Cloneable {
 
     @Override
     public void draw( Graphics2D g2d ) {
@@ -41,6 +41,16 @@ public class Ellipse extends Shape implements Serializable {
     @Override
     public boolean intercepts( double x, double y ) {
         return x >= xStartD && x <= xEndD && y >= yStartD && y <= yEndD;
+    }
+    
+    @Override
+    public Ellipse clone() throws CloneNotSupportedException {
+            
+        Ellipse clone = new Ellipse();
+        copyData( this, clone );
+        
+        return clone;
+        
     }
     
 }
