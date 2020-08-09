@@ -1,0 +1,3 @@
+Draw pages preview
+Text insertion shape
+Copy/Cut/Paste for shapes

@@ -71,12 +71,15 @@ public class MainWindow extends javax.swing.JFrame {
     private SelectedRepaintRunnable selectedRepaintRunnable;
     private File currentFile;
     
+    public static final String VERSION = "v1.3";
+    
     /**
      * Creates new form MainWindowa
      */
     public MainWindow( DrawingConfigs dConfig ) {
         
         initComponents();
+        setTitle( getTitle() + " - " + VERSION );
         setBackground( new Color( 0, 0, 0, 0 ) );
         
         colorPanelSC1.setId( "1" );
@@ -127,6 +130,8 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JToolBar.Separator();
         btnUndo = new javax.swing.JButton();
         btnRedo = new javax.swing.JButton();
+        jSeparator11 = new javax.swing.JToolBar.Separator();
+        btnPreview = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnPencil = new javax.swing.JToggleButton();
         btnEraser = new javax.swing.JToggleButton();
@@ -311,6 +316,20 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         }
     });
     mainToolBar.add(btnRedo);
+    mainToolBar.add(jSeparator11);
+
+    btnPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/layers.png"))); // NOI18N
+    btnPreview.setToolTipText("preview draw pages (Home)");
+    btnPreview.setFocusPainted(false);
+    btnPreview.setFocusable(false);
+    btnPreview.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnPreview.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnPreview.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnPreviewActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnPreview);
     mainToolBar.add(jSeparator2);
 
     buttonGroup.add(btnPencil);
@@ -1821,6 +1840,10 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         drawPanel.setCursor( Cursors.getCursor( Cursors.Type.IMAGE, null ) );
     }//GEN-LAST:event_btnAddImageActionPerformed
 
+    private void btnPreviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviewActionPerformed
+        openDrawPagesPreviewDialog();
+    }//GEN-LAST:event_btnPreviewActionPerformed
+
     public void moveColors( Map<String, Color> colors ) {
         
         colorPanelSC1.setColor( colors.get( "sc1" ) );
@@ -2092,6 +2115,24 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     } else {
 
                         switch ( e.getKeyCode() ) {
+                            
+                            case KeyEvent.VK_HOME:
+                                openDrawPagesPreviewDialog();
+                                break;
+                                
+                            case KeyEvent.VK_UP:
+                                
+                                if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                        mainFrame, 
+                                        "<html>Create a new draw page?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                    
+                                    drawPanel.newDrawPage( colorPanelBackground.getColor() );
+                                    drawPanel.repaint();
+                                    updateLabelPages();
+                                    
+                                }
+                                
+                                break;
                                 
                             case KeyEvent.VK_RIGHT:
                                 
@@ -2420,6 +2461,27 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
     }
     
+    private void openDrawPagesPreviewDialog() {
+        
+        CustomMessageAndConfirmDialog.showMessageDialog( 
+                this, 
+                "Under development :P", 
+                "Under development :P",
+                JOptionPane.INFORMATION_MESSAGE );
+        
+        /*DrawPagesPreviewDialog dppd = new DrawPagesPreviewDialog( 
+                this, 
+                true, 
+                drawPanel.getDrawPages() );
+        
+        dppd.setLocation( 
+                getWidth() / 2 - dppd.getWidth() / 2,
+                getHeight() / 2 - dppd.getHeight() / 2);
+        
+        dppd.setVisible( true );*/
+        
+    }
+    
     private void verifyHistory() {
         
         if ( drawPanel.isAbleToUndo() ) {
@@ -2551,6 +2613,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private javax.swing.JButton btnPalette;
     private javax.swing.JToggleButton btnPencil;
     private javax.swing.JToggleButton btnPolygon;
+    private javax.swing.JButton btnPreview;
     private javax.swing.JButton btnPrintScreen;
     private javax.swing.JButton btnQuit;
     private javax.swing.JToggleButton btnRectangle;
@@ -2590,6 +2653,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private javax.swing.Box.Filler filler8;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
+    private javax.swing.JToolBar.Separator jSeparator11;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;

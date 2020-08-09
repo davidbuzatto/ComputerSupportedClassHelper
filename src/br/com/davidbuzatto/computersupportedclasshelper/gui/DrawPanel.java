@@ -141,6 +141,17 @@ public class DrawPanel extends JPanel {
         
     }
     
+    public void newDrawPage( Color backgroundColor ) {
+        
+        if ( backgroundColor == null ) {
+            backgroundColor = Constants.TRANSPARENT_COLOR;
+        }
+        
+        currentDrawPage = new DrawPage( backgroundColor );
+        drawPages.add( currentDrawPageIndex, currentDrawPage );
+        
+    }
+    
     public void nextDrawPage( Color backgroundColor ) {
         
         if ( currentDrawPageIndex == drawPages.size()-1 ) {
