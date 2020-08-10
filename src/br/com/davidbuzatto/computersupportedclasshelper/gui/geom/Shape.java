@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  *
@@ -26,6 +25,7 @@ public abstract class Shape implements Serializable, Cloneable {
     protected double xEnd;
     protected double yEnd;
     
+    // drawing coordinates
     protected double xStartD;
     protected double yStartD;
     protected double xEndD;
@@ -74,7 +74,7 @@ public abstract class Shape implements Serializable, Cloneable {
         
     }
     
-    protected void calculateDrawingBounds() {
+    public void calculateDrawingBounds() {
         
         xStartD = xStart < xEnd ? xStart : xEnd;
         xEndD = xStart < xEnd ? xEnd : xStart;
@@ -149,6 +149,22 @@ public abstract class Shape implements Serializable, Cloneable {
 
     public static void setIdCount( int value ) {
         idCount = value;
+    }
+
+    public double getXStartD() {
+        return xStartD;
+    }
+
+    public double getYStartD() {
+        return yStartD;
+    }
+
+    public double getXEndD() {
+        return xEndD;
+    }
+
+    public double getYEndD() {
+        return yEndD;
     }
     
     @Override

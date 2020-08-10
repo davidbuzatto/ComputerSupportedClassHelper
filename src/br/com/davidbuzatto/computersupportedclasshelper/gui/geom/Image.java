@@ -26,9 +26,13 @@ public class Image extends Shape implements Serializable, Cloneable {
     public void draw( Graphics2D g2d ) {
         
         if ( image != null ) {
+            
+            calculateDrawingBounds();
+            
             g2d = (Graphics2D) g2d.create();
-            g2d.drawImage( image, (int) xStart, (int) yStart, null );
+            g2d.drawImage( image, (int) xStartD, (int) yStartD, null );
             g2d.dispose();
+            
         }
         
     }
@@ -36,8 +40,8 @@ public class Image extends Shape implements Serializable, Cloneable {
     @Override
     public boolean intercepts( double x, double y ) {
         if ( image != null ) {
-            return x >= xStart && x <= xEnd && 
-                   y >= yStart && y <= yEnd;
+            return x >= xStartD && x <= xEndD && 
+                   y >= yStartD && y <= yEndD;
         } else {
             return false;
         }

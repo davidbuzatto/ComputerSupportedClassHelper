@@ -90,7 +90,6 @@ public class DrawPagesPreviewDialog extends javax.swing.JDialog {
     @SuppressWarnings( "unchecked" )
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         containerPanel = new br.com.davidbuzatto.computersupportedclasshelper.gui.CustomDialogContainerPanel();
@@ -129,7 +128,7 @@ public class DrawPagesPreviewDialog extends javax.swing.JDialog {
         );
         drawPagesPreviewPanelLayout.setVerticalGroup(
             drawPagesPreviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 90, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout customDialogContainerPanel1Layout = new javax.swing.GroupLayout(customDialogContainerPanel1);
@@ -182,7 +181,7 @@ public class DrawPagesPreviewDialog extends javax.swing.JDialog {
             .addGroup(containerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                     .addComponent(customDialogContainerPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -228,12 +227,10 @@ public class DrawPagesPreviewDialog extends javax.swing.JDialog {
 
     private void movePreviewToLeft() {
         drawPagesPreviewPanel.movePreviewToLeft();
-        drawPagesPreviewPanel.repaint();
     }
     
     private void movePreviewToRight() {
         drawPagesPreviewPanel.movePreviewToRight();
-        drawPagesPreviewPanel.repaint();
     }
     
     @Override

@@ -103,6 +103,10 @@ public class DrawPanel extends JPanel {
         this.currentDrawPage.setBackgroundColor( backgroundColor );
     }
 
+    public DrawPage getCurrentDrawPage() {
+        return currentDrawPage;
+    }
+
     public void setTempShape( Shape tempShape ) {
         this.currentDrawPage.setTempShape( tempShape );
     }
@@ -172,14 +176,6 @@ public class DrawPanel extends JPanel {
         }
         
     }
-    
-    /*public void previousDrawPage() {
-        
-        if ( currentDrawPageIndex != 0 ) {
-            currentDrawPage = drawPages.get( --currentDrawPageIndex );
-        }
-        
-    }*/
     
     public void moveCurrentDrawPageToRight() {
         

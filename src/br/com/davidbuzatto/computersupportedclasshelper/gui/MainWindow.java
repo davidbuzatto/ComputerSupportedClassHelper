@@ -1470,6 +1470,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     Shape.setIdCount( drawPanel.getMaxShapeId() + 1 );
                     updateLabelPages();
                     verifyHistory();
+                    
+                    if ( drawPanel.getBackgroundColor().equals( Constants.TRANSPARENT_COLOR ) ) {
+                        colorPanelBackground.setColor( null );
+                    } else {
+                        colorPanelBackground.setColor( drawPanel.getBackgroundColor() );
+                    }
+                    
                 }
                 
             }
@@ -2143,7 +2150,15 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                         drawPanel.nextDrawPage( colorPanelBackground.getColor() );
                                     }
                                 } else {
-                                    drawPanel.nextDrawPage( colorPanelBackground.getColor() );
+                                    
+                                    drawPanel.nextDrawPage( null );
+                                    
+                                    if ( drawPanel.getBackgroundColor().equals( Constants.TRANSPARENT_COLOR ) ) {
+                                        colorPanelBackground.setColor( null );
+                                    } else {
+                                        colorPanelBackground.setColor( drawPanel.getBackgroundColor() );
+                                    }
+                                    
                                 }
                                 
                                 drawPanel.repaint();
@@ -2159,7 +2174,15 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                         drawPanel.previousDrawPage( colorPanelBackground.getColor() );
                                     }
                                 } else {
-                                    drawPanel.previousDrawPage( colorPanelBackground.getColor() );
+                                    
+                                    drawPanel.previousDrawPage( null );
+                                    
+                                    if ( drawPanel.getBackgroundColor().equals( Constants.TRANSPARENT_COLOR ) ) {
+                                        colorPanelBackground.setColor( null );
+                                    } else {
+                                        colorPanelBackground.setColor( drawPanel.getBackgroundColor() );
+                                    }
+                                    
                                 }
                                 
                                 drawPanel.repaint();
@@ -2463,13 +2486,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     
     private void openDrawPagesPreviewDialog() {
         
-        CustomMessageAndConfirmDialog.showMessageDialog( 
-                this, 
-                "Under development :P", 
-                "Under development :P",
-                JOptionPane.INFORMATION_MESSAGE );
-        
-        /*DrawPagesPreviewDialog dppd = new DrawPagesPreviewDialog( 
+        DrawPagesPreviewDialog dppd = new DrawPagesPreviewDialog( 
                 this, 
                 true, 
                 drawPanel.getDrawPages() );
@@ -2478,7 +2495,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 getWidth() / 2 - dppd.getWidth() / 2,
                 getHeight() / 2 - dppd.getHeight() / 2);
         
-        dppd.setVisible( true );*/
+        dppd.setVisible( true );
         
     }
     

@@ -5,6 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui;
 
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Rectangle;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import java.awt.Color;
@@ -74,6 +75,61 @@ public class DrawPage implements Serializable, Cloneable {
 
     public void setRedoList( List<Shape> redoList ) {
         this.redoList = redoList;
+    }
+    
+    public Rectangle getRectangularBounds() {
+        
+        Rectangle r = new Rectangle();
+        
+        double xStart = 0;
+        double yStart = 0;
+        double xEnd = 0;
+        double yEnd = 0;
+        
+        boolean first = true;
+        
+        for ( Shape s : shapes ) {
+            
+            s.calculateDrawingBounds();
+            
+            if ( first ) {
+                
+                xStart = s.getXStartD();
+                yStart = s.getYStartD();
+                xEnd = s.getXEndD();
+                yEnd = s.getYEndD();
+                first = false;
+                
+            } else {
+            
+                if ( xStart > s.getXStartD() ) {
+                    xStart = s.getXStartD();
+                }
+
+                if ( yStart > s.getYStartD() ) {
+                    yStart = s.getYStartD();
+                }
+
+                if ( xEnd < s.getXEndD() ) {
+                    xEnd = s.getXEndD();
+                }
+
+                if ( yEnd < s.getYEndD() ) {
+                    yEnd = s.getYEndD();
+                }
+                
+            }
+            
+        }
+        
+        r.setXStart( xStart );
+        r.setYStart( yStart );
+        r.setXEnd( xEnd );
+        r.setYEnd( yEnd );
+        
+        r.calculateDrawingBounds();
+        return r;
+        
     }
     
     @Override

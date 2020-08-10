@@ -39,8 +39,8 @@ public class Polygon extends Shape implements Serializable, Cloneable {
         
         for ( int i = 0; i < sideQuantity; i++ ) {
             
-            xs[i] = xCenter + Math.cos( Math.toRadians(angle ) ) * radius;
-            ys[i] = yCenter + Math.sin( Math.toRadians(angle ) ) * radius;
+            xs[i] = xCenter + Math.cos( Math.toRadians( angle ) ) * radius;
+            ys[i] = yCenter + Math.sin( Math.toRadians( angle ) ) * radius;
             angle += angleIncrement;
             
             if ( i == 0 ) {
