@@ -25,6 +25,7 @@ public class Cursors {
     private Cursor cPencil;
     private Cursor cEraser;
     private Cursor cImage;
+    private Cursor cText;
     private Cursor cCross;
     
     private static final Cursors INSTANCE;
@@ -36,6 +37,7 @@ public class Cursors {
         PENCIL,
         ERASER,
         IMAGE,
+        TEXT,
         CROSS
     }
     
@@ -53,6 +55,7 @@ public class Cursors {
             BufferedImage imgPencil = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             BufferedImage imgEraser = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             BufferedImage imgImage = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
+            BufferedImage imgText = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_ARGB );
             
             imgBucket.getGraphics().drawImage( ImageIO.read( 
                     getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/bucket.png" ) ), 0, 0, null );
@@ -64,12 +67,15 @@ public class Cursors {
                     getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/eraser.png" ) ), 0, 0, null );
             imgImage.getGraphics().drawImage( ImageIO.read( 
                     getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/picture_add.png" ) ), 0, 0, null );
+            imgText.getGraphics().drawImage( ImageIO.read( 
+                    getClass().getResource( "/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/font_add.png" ) ), 0, 0, null );
             
             cBucket = TOOLKIT.createCustomCursor( imgBucket, new Point( 0, 12 ),  "bucket" );
             cMove = TOOLKIT.createCustomCursor( imgMove, new Point( 7, 7 ), "move" );
             cPencil = TOOLKIT.createCustomCursor( imgPencil, new Point( 0, 14 ), "pencil" );
             cEraser = TOOLKIT.createCustomCursor( imgEraser, new Point( 0, 14 ), "eraser" );
             cImage = TOOLKIT.createCustomCursor( imgImage, new Point( 0, 14 ), "image" );
+            cText = TOOLKIT.createCustomCursor( imgText, new Point( 0, 14 ), "text" );
             cCross = TOOLKIT.createCustomCursor( createCrossImage( Color.BLACK ), new Point( 11, 11 ), "cross" );
         
         } catch ( IOException exc ) {
@@ -91,6 +97,8 @@ public class Cursors {
                 return INSTANCE.cEraser;
             case IMAGE:
                 return INSTANCE.cImage;
+            case TEXT:
+                return INSTANCE.cText;
             case CROSS:
                 changeCrossColor( c );
                 return INSTANCE.cCross;

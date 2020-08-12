@@ -27,7 +27,14 @@ public class DrawingConfigs implements Serializable {
     private double strokeWidth;
     private double eraserWidth;
     private double arcRadius;
+    
     private int sideQuantity;
+    
+    private int fontSize;
+    private FontTypeEnum fontType;
+    private boolean fontIsBold;
+    private boolean fontIsItalic;
+    private FontAlignmentEnum fontAlignment;
     
     private Map<String, Color> colors;
     private File defaultDir;
@@ -44,6 +51,10 @@ public class DrawingConfigs implements Serializable {
         eraserWidth = 10;
         arcRadius = 10;
         sideQuantity = 5;
+        
+        fontSize = 20;
+        fontType = FontTypeEnum.DIALOG;
+        fontAlignment = FontAlignmentEnum.LEFT;
         
         colors = new HashMap<>();
         
@@ -109,6 +120,13 @@ public class DrawingConfigs implements Serializable {
             this.eraserWidth = c.eraserWidth;
             this.arcRadius = c.arcRadius;
             this.sideQuantity = c.sideQuantity;
+            
+            this.fontType = c.fontType;
+            this.fontSize = c.fontSize;
+            this.fontIsBold = c.fontIsBold;
+            this.fontIsItalic = c.fontIsItalic;
+            this.fontAlignment = c.fontAlignment;
+            
             this.colors = c.colors;
             this.defaultDir = c.defaultDir;
             
@@ -176,6 +194,46 @@ public class DrawingConfigs implements Serializable {
 
     public void setDefaultDir( File defaultDir ) {
         this.defaultDir = defaultDir;
+    }
+
+    public int getFontSize() {
+        return fontSize;
+    }
+
+    public void setFontSize( int fontSize ) {
+        this.fontSize = fontSize;
+    }
+
+    public FontTypeEnum getFontType() {
+        return fontType;
+    }
+
+    public void setFontType( FontTypeEnum fontType ) {
+        this.fontType = fontType;
+    }
+
+    public boolean isFontIsBold() {
+        return fontIsBold;
+    }
+
+    public void setFontIsBold( boolean fontIsBold ) {
+        this.fontIsBold = fontIsBold;
+    }
+
+    public boolean isFontIsItalic() {
+        return fontIsItalic;
+    }
+
+    public void setFontIsItalic( boolean fontIsItalic ) {
+        this.fontIsItalic = fontIsItalic;
+    }
+
+    public FontAlignmentEnum getFontAlignment() {
+        return fontAlignment;
+    }
+
+    public void setFontAlignment( FontAlignmentEnum fontAlignment ) {
+        this.fontAlignment = fontAlignment;
     }
     
 }

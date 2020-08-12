@@ -5,6 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui;
 
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Utils;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -14,7 +15,6 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**
@@ -31,10 +31,8 @@ public class ColorPanel extends JPanel {
     private static final FontMetrics ID_FONT_METRICS;
     
     static {
-        ID_FONT = new Font( "sans-serif", Font.BOLD, 12 );
-        BufferedImage img = new BufferedImage( 1, 1, BufferedImage.TYPE_INT_ARGB );
-        ID_FONT_METRICS = img.getGraphics().getFontMetrics( ID_FONT );
-        img = null;
+        ID_FONT = new Font( "Dialog", Font.BOLD, 12 );
+        ID_FONT_METRICS = Utils.getFontMetrics( ID_FONT );
     }
 
     public ColorPanel() {
@@ -43,7 +41,7 @@ public class ColorPanel extends JPanel {
     
     public ColorPanel( Color startColor ) {
         
-        Dimension d = new Dimension( 20, 20 );
+        Dimension d = new Dimension( 25, 25 );
         
         setMinimumSize( d );
         setMaximumSize( d );

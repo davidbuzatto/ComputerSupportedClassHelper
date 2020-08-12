@@ -51,7 +51,7 @@ public class CustomDialogContainerPanel extends JPanel {
         
         if ( forMessageAndInputDialogs ) {
             g2d.drawLine( 0, 26, getWidth(), 26 );
-            g2d.drawLine( 0, getHeight() - 37, getWidth(), getHeight() - 37 );
+            g2d.drawLine( 0, getHeight() - 32, getWidth(), getHeight() - 32 );
         }
         
         g2d.dispose();

@@ -111,6 +111,7 @@ public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
         lblTitle.setForeground(new java.awt.Color(204, 204, 204));
         lblTitle.setText("title");
 
+        lblMessage.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         lblMessage.setForeground(new java.awt.Color(204, 204, 204));
         lblMessage.setText("message");
 

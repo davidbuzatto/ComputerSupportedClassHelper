@@ -1,3 +1,10 @@
-Draw pages preview
-Text insertion shape
-Copy/Cut/Paste for shapes
+v1.4.1
+Selection Tool
+Duplicate selection
+Alignment Tools
+
+v1.4.2
+Image resize
+
+v1.4.3
+Undo - Redo

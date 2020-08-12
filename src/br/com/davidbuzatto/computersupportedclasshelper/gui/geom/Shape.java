@@ -55,9 +55,10 @@ public abstract class Shape implements Serializable, Cloneable {
     
     public void drawSelection( Graphics2D g2d ) {
         
-        g2d = (Graphics2D) g2d.create();
-        
         if ( selected ) {
+            
+            g2d = (Graphics2D) g2d.create();
+            
             g2d.setPaint( Constants.SELECTED_COLOR );
             g2d.setStroke( Constants.SELECTED_STROKES[selectedPhase++] );
             g2d.draw( new Rectangle2D.Double( 
@@ -68,9 +69,10 @@ public abstract class Shape implements Serializable, Cloneable {
             if ( selectedPhase == Constants.SELECTED_STROKES.length ) {
                 selectedPhase = 0;
             }
+            
+            g2d.dispose();
+            
         }
-        
-        g2d.dispose();
         
     }
     

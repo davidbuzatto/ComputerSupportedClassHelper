@@ -5,13 +5,14 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui;
 
-import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Rectangle;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -25,12 +26,19 @@ public class DrawPagesPreviewPanel extends JPanel {
     private int currentDrawPageIndex;
     private List<DrawPage> drawPages;
     
+    private double scale;
+    
     public DrawPagesPreviewPanel() {
         
         setBackground( new Color( 0, 0, 0, 0 ) );
         setOpaque( false );
         
         drawPages = new ArrayList<>();
+        
+        // calculate the scale to 10% of the current screen dimensions
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        scale = 160 / (double) d.width;
+        System.out.println( scale );
         
     }
     
@@ -95,7 +103,7 @@ public class DrawPagesPreviewPanel extends JPanel {
         g2d1.fillRect( 0, 0, 160, 90 );
 
         Graphics2D g2d2 = (Graphics2D) g2d1.create();
-        g2d2.scale( .1, .1 );
+        g2d2.scale( scale, scale );
         for ( Shape shape : currentDrawPage.getShapes() ) {
             shape.draw( g2d2 );
         }

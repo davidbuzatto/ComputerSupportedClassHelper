@@ -20,7 +20,14 @@ import javax.imageio.ImageIO;
 public class Image extends Shape implements Serializable, Cloneable {
 
     transient private BufferedImage image;
+    
     private String format;
+    private double scale;
+    
+    public Image() {
+        format = "png";
+        scale = 1;
+    }
     
     @Override
     public void draw( Graphics2D g2d ) {

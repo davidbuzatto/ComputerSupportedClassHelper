@@ -8,6 +8,7 @@ package br.com.davidbuzatto.computersupportedclasshelper.gui;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.EraserCurve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Utils;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -83,6 +84,67 @@ public class DrawPanel extends JPanel {
         }
     }
     
+    public void moveFront( Shape shape ) {
+        
+        List<Shape> shapes = currentDrawPage.getShapes();
+        
+        int v = shapes.indexOf( shape );
+        int w;
+        
+        while ( v < shapes.size() - 1 ) {
+            w = v + 1;
+            if ( w < shapes.size() ) {
+                Utils.<Shape>swap( shapes, v, w );
+            }
+            v++;
+        }
+        
+    }
+    
+    public void moveForwards( Shape shape ) {
+        
+        List<Shape> shapes = currentDrawPage.getShapes();
+        
+        int v = shapes.indexOf( shape );
+        int w = v + 1;
+        
+        if ( w < shapes.size() ) {
+            Utils.<Shape>swap( shapes, v, w );
+        }
+        
+    }
+    
+    public void moveBack( Shape shape ) {
+        
+        
+        List<Shape> shapes = currentDrawPage.getShapes();
+        
+        int v = shapes.indexOf( shape );
+        int w;
+        
+        while ( v > 0 ) {
+            w = v - 1;
+            if ( w >= 0 ) {
+                Utils.<Shape>swap( shapes, v, w );
+            }
+            v--;
+        }
+        
+    }
+    
+    public void moveBackwards( Shape shape ) {
+        
+        List<Shape> shapes = currentDrawPage.getShapes();
+        
+        int v = shapes.indexOf( shape );
+        int w = v - 1;
+        
+        if ( w >= 0 ) {
+            Utils.<Shape>swap( shapes, v, w );
+        }
+        
+    }
+    
     public void resetRedoList() {
         currentDrawPage.getRedoList().clear();
     }
@@ -121,6 +183,14 @@ public class DrawPanel extends JPanel {
     
     public void removeShape( Shape shape ) {
         currentDrawPage.getShapes().remove( shape );
+    }
+    
+    public void duplicateShape( Shape shape ) {
+        try {
+            currentDrawPage.getShapes().add( shape.clone() );
+        } catch ( CloneNotSupportedException exc ) {
+            exc.printStackTrace();
+        }
     }
     
     public void addDrawPageEnd( Color backgroundColor ) {

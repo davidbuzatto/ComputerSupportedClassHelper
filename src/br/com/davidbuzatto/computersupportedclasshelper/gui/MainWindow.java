@@ -15,8 +15,10 @@ import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Rectangle;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.RoundRectangle;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Star;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Text;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.DrawingConfigs;
+import br.com.davidbuzatto.computersupportedclasshelper.utils.FontAlignmentEnum;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
@@ -71,7 +73,7 @@ public class MainWindow extends javax.swing.JFrame {
     private SelectedRepaintRunnable selectedRepaintRunnable;
     private File currentFile;
     
-    public static final String VERSION = "v1.3";
+    public static final String VERSION = "v1.4";
     
     /**
      * Creates new form MainWindowa
@@ -119,6 +121,19 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup = new javax.swing.ButtonGroup();
         popupMenuNoColor = new javax.swing.JPopupMenu();
         menuItemNoColor = new javax.swing.JMenuItem();
+        popupMenuShapeOptions = new javax.swing.JPopupMenu();
+        menuItemEditText = new javax.swing.JMenuItem();
+        sepShapeOptions1 = new javax.swing.JPopupMenu.Separator();
+        menuItemDuplicate = new javax.swing.JMenuItem();
+        sepShapeOptions2 = new javax.swing.JPopupMenu.Separator();
+        menuMoveFront = new javax.swing.JMenu();
+        menuItemMoveFront = new javax.swing.JMenuItem();
+        menuItemForwards = new javax.swing.JMenuItem();
+        menuMoveBack = new javax.swing.JMenu();
+        menuItemMoveBack = new javax.swing.JMenuItem();
+        menuItemBackwards = new javax.swing.JMenuItem();
+        sepShapeOptions3 = new javax.swing.JPopupMenu.Separator();
+        menuItemDelete = new javax.swing.JMenuItem();
         drawPanel = new br.com.davidbuzatto.computersupportedclasshelper.gui.DrawPanel();
         mainToolBar = new ToolBar( ToolBar.Side.LEFT );
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
@@ -143,6 +158,7 @@ public class MainWindow extends javax.swing.JFrame {
         btnPolygon = new javax.swing.JToggleButton();
         btnStar = new javax.swing.JToggleButton();
         btnAddImage = new javax.swing.JToggleButton();
+        btnAddText = new javax.swing.JToggleButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         btnMove = new javax.swing.JToggleButton();
         btnFill = new javax.swing.JToggleButton();
@@ -201,6 +217,92 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         popupMenuNoColor.add(menuItemNoColor);
+
+        popupMenuShapeOptions.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+                popupMenuShapeOptionsPopupMenuCanceled(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+
+        menuItemEditText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/textfield_rename.png"))); // NOI18N
+        menuItemEditText.setText("edit");
+        menuItemEditText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemEditTextActionPerformed(evt);
+            }
+        });
+        popupMenuShapeOptions.add(menuItemEditText);
+        popupMenuShapeOptions.add(sepShapeOptions1);
+
+        menuItemDuplicate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_divide.png"))); // NOI18N
+        menuItemDuplicate.setText("duplicate");
+        menuItemDuplicate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemDuplicateActionPerformed(evt);
+            }
+        });
+        popupMenuShapeOptions.add(menuItemDuplicate);
+        popupMenuShapeOptions.add(sepShapeOptions2);
+
+        menuMoveFront.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/shape_move_front.png"))); // NOI18N
+        menuMoveFront.setText("move front");
+
+        menuItemMoveFront.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/shape_move_front.png"))); // NOI18N
+        menuItemMoveFront.setText("move front");
+        menuItemMoveFront.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemMoveFrontActionPerformed(evt);
+            }
+        });
+        menuMoveFront.add(menuItemMoveFront);
+
+        menuItemForwards.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/shape_move_forwards.png"))); // NOI18N
+        menuItemForwards.setText("forwards");
+        menuItemForwards.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemForwardsActionPerformed(evt);
+            }
+        });
+        menuMoveFront.add(menuItemForwards);
+
+        popupMenuShapeOptions.add(menuMoveFront);
+
+        menuMoveBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/shape_move_back.png"))); // NOI18N
+        menuMoveBack.setText("move back");
+
+        menuItemMoveBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/shape_move_back.png"))); // NOI18N
+        menuItemMoveBack.setText("move back");
+        menuItemMoveBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemMoveBackActionPerformed(evt);
+            }
+        });
+        menuMoveBack.add(menuItemMoveBack);
+
+        menuItemBackwards.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/shape_move_backwards.png"))); // NOI18N
+        menuItemBackwards.setText("backwards");
+        menuItemBackwards.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemBackwardsActionPerformed(evt);
+            }
+        });
+        menuMoveBack.add(menuItemBackwards);
+
+        popupMenuShapeOptions.add(menuMoveBack);
+        popupMenuShapeOptions.add(sepShapeOptions3);
+
+        menuItemDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"))); // NOI18N
+        menuItemDelete.setText("delete");
+        menuItemDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemDeleteActionPerformed(evt);
+            }
+        });
+        popupMenuShapeOptions.add(menuItemDelete);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("CSCH");
@@ -492,6 +594,25 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         }
     });
     mainToolBar.add(btnAddImage);
+
+    buttonGroup.add(btnAddText);
+    btnAddText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/font_add.png"))); // NOI18N
+    btnAddText.setToolTipText("text (X)");
+    btnAddText.setFocusPainted(false);
+    btnAddText.setFocusable(false);
+    btnAddText.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnAddText.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnAddText.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnAddTextMouseReleased(evt);
+        }
+    });
+    btnAddText.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnAddTextActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnAddText);
     mainToolBar.add(jSeparator3);
 
     buttonGroup.add(btnMove);
@@ -1121,25 +1242,12 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
     private void drawPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drawPanelMousePressed
         
+        xPressed = evt.getX();
+        yPressed = evt.getY();
+            
         if ( SwingUtilities.isLeftMouseButton( evt ) ) {
-
-            xPressed = evt.getX();
-            yPressed = evt.getY();
-
-            // detecting interceptions
-            List<Shape> shapes = drawPanel.getShapes();
-            ListIterator<Shape> li = shapes.listIterator( shapes.size() );
-
-            while ( li.hasPrevious() ) {
-
-                Shape shape = li.previous();
-
-                if ( shape.intercepts( xPressed, yPressed ) ) {
-                    selectedShape = shape;
-                    break;
-                }
-
-            }
+            
+            lookForSelectedShape();
 
             if ( btnMove.isSelected() ) {
 
@@ -1156,6 +1264,14 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     selectedShape.setStrokeColor( colorPanelStroke.getColor() );
                     selectedShape.setFillColor( colorPanelFill.getColor() );
                     selectedShape.setStrokeWidth( dConfig.getStrokeWidth() );
+                    if ( selectedShape instanceof Text ) {
+                        Text text = (Text) selectedShape;
+                        text.setFontType( dConfig.getFontType() );
+                        text.setFontSize( dConfig.getFontSize() );
+                        text.setFontIsBold( dConfig.isFontIsBold() );
+                        text.setFontIsItalic( dConfig.isFontIsItalic() );
+                        text.setFontAlignment( dConfig.getFontAlignment() );
+                    }
                 }
 
             } else if ( btnAddImage.isSelected() ) {
@@ -1190,6 +1306,34 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     exc.printStackTrace();
                 }
                 
+            } else if ( btnAddText.isSelected() ) {
+                
+                ToolConfigDialogTextValue tcdt = new ToolConfigDialogTextValue( this, true, "" );
+                tcdt.setVisible( true );
+                
+                String textValue = tcdt.getText();
+                
+                if ( textValue != null ) {
+                    
+                    Text text = new Text();
+                    
+                    text.setStrokeColor( colorPanelStroke.getColor() );
+                    text.setFillColor( colorPanelFill.getColor() );
+                    
+                    text.setText( textValue );
+                    text.setFontType( dConfig.getFontType() );
+                    text.setFontSize( dConfig.getFontSize() );
+                    text.setFontIsBold( dConfig.isFontIsBold() );
+                    text.setFontIsItalic( dConfig.isFontIsItalic() );
+                    text.setFontAlignment( dConfig.getFontAlignment() );
+
+                    text.setXStart( xPressed );
+                    text.setYStart( yPressed );
+
+                    drawPanel.addShape( text );
+                    
+                }
+                
             } else {
 
                 if ( btnPencil.isSelected() ) {
@@ -1218,9 +1362,46 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
             drawPanel.repaint();
         
+        } else if ( SwingUtilities.isRightMouseButton( evt ) ) {
+            
+            lookForSelectedShape();
+            
+            if ( selectedShape != null ) {
+                
+                menuItemEditText.setVisible( false );
+                sepShapeOptions1.setVisible( false );
+                
+                if ( selectedShape instanceof Text ) {
+                    menuItemEditText.setVisible( true );
+                    sepShapeOptions1.setVisible( true );
+                }
+                
+                popupMenuShapeOptions.show( evt.getComponent(), evt.getX(), evt.getY() );
+                
+            }
+            
         }
         
     }//GEN-LAST:event_drawPanelMousePressed
+
+    private void lookForSelectedShape() {
+        
+        // detecting interceptions
+        List<Shape> shapes = drawPanel.getShapes();
+        ListIterator<Shape> li = shapes.listIterator( shapes.size() );
+        
+        while ( li.hasPrevious() ) {
+            
+            Shape shape = li.previous();
+            
+            if ( shape.intercepts( xPressed, yPressed ) ) {
+                selectedShape = shape;
+                break;
+            }
+            
+        }
+        
+    }
 
     private void drawPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drawPanelMouseReleased
         
@@ -1418,7 +1599,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 "Really quit?", "Quit?" ) == JOptionPane.YES_OPTION ) {
             
             if ( CustomMessageAndConfirmDialog.showConfirmDialog( this,
-                "Save your project before quit?", "Save Before Quit?" ) == JOptionPane.YES_OPTION ) {
+                "<html>Save your project before quit?</html>", "Save Before Quit?" ) == JOptionPane.YES_OPTION ) {
                 saveProject();
             }
             
@@ -1851,6 +2032,82 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         openDrawPagesPreviewDialog();
     }//GEN-LAST:event_btnPreviewActionPerformed
 
+    private void menuItemDuplicateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDuplicateActionPerformed
+        drawPanel.duplicateShape( selectedShape );
+    }//GEN-LAST:event_menuItemDuplicateActionPerformed
+
+    private void popupMenuShapeOptionsPopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_popupMenuShapeOptionsPopupMenuCanceled
+        selectedShape = null;
+    }//GEN-LAST:event_popupMenuShapeOptionsPopupMenuCanceled
+
+    private void btnAddTextMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddTextMouseReleased
+        openNewToolConfigDialogText( evt );
+    }//GEN-LAST:event_btnAddTextMouseReleased
+
+    private void btnAddTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTextActionPerformed
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.TEXT, null ) );
+    }//GEN-LAST:event_btnAddTextActionPerformed
+
+    private void menuItemEditTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEditTextActionPerformed
+        
+        if ( selectedShape != null && selectedShape instanceof Text ) {
+            
+            Text text = (Text) selectedShape;
+            
+            ToolConfigDialogTextValue tcdt = new ToolConfigDialogTextValue( this, true, text.getText() );
+            tcdt.setVisible( true );
+
+            String textValue = tcdt.getText();
+            
+            if ( textValue != null ) {
+                text.setText( textValue );
+                drawPanel.repaint();
+            }
+            
+        }
+        
+    }//GEN-LAST:event_menuItemEditTextActionPerformed
+
+    private void menuItemMoveFrontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMoveFrontActionPerformed
+        
+        if ( selectedShape != null ) {
+            drawPanel.moveFront( selectedShape );
+            drawPanel.repaint();
+        }
+        
+    }//GEN-LAST:event_menuItemMoveFrontActionPerformed
+
+    private void menuItemForwardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemForwardsActionPerformed
+        
+        if ( selectedShape != null ) {
+            drawPanel.moveForwards( selectedShape );
+            drawPanel.repaint();
+        }
+        
+    }//GEN-LAST:event_menuItemForwardsActionPerformed
+
+    private void menuItemMoveBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMoveBackActionPerformed
+        
+        if ( selectedShape != null ) {
+            drawPanel.moveBack( selectedShape );
+            drawPanel.repaint();
+        }
+        
+    }//GEN-LAST:event_menuItemMoveBackActionPerformed
+
+    private void menuItemBackwardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBackwardsActionPerformed
+        
+        if ( selectedShape != null ) {
+            drawPanel.moveBackwards( selectedShape );
+            drawPanel.repaint();
+        }
+        
+    }//GEN-LAST:event_menuItemBackwardsActionPerformed
+
+    private void menuItemDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDeleteActionPerformed
+        deleteSelectedShape();
+    }//GEN-LAST:event_menuItemDeleteActionPerformed
+
     public void moveColors( Map<String, Color> colors ) {
         
         colorPanelSC1.setColor( colors.get( "sc1" ) );
@@ -2262,18 +2519,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 break;
                                 
                             case KeyEvent.VK_DELETE:
-                                if ( selectedShape != null ) {
-                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
-                                            mainFrame, 
-                                            "<html>Do you want to remove the selected drawing?<br/>This operation cannot be undone!</html>", 
-                                            "Remove Confirmation" ) == JOptionPane.YES_OPTION ) {
-                                        drawPanel.removeShape( selectedShape );
-                                    }
-                                    selectedShape.setSelected( false );
-                                    selectedShape = null;
-                                    destroySelectedRepaintRunnable();
-                                    drawPanel.repaint();
-                                }
+                                deleteSelectedShape();
                                 break;
                                 
                             case KeyEvent.VK_PRINTSCREEN:
@@ -2323,6 +2569,11 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                             case KeyEvent.VK_I: // add image
                                 btnAddImage.setSelected( true );
                                 dispatchActionEvent( btnAddImage );
+                                break;
+                                
+                            case KeyEvent.VK_X: // add image
+                                btnAddText.setSelected( true );
+                                dispatchActionEvent( btnAddText );
                                 break;
                                 
                             case KeyEvent.VK_M: // move
@@ -2432,6 +2683,23 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
     }
     
+    private void deleteSelectedShape() {
+        
+        if ( selectedShape != null ) {
+            if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                    this, 
+                    "<html>Do you want to remove the selected drawing?<br/>This operation cannot be undone!</html>", 
+                    "Remove Confirmation" ) == JOptionPane.YES_OPTION ) {
+                drawPanel.removeShape( selectedShape );
+            }
+            selectedShape.setSelected( false );
+            selectedShape = null;
+            destroySelectedRepaintRunnable();
+            drawPanel.repaint();
+        }
+        
+    }
+    
     private void openNewToolConfigDialogStrokeWidth( MouseEvent evt ) {
         
         if ( SwingUtilities.isRightMouseButton( evt ) ) {
@@ -2478,6 +2746,19 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             ToolConfigDialogStrokeWidthArcRadius tcd = new ToolConfigDialogStrokeWidthArcRadius( this, true );
             Point loc = evt.getLocationOnScreen();
             tcd.setLocation( loc.x, loc.y - 40 );
+            tcd.setVisible( true );
+            
+        }
+        
+    }
+    
+    private void openNewToolConfigDialogText( MouseEvent evt ) {
+        
+        if ( SwingUtilities.isRightMouseButton( evt ) ) {
+            
+            ToolConfigDialogText tcd = new ToolConfigDialogText( this, true );
+            Point loc = evt.getLocationOnScreen();
+            tcd.setLocation( loc.x, loc.y - 20 );
             tcd.setVisible( true );
             
         }
@@ -2618,6 +2899,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAddImage;
+    private javax.swing.JToggleButton btnAddText;
     private javax.swing.JButton btnClearCurrentDrawPage;
     private javax.swing.JToggleButton btnEllipse;
     private javax.swing.JToggleButton btnEraser;
@@ -2681,7 +2963,16 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JLabel lblPages;
     private javax.swing.JToolBar mainToolBar;
+    private javax.swing.JMenuItem menuItemBackwards;
+    private javax.swing.JMenuItem menuItemDelete;
+    private javax.swing.JMenuItem menuItemDuplicate;
+    private javax.swing.JMenuItem menuItemEditText;
+    private javax.swing.JMenuItem menuItemForwards;
+    private javax.swing.JMenuItem menuItemMoveBack;
+    private javax.swing.JMenuItem menuItemMoveFront;
     private javax.swing.JMenuItem menuItemNoColor;
+    private javax.swing.JMenu menuMoveBack;
+    private javax.swing.JMenu menuMoveFront;
     private javax.swing.JToolBar paletteToolBar;
     private javax.swing.JPanel panelC1;
     private javax.swing.JPanel panelC2;
@@ -2692,6 +2983,10 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private javax.swing.JPanel panelC7;
     private javax.swing.JPanel panelC8;
     private javax.swing.JPopupMenu popupMenuNoColor;
+    private javax.swing.JPopupMenu popupMenuShapeOptions;
+    private javax.swing.JPopupMenu.Separator sepShapeOptions1;
+    private javax.swing.JPopupMenu.Separator sepShapeOptions2;
+    private javax.swing.JPopupMenu.Separator sepShapeOptions3;
     private javax.swing.JToolBar statusToolBar;
     // End of variables declaration//GEN-END:variables
 }
