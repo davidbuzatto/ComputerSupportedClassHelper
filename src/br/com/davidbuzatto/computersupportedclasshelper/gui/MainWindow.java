@@ -18,7 +18,6 @@ import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Star;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Text;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.DrawingConfigs;
-import br.com.davidbuzatto.computersupportedclasshelper.utils.FontAlignmentEnum;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
@@ -72,6 +71,8 @@ public class MainWindow extends javax.swing.JFrame {
     
     private SelectedRepaintRunnable selectedRepaintRunnable;
     private File currentFile;
+    
+    private boolean isShiftDown;
     
     public static final String VERSION = "v1.4";
     
@@ -335,6 +336,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     mainToolBar.setRollover(true);
     mainToolBar.setBorderPainted(false);
     mainToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    mainToolBar.setOpaque(false);
     mainToolBar.add(filler1);
 
     btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_add.png"))); // NOI18N
@@ -762,6 +764,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     paletteToolBar.setAlignmentX(0.15151516F);
     paletteToolBar.setBorderPainted(false);
     paletteToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    paletteToolBar.setOpaque(false);
     paletteToolBar.add(filler8);
 
     btnPalette.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png"))); // NOI18N
@@ -1196,6 +1199,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     statusToolBar.setBorderPainted(false);
     statusToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     statusToolBar.setFocusable(false);
+    statusToolBar.setOpaque(false);
     statusToolBar.setRequestFocusEnabled(false);
     statusToolBar.setVerifyInputWhenFocusTarget(false);
 
@@ -1478,8 +1482,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 line.setStrokeWidth( dConfig.getStrokeWidth() );
                 line.setXStart( xPressed );
                 line.setYStart( yPressed );
-                line.setXEnd( evt.getX() );
-                line.setYEnd( evt.getY() );
+                
+                if ( isShiftDown ) {
+                    drawWhenShiftIsDown( evt, line );
+                } else {
+                    line.setXEnd( evt.getX() );
+                    line.setYEnd( evt.getY() );
+                }
 
                 currentShape = line;
 
@@ -1493,8 +1502,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 rectangle.setStrokeWidth( dConfig.getStrokeWidth() );
                 rectangle.setXStart( xPressed );
                 rectangle.setYStart( yPressed );
-                rectangle.setXEnd( evt.getX() );
-                rectangle.setYEnd( evt.getY() );
+                
+                if ( isShiftDown ) {
+                    drawWhenShiftIsDown( evt, rectangle );
+                } else {
+                    rectangle.setXEnd( evt.getX() );
+                    rectangle.setYEnd( evt.getY() );
+                }
 
                 currentShape = rectangle;
 
@@ -1509,8 +1523,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 rectangle.setArcRadius( dConfig.getArcRadius() );
                 rectangle.setXStart( xPressed );
                 rectangle.setYStart( yPressed );
-                rectangle.setXEnd( evt.getX() );
-                rectangle.setYEnd( evt.getY() );
+                
+                if ( isShiftDown ) {
+                    drawWhenShiftIsDown( evt, rectangle );
+                } else {
+                    rectangle.setXEnd( evt.getX() );
+                    rectangle.setYEnd( evt.getY() );
+                }
 
                 currentShape = rectangle;
 
@@ -1524,8 +1543,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 ellipse.setStrokeWidth( dConfig.getStrokeWidth() );
                 ellipse.setXStart( xPressed );
                 ellipse.setYStart( yPressed );
-                ellipse.setXEnd( evt.getX() );
-                ellipse.setYEnd( evt.getY() );
+                
+                if ( isShiftDown ) {
+                    drawWhenShiftIsDown( evt, ellipse );
+                } else {
+                    ellipse.setXEnd( evt.getX() );
+                    ellipse.setYEnd( evt.getY() );
+                }
 
                 currentShape = ellipse;
 
@@ -2153,8 +2177,12 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 
                 if ( e.getID() == KeyEvent.KEY_RELEASED ) {
 
+                    if ( e.getKeyCode() == KeyEvent.VK_SHIFT ) {
+                        isShiftDown = false;
+                    }
+                    
                     if ( e.isShiftDown() ) {
-
+                        
                         switch ( e.getKeyCode() ) {
 
                             case KeyEvent.VK_ESCAPE:
@@ -2601,7 +2629,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 } else if ( e.getID() == KeyEvent.KEY_PRESSED ) {
                     
                     if ( e.isShiftDown() ) {
-
+                        
+                        isShiftDown = true;
+                        
                         switch ( e.getKeyCode() ) {
                             
                             case KeyEvent.VK_UP:
@@ -2897,6 +2927,49 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
     }
 
+    private void drawWhenShiftIsDown( MouseEvent evt, Shape shape ) {
+        
+        double dx = evt.getX() - xPressed;
+        double dy = evt.getY() - yPressed;
+
+        if ( shape instanceof Line ) {
+            
+            double dd = Math.abs( Math.abs( dx ) - Math.abs( dy ) );
+                    
+            if ( dd < 50 ) {
+                drawDiagonal( evt, shape, dx, dy );
+            } else if ( Math.abs( dx ) > Math.abs( dy ) ) {
+                shape.setXEnd( evt.getX() );
+                shape.setYEnd( yPressed );
+            } else {
+                shape.setXEnd( xPressed );
+                shape.setYEnd( evt.getY() );
+            }
+            
+        } else {
+            drawDiagonal( evt, shape, dx, dy );
+        }
+        
+    }
+    
+    private void drawDiagonal( MouseEvent evt, Shape shape, double dx, double dy ) {
+        
+        if ( dx > 0 && dy > 0 ) {
+            shape.setXEnd( xPressed + dx );
+            shape.setYEnd( yPressed + dx );
+        } else if ( dx > 0 && dy < 0 ) {
+            shape.setXEnd( xPressed - dy );
+            shape.setYEnd( yPressed + dy );
+        } else if ( dx < 0 && dy > 0 ) {
+            shape.setXEnd( xPressed - dy );
+            shape.setYEnd( yPressed + dy );
+        } else {
+            shape.setXEnd( xPressed + dx );
+            shape.setYEnd( yPressed + dx );
+        }
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAddImage;
     private javax.swing.JToggleButton btnAddText;

@@ -41,7 +41,7 @@ public class ColorPanel extends JPanel {
     
     public ColorPanel( Color startColor ) {
         
-        Dimension d = new Dimension( 25, 25 );
+        Dimension d = new Dimension( 24, 24 );
         
         setMinimumSize( d );
         setMaximumSize( d );
@@ -65,7 +65,7 @@ public class ColorPanel extends JPanel {
         if ( color == null ) {
             
             g2d.setPaint( Color.WHITE );
-            g2d.fillRoundRect( 0, 0, getWidth(), getHeight(), 10, 10 );
+            g2d.fillRoundRect( 2, 2, getWidth()-2, getHeight()-2, 10, 10 );
             
             g2d.setPaint( Color.RED );
             g2d.setStroke( new BasicStroke( 2 ) );
@@ -73,17 +73,21 @@ public class ColorPanel extends JPanel {
             
         } else {
             g2d.setPaint( color );
-            g2d.fillRoundRect( 0, 0, getWidth(), getHeight(), 10, 10 );
+            g2d.fillRoundRect( 2, 2, getWidth()-2, getHeight()-2, 10, 10 );
         }
         
         g2d.setPaint( Color.BLACK );
         g2d.setStroke( new BasicStroke( 1 ) );
-        g2d.drawRoundRect( 0, 0, getWidth()-1, getHeight()-1, 10, 10 );
+        g2d.drawRoundRect( 2, 2, getWidth()-3, getHeight()-3, 10, 10 );
         
-        if ( id != null && color != null ) {
-            g2d.setColor( color.darker().darker() );
+        if ( id != null ) {
+            if ( color == null ) {
+                g2d.setColor( Color.WHITE.darker().darker() );
+            } else {
+                g2d.setColor( color.darker().darker() );
+            }
             g2d.setFont( ID_FONT );
-            g2d.drawString( id, getWidth() / 2 - idWidth / 2, getHeight() / 2 + 4 );
+            g2d.drawString( id, getWidth() / 2 - idWidth / 2 + 1, getHeight() / 2 + 5 );
         }
         
         g2d.dispose();

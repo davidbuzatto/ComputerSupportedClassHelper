@@ -1,5 +1,6 @@
 v1.4.1
 Selection Tool
+Move selected shape(s) with keyboard -> arrows (1px) and shift + arrows (10px)
 Duplicate selection
 Alignment Tools
 
@@ -8,3 +9,4 @@ Image resize
 
 v1.4.3
 Undo - Redo
+Clean undo/redo history new draw page
