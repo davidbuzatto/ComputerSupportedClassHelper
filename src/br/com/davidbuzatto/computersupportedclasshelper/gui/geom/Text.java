@@ -47,7 +47,7 @@ public class Text extends Shape implements Serializable, Cloneable {
 
             if ( fillColor != null ) {
                 g2d.setPaint( fillColor );
-                g2d.fill( new Rectangle2D.Double( xStartD - 5, yStartD, xEndD-xStartD + 10, yEndD-yStartD ) );
+                g2d.fill( new Rectangle2D.Double( xStartD, yStartD, xEndD-xStartD, yEndD-yStartD ) );
             }
 
             if ( strokeColor == null ) {

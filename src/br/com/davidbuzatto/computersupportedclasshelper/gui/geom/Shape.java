@@ -34,8 +34,9 @@ public abstract class Shape implements Serializable, Cloneable {
     protected Color strokeColor;
     protected Color fillColor;
     protected double strokeWidth;
-    protected boolean selected;
-    private int selectedPhase;
+    
+    transient protected boolean selected;
+    transient private int selectedPhase;
     
     public Shape() {
         strokeColor = Color.BLACK;
@@ -212,7 +213,6 @@ public abstract class Shape implements Serializable, Cloneable {
         target.strokeColor = origin.strokeColor;
         target.fillColor = origin.fillColor;
         target.strokeWidth = origin.strokeWidth;
-        target.selected = false;
         
     }
     

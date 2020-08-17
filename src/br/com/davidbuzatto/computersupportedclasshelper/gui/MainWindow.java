@@ -1252,7 +1252,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         if ( SwingUtilities.isLeftMouseButton( evt ) ) {
             
             lookForSelectedShape();
-
+            
             if ( btnMove.isSelected() ) {
 
                 if ( selectedShape != null ) {
@@ -1381,6 +1381,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 }
                 
                 popupMenuShapeOptions.show( evt.getComponent(), evt.getX(), evt.getY() );
+                selectedShape.setSelected( true );
+                createSelectedRepaintRunnable();
                 
             }
             
@@ -1600,7 +1602,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             drawPanel.setTempShape( currentShape );
             drawPanel.repaint();
 
-        } else if ( btnMove.isSelected() && selectedShape != null ) {
+        } else if ( SwingUtilities.isLeftMouseButton( evt ) && 
+                    btnMove.isSelected() && selectedShape != null ) {
 
             selectedShape.move( evt.getX() - xPrev, evt.getY() - yPrev );
 
@@ -2058,10 +2061,21 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
     private void menuItemDuplicateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDuplicateActionPerformed
         drawPanel.duplicateShape( selectedShape );
+        if ( selectedShape != null ) {
+            selectedShape.setSelected( false );
+            destroySelectedRepaintRunnable();
+            selectedShape = null;
+        }
+        drawPanel.repaint();
     }//GEN-LAST:event_menuItemDuplicateActionPerformed
 
     private void popupMenuShapeOptionsPopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_popupMenuShapeOptionsPopupMenuCanceled
-        selectedShape = null;
+        if ( selectedShape != null ) {
+            selectedShape.setSelected( false );
+            destroySelectedRepaintRunnable();
+            selectedShape = null;
+        }
+        drawPanel.repaint();
     }//GEN-LAST:event_popupMenuShapeOptionsPopupMenuCanceled
 
     private void btnAddTextMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddTextMouseReleased
@@ -2088,6 +2102,14 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 drawPanel.repaint();
             }
             
+            if ( selectedShape != null ) {
+                selectedShape.setSelected( false );
+                destroySelectedRepaintRunnable();
+                selectedShape = null;
+            }
+            
+            drawPanel.repaint();
+            
         }
         
     }//GEN-LAST:event_menuItemEditTextActionPerformed
@@ -2096,6 +2118,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
         if ( selectedShape != null ) {
             drawPanel.moveFront( selectedShape );
+            selectedShape.setSelected( false );
+            destroySelectedRepaintRunnable();
+            selectedShape = null;
             drawPanel.repaint();
         }
         
@@ -2105,6 +2130,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
         if ( selectedShape != null ) {
             drawPanel.moveForwards( selectedShape );
+            selectedShape.setSelected( false );
+            destroySelectedRepaintRunnable();
+            selectedShape = null;
             drawPanel.repaint();
         }
         
@@ -2114,6 +2142,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
         if ( selectedShape != null ) {
             drawPanel.moveBack( selectedShape );
+            selectedShape.setSelected( false );
+            destroySelectedRepaintRunnable();
+            selectedShape = null;
             drawPanel.repaint();
         }
         
@@ -2123,6 +2154,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
         if ( selectedShape != null ) {
             drawPanel.moveBackwards( selectedShape );
+            selectedShape.setSelected( false );
+            destroySelectedRepaintRunnable();
+            selectedShape = null;
             drawPanel.repaint();
         }
         
