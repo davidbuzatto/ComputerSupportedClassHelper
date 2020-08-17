@@ -1,3 +1,17 @@
-v1.4.1
-Undo - Redo
-Clean undo/redo history new draw page
+Release Planning
+    v1.4.1
+        Undo and Redo for each draw page
+        Clean undo/redo history for new draw pages when copied.
+
+    v1.4.2
+        Selection Tool
+        Move selected shape(s) with keyboard -> arrows (1px) and shift + arrows (10px)
+        Duplicate selected shapes
+        Alignment Tools
+
+    v1.4.3
+        Shape resize
+        Shape rotation
+
+    v1.4.4
+        Undo and Redo for the entire document

@@ -124,15 +124,15 @@
         </Menu>
         <Component class="javax.swing.JPopupMenu$Separator" name="sepShapeOptions3">
         </Component>
-        <MenuItem class="javax.swing.JMenuItem" name="menuItemDelete">
+        <MenuItem class="javax.swing.JMenuItem" name="menuItemRemove">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="delete"/>
+            <Property name="text" type="java.lang.String" value="remove"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemDeleteActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemRemoveActionPerformed"/>
           </Events>
         </MenuItem>
       </SubComponents>

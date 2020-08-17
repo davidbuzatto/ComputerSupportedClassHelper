@@ -74,7 +74,7 @@ public class MainWindow extends javax.swing.JFrame {
     
     private boolean isShiftDown;
     
-    public static final String VERSION = "v1.4";
+    public static final String VERSION = "v1.4.1";
     
     /**
      * Creates new form MainWindowa
@@ -134,7 +134,7 @@ public class MainWindow extends javax.swing.JFrame {
         menuItemMoveBack = new javax.swing.JMenuItem();
         menuItemBackwards = new javax.swing.JMenuItem();
         sepShapeOptions3 = new javax.swing.JPopupMenu.Separator();
-        menuItemDelete = new javax.swing.JMenuItem();
+        menuItemRemove = new javax.swing.JMenuItem();
         drawPanel = new br.com.davidbuzatto.computersupportedclasshelper.gui.DrawPanel();
         mainToolBar = new ToolBar( ToolBar.Side.LEFT );
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
@@ -296,14 +296,14 @@ public class MainWindow extends javax.swing.JFrame {
         popupMenuShapeOptions.add(menuMoveBack);
         popupMenuShapeOptions.add(sepShapeOptions3);
 
-        menuItemDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"))); // NOI18N
-        menuItemDelete.setText("delete");
-        menuItemDelete.addActionListener(new java.awt.event.ActionListener() {
+        menuItemRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"))); // NOI18N
+        menuItemRemove.setText("remove");
+        menuItemRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemDeleteActionPerformed(evt);
+                menuItemRemoveActionPerformed(evt);
             }
         });
-        popupMenuShapeOptions.add(menuItemDelete);
+        popupMenuShapeOptions.add(menuItemRemove);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("CSCH");
@@ -2162,9 +2162,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
     }//GEN-LAST:event_menuItemBackwardsActionPerformed
 
-    private void menuItemDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDeleteActionPerformed
-        deleteSelectedShape();
-    }//GEN-LAST:event_menuItemDeleteActionPerformed
+    private void menuItemRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRemoveActionPerformed
+        removeSelectedShape();
+    }//GEN-LAST:event_menuItemRemoveActionPerformed
 
     public void moveColors( Map<String, Color> colors ) {
         
@@ -2581,7 +2581,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 break;
                                 
                             case KeyEvent.VK_DELETE:
-                                deleteSelectedShape();
+                                removeSelectedShape();
                                 break;
                                 
                             case KeyEvent.VK_PRINTSCREEN:
@@ -2747,7 +2747,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         
     }
     
-    private void deleteSelectedShape() {
+    private void removeSelectedShape() {
         
         if ( selectedShape != null ) {
             if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
@@ -3071,13 +3071,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private javax.swing.JLabel lblPages;
     private javax.swing.JToolBar mainToolBar;
     private javax.swing.JMenuItem menuItemBackwards;
-    private javax.swing.JMenuItem menuItemDelete;
     private javax.swing.JMenuItem menuItemDuplicate;
     private javax.swing.JMenuItem menuItemEditText;
     private javax.swing.JMenuItem menuItemForwards;
     private javax.swing.JMenuItem menuItemMoveBack;
     private javax.swing.JMenuItem menuItemMoveFront;
     private javax.swing.JMenuItem menuItemNoColor;
+    private javax.swing.JMenuItem menuItemRemove;
     private javax.swing.JMenu menuMoveBack;
     private javax.swing.JMenu menuMoveFront;
     private javax.swing.JToolBar paletteToolBar;

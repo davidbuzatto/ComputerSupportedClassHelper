@@ -38,7 +38,6 @@ public class DrawPagesPreviewPanel extends JPanel {
         // calculate the scale to 10% of the current screen dimensions
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         scale = 160 / (double) d.width;
-        System.out.println( scale );
         
     }
     
