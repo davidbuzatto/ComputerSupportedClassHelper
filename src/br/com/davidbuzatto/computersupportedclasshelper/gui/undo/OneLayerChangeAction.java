@@ -7,31 +7,35 @@ package br.com.davidbuzatto.computersupportedclasshelper.gui.undo;
 
 import br.com.davidbuzatto.computersupportedclasshelper.gui.DrawPage;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Utils;
 
 /**
  *
  * @author David
  */
-public class RemoveChangeAction extends ChangeAction {
+public class OneLayerChangeAction extends ChangeAction {
     
-    private Shape shape;
-    private int position;
+    private int positionBefore;
+    private int positionAfter;
     private DrawPage drawPage;
     
-    public RemoveChangeAction( Shape shape, DrawPage drawPage ) {
-        this.shape = shape;
+    public OneLayerChangeAction( 
+            DrawPage drawPage,
+            int positionBefore, 
+            int positionAfter ) {
         this.drawPage = drawPage;
-        position = drawPage.getShapes().indexOf( shape );
+        this.positionBefore = positionBefore;
+        this.positionAfter = positionAfter;
     }
     
     @Override
     public void applyBeforeChange() {
-        drawPage.getShapes().add( position, shape );
+        Utils.<Shape>swap( drawPage.getShapes(), positionBefore, positionAfter );
     }
     
     @Override
     public void applyAfterChange() {
-        drawPage.getShapes().remove( shape );
+        Utils.<Shape>swap( drawPage.getShapes(), positionAfter, positionBefore );
     }
     
 }

@@ -5,7 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.undo;
 
-import br.com.davidbuzatto.computersupportedclasshelper.gui.DrawPanel;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.DrawPage;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 
 /**
@@ -16,22 +16,22 @@ public class AddChangeAction extends ChangeAction {
     
     private Shape shape;
     private int position;
-    private DrawPanel drawPanel;
+    private DrawPage drawPage;
     
-    public AddChangeAction( Shape shape, DrawPanel drawPanel ) {
+    public AddChangeAction( Shape shape, DrawPage drawPage ) {
         this.shape = shape;
-        this.drawPanel = drawPanel;
-        position = drawPanel.getShapes().size() - 1; // always inserted in the end
+        this.drawPage = drawPage;
+        position = drawPage.getShapes().size() - 1; // always inserted in the end
     }
     
     @Override
     public void applyBeforeChange() {
-        drawPanel.getShapes().remove( shape );
+        drawPage.getShapes().remove( shape );
     }
     
     @Override
     public void applyAfterChange() {
-        drawPanel.getShapes().add( position, shape );
+        drawPage.getShapes().add( position, shape );
     }
     
 }

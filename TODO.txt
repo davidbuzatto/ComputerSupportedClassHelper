@@ -2,10 +2,9 @@ Release Planning
     v1.4.1
         Undo and Redo for each draw page
             Undo/Redo shape changes: ok
-            Undo/Redo add shape: partial (see below)
-            Undo/Redo remove shape: partial (see below)
-            Undo/Redo for each draw page <- needs to know what draw page was to remove and add
-            Undo/Redo layer changes: under development
+            Undo/Redo add shape: ok
+            Undo/Redo remove shape: ok
+            Undo/Redo layer changes: under development <-
             Undo/Redo clear current draw page: under development
             Undo/Redo move current draw page: under development
             Undo/Redo new draw page: under development

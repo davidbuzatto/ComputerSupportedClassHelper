@@ -1271,6 +1271,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     yPrev = yPressed;
                     selectedShape.setSelected( true );
                     createSelectedRepaintRunnable();
+                    
                 }
 
             } else if ( btnFill.isSelected() ) {
@@ -1324,7 +1325,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                         
                         drawPanel.addShape( img );
                         
-                        AddChangeAction aca = new AddChangeAction( img, drawPanel );
+                        AddChangeAction aca = new AddChangeAction( img, drawPanel.getCurrentDrawPage() );
                         drawPanel.addChangeAction( aca );
 
                     }
@@ -1359,7 +1360,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
                     drawPanel.addShape( text );
                     
-                    AddChangeAction aca = new AddChangeAction( text, drawPanel );
+                    AddChangeAction aca = new AddChangeAction( text, drawPanel.getCurrentDrawPage() );
                     drawPanel.addChangeAction( aca );
                         
                 }
@@ -1462,7 +1463,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 drawPanel.setTempShape( null );
                 drawPanel.addShape( currentShape );
                 
-                AddChangeAction aca = new AddChangeAction( currentShape, drawPanel );
+                AddChangeAction aca = new AddChangeAction( currentShape, drawPanel.getCurrentDrawPage() );
                 drawPanel.addChangeAction( aca );
                 
                 currentShape = null;
@@ -2801,7 +2802,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             
             selectedShape.setSelected( false );
             
-            RemoveChangeAction rca = new RemoveChangeAction( selectedShape, drawPanel );
+            RemoveChangeAction rca = new RemoveChangeAction( selectedShape, drawPanel.getCurrentDrawPage() );
             drawPanel.addChangeAction( rca );
             
             drawPanel.removeShape( selectedShape );

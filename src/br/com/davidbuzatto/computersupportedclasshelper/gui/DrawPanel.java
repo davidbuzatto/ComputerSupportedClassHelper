@@ -8,7 +8,8 @@ package br.com.davidbuzatto.computersupportedclasshelper.gui;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.EraserCurve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.ChangeAction;
-import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.ShapeChangeAction;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.LayerIntervalChangeAction;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.OneLayerChangeAction;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Utils;
 import java.awt.Color;
@@ -103,23 +104,6 @@ public class DrawPanel extends JPanel {
         }
     }
     
-    public void moveFront( Shape shape ) {
-        
-        List<Shape> shapes = currentDrawPage.getShapes();
-        
-        int v = shapes.indexOf( shape );
-        int w;
-        
-        while ( v < shapes.size() - 1 ) {
-            w = v + 1;
-            if ( w < shapes.size() ) {
-                Utils.<Shape>swap( shapes, v, w );
-            }
-            v++;
-        }
-        
-    }
-    
     public void moveForwards( Shape shape ) {
         
         List<Shape> shapes = currentDrawPage.getShapes();
@@ -131,15 +115,35 @@ public class DrawPanel extends JPanel {
             Utils.<Shape>swap( shapes, v, w );
         }
         
+        addChangeAction( new OneLayerChangeAction( currentDrawPage, v, w ) );
+        
+    }
+    
+    public void moveFront( Shape shape ) {
+        
+        List<Shape> shapes = currentDrawPage.getShapes();
+        int v = shapes.indexOf( shape );
+        int w;
+        
+        addChangeAction( new LayerIntervalChangeAction( currentDrawPage, v, shapes.size() ) );
+        
+        while ( v < shapes.size() - 1 ) {
+            w = v + 1;
+            if ( w < shapes.size() ) {
+                Utils.<Shape>swap( shapes, v, w );
+            }
+            v++;
+        }
+        
     }
     
     public void moveBack( Shape shape ) {
         
-        
         List<Shape> shapes = currentDrawPage.getShapes();
-        
         int v = shapes.indexOf( shape );
         int w;
+        
+        addChangeAction( new LayerIntervalChangeAction( currentDrawPage, v, 0 ) );
         
         while ( v > 0 ) {
             w = v - 1;
@@ -161,6 +165,8 @@ public class DrawPanel extends JPanel {
         if ( w >= 0 ) {
             Utils.<Shape>swap( shapes, v, w );
         }
+        
+        addChangeAction( new OneLayerChangeAction( currentDrawPage, v, w ) );
         
     }
     
