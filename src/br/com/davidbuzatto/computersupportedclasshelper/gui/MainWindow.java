@@ -16,6 +16,9 @@ import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.RoundRectangle;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Star;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Text;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.AddChangeAction;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.RemoveChangeAction;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.ShapeChangeAction;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.DrawingConfigs;
 import java.awt.AWTException;
@@ -73,6 +76,8 @@ public class MainWindow extends javax.swing.JFrame {
     private File currentFile;
     
     private boolean isShiftDown;
+    
+    private ShapeChangeAction movingSca;
     
     public static final String VERSION = "v1.4.1";
     
@@ -1256,6 +1261,12 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             if ( btnMove.isSelected() ) {
 
                 if ( selectedShape != null ) {
+                    
+                    if ( movingSca == null ) {
+                        movingSca = new ShapeChangeAction( selectedShape );
+                        movingSca.inspectShapeBeforeChange( selectedShape );
+                    }
+                    
                     xPrev = xPressed;
                     yPrev = yPressed;
                     selectedShape.setSelected( true );
@@ -1265,9 +1276,14 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             } else if ( btnFill.isSelected() ) {
 
                 if ( selectedShape != null ) {
+                    
+                    ShapeChangeAction sca = new ShapeChangeAction( selectedShape );
+                    sca.inspectShapeBeforeChange( selectedShape );
+                    
                     selectedShape.setStrokeColor( colorPanelStroke.getColor() );
                     selectedShape.setFillColor( colorPanelFill.getColor() );
                     selectedShape.setStrokeWidth( dConfig.getStrokeWidth() );
+                    
                     if ( selectedShape instanceof Text ) {
                         Text text = (Text) selectedShape;
                         text.setFontType( dConfig.getFontType() );
@@ -1276,6 +1292,10 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                         text.setFontIsItalic( dConfig.isFontIsItalic() );
                         text.setFontAlignment( dConfig.getFontAlignment() );
                     }
+                    
+                    sca.inspectShapeAfterChange( selectedShape );
+                    drawPanel.addChangeAction( sca );
+                    
                 }
 
             } else if ( btnAddImage.isSelected() ) {
@@ -1303,6 +1323,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                         img.setYEnd( yPressed + bi.getHeight() );
                         
                         drawPanel.addShape( img );
+                        
+                        AddChangeAction aca = new AddChangeAction( img, drawPanel );
+                        drawPanel.addChangeAction( aca );
 
                     }
 
@@ -1336,6 +1359,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
                     drawPanel.addShape( text );
                     
+                    AddChangeAction aca = new AddChangeAction( text, drawPanel );
+                    drawPanel.addChangeAction( aca );
+                        
                 }
                 
             } else {
@@ -1416,16 +1442,31 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             drawing = false;
             
             if ( selectedShape != null ) {
+                
                 selectedShape.setSelected( false );
                 destroySelectedRepaintRunnable();
+                
+                if ( btnMove.isSelected() ) {
+                    if ( movingSca != null ) {
+                        movingSca.inspectShapeAfterChange( selectedShape );
+                        drawPanel.addChangeAction( movingSca );
+                        movingSca = null;
+                    }
+                }
+                
                 selectedShape = null;
             }
 
             if ( currentShape != null ) {
+                
                 drawPanel.setTempShape( null );
                 drawPanel.addShape( currentShape );
+                
+                AddChangeAction aca = new AddChangeAction( currentShape, drawPanel );
+                drawPanel.addChangeAction( aca );
+                
                 currentShape = null;
-                drawPanel.resetRedoList();
+                
             }
 
             drawPanel.repaint();
@@ -2750,16 +2791,25 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private void removeSelectedShape() {
         
         if ( selectedShape != null ) {
-            if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+            
+            /*if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                     this, 
                     "<html>Do you want to remove the selected drawing?<br/>This operation cannot be undone!</html>", 
                     "Remove Confirmation" ) == JOptionPane.YES_OPTION ) {
                 drawPanel.removeShape( selectedShape );
-            }
+            }*/
+            
             selectedShape.setSelected( false );
+            
+            RemoveChangeAction rca = new RemoveChangeAction( selectedShape, drawPanel );
+            drawPanel.addChangeAction( rca );
+            
+            drawPanel.removeShape( selectedShape );
+            
             selectedShape = null;
             destroySelectedRepaintRunnable();
             drawPanel.repaint();
+            
         }
         
     }

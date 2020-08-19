@@ -7,13 +7,17 @@ package br.com.davidbuzatto.computersupportedclasshelper.gui;
 
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.EraserCurve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.ChangeAction;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.ShapeChangeAction;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Utils;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -27,6 +31,9 @@ public class DrawPanel extends JPanel {
     private DrawPage currentDrawPage;
     private List<DrawPage> drawPages;
     
+    private Deque<ChangeAction> undoStack;
+    private Deque<ChangeAction> redoStack;
+    
     public DrawPanel() {
         
         setBackground( new Color( 0, 0, 0, 0 ) );
@@ -36,6 +43,9 @@ public class DrawPanel extends JPanel {
         
         drawPages = new ArrayList<>();
         drawPages.add( currentDrawPage );
+        
+        undoStack = new ArrayDeque<>();
+        redoStack = new ArrayDeque<>();
         
     }
     
@@ -72,15 +82,24 @@ public class DrawPanel extends JPanel {
         
     }
     
+    public void addChangeAction( ChangeAction sca ) {
+        undoStack.push( sca );
+        redoStack.clear();
+    }
+    
     public void undo() {
-        if ( currentDrawPage.getShapes().size() > 0 ) {
-            currentDrawPage.getRedoList().add( currentDrawPage.getShapes().remove( currentDrawPage.getShapes().size() - 1 ) );
+        if ( !undoStack.isEmpty() ) {
+            ChangeAction sca = undoStack.pop();
+            redoStack.push( sca );
+            sca.applyBeforeChange();
         }
     }
     
     public void redo() {
-        if ( currentDrawPage.getRedoList().size() > 0 ) {
-            currentDrawPage.getShapes().add( currentDrawPage.getRedoList().remove( currentDrawPage.getRedoList().size() - 1 ) );
+        if ( !redoStack.isEmpty() ) {
+            ChangeAction sca = redoStack.pop();
+            undoStack.push( sca );
+            sca.applyAfterChange();
         }
     }
     
@@ -145,16 +164,12 @@ public class DrawPanel extends JPanel {
         
     }
     
-    public void resetRedoList() {
-        currentDrawPage.getRedoList().clear();
-    }
-    
     public boolean isAbleToUndo() {
-        return currentDrawPage.getShapes().size() > 0;
+        return !undoStack.isEmpty();
     }
     
     public boolean isAbleToRedo() {
-        return currentDrawPage.getRedoList().size() > 0;
+        return !redoStack.isEmpty();
     }
     
     public Color getBackgroundColor() {

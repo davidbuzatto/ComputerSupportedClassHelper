@@ -23,7 +23,6 @@ public class DrawPage implements Serializable, Cloneable {
 
     private Shape tempShape;
     private List<Shape> shapes;
-    private List<Shape> redoList;
 
     public DrawPage( Color backgroundColor ) {
         if ( backgroundColor == null ) {
@@ -32,13 +31,11 @@ public class DrawPage implements Serializable, Cloneable {
             this.backgroundColor = backgroundColor;
         }
         this.shapes = new ArrayList<>();
-        this.redoList = new ArrayList<>();
     }
 
     public void reset() {
         tempShape = null;
         shapes.clear();
-        redoList.clear();
     }
 
     public Color getBackgroundColor() {
@@ -67,14 +64,6 @@ public class DrawPage implements Serializable, Cloneable {
 
     public void setShapes( List<Shape> shapes ) {
         this.shapes = shapes;
-    }
-
-    public List<Shape> getRedoList() {
-        return redoList;
-    }
-
-    public void setRedoList( List<Shape> redoList ) {
-        this.redoList = redoList;
     }
     
     public Rectangle getRectangularBounds() {
