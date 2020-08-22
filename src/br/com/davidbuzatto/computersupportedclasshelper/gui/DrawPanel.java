@@ -123,16 +123,17 @@ public class DrawPanel extends JPanel {
         
         List<Shape> shapes = currentDrawPage.getShapes();
         int v = shapes.indexOf( shape );
-        int w;
+        int to = shapes.size() - 1;
         
-        addChangeAction( new LayerIntervalChangeAction( currentDrawPage, v, shapes.size() ) );
-        
-        while ( v < shapes.size() - 1 ) {
-            w = v + 1;
-            if ( w < shapes.size() ) {
-                Utils.<Shape>swap( shapes, v, w );
+        if ( v != to ) {
+            
+            addChangeAction( new LayerIntervalChangeAction( currentDrawPage, v, to ) );
+
+            while ( v < to ) {
+                Utils.<Shape>swap( shapes, v, v + 1 );
+                v++;
             }
-            v++;
+            
         }
         
     }
@@ -141,16 +142,17 @@ public class DrawPanel extends JPanel {
         
         List<Shape> shapes = currentDrawPage.getShapes();
         int v = shapes.indexOf( shape );
-        int w;
+        int to = 0;
         
-        addChangeAction( new LayerIntervalChangeAction( currentDrawPage, v, 0 ) );
-        
-        while ( v > 0 ) {
-            w = v - 1;
-            if ( w >= 0 ) {
-                Utils.<Shape>swap( shapes, v, w );
+        if ( v != to ) {
+            
+            addChangeAction( new LayerIntervalChangeAction( currentDrawPage, v, to ) );
+
+            while ( v > to ) {
+                Utils.<Shape>swap( shapes, v, v - 1 );
+                v--;
             }
-            v--;
+            
         }
         
     }

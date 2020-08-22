@@ -4,13 +4,11 @@ Release Planning
             Undo/Redo shape changes: ok
             Undo/Redo add shape: ok
             Undo/Redo remove shape: ok
-            Undo/Redo layer changes: under development <-
+            Undo/Redo layer changes: ok
             Undo/Redo clear current draw page: under development
             Undo/Redo move current draw page: under development
             Undo/Redo new draw page: under development
             Undo/Redo duplicate current draw page: under development
-
-        Clean undo/redo history for new draw pages when copied.
 
     v1.4.2
         Selection Tool
@@ -21,6 +19,3 @@ Release Planning
     v1.4.3
         Shape resize
         Shape rotation
-
-    v1.4.4
-        Undo and Redo for the entire document

@@ -33,15 +33,18 @@ public class LayerIntervalChangeAction extends ChangeAction {
     public void applyBeforeChange() {
         
         List<Shape> shapes = drawPage.getShapes();
-        int v = positionBefore;
-        int w;
+        int v = positionAfter;
         
-        while ( v < positionAfter - 1 ) {
-            w = v + 1;
-            if ( w < positionAfter ) {
-                Utils.<Shape>swap( shapes, v, w );
+        if ( v > positionBefore ) {
+            while ( v > positionBefore ) {
+                Utils.<Shape>swap( shapes, v, v - 1 );
+                v--;
             }
-            v++;
+        } else if ( v < positionBefore ) {
+            while ( v < positionBefore ) {
+                Utils.<Shape>swap( shapes, v, v + 1 );
+                v++;
+            }
         }
         
     }
@@ -50,15 +53,18 @@ public class LayerIntervalChangeAction extends ChangeAction {
     public void applyAfterChange() {
         
         List<Shape> shapes = drawPage.getShapes();
-        int v = positionAfter;
-        int w;
+        int v = positionBefore;
         
-        while ( v > 0 ) {
-            w = v - 1;
-            if ( w >= positionBefore ) {
-                Utils.<Shape>swap( shapes, v, w );
+        if ( v < positionAfter ) {
+            while ( v < positionAfter ) {
+                Utils.<Shape>swap( shapes, v, v + 1 );
+                v++;
             }
-            v--;
+        } else if ( v > positionAfter ) {
+            while ( v > positionAfter ) {
+                Utils.<Shape>swap( shapes, v, v - 1 );
+                v--;
+            }
         }
         
     }
