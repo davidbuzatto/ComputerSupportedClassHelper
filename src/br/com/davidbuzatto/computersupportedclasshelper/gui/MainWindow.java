@@ -16,8 +16,8 @@ import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.RoundRectangle;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Star;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Text;
-import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.AddChangeAction;
-import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.RemoveChangeAction;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.AddShapeChangeAction;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.RemoveShapeChangeAction;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.undo.ShapeChangeAction;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.DrawingConfigs;
@@ -1325,7 +1325,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                         
                         drawPanel.addShape( img );
                         
-                        AddChangeAction aca = new AddChangeAction( img, drawPanel.getCurrentDrawPage() );
+                        AddShapeChangeAction aca = new AddShapeChangeAction( img, drawPanel.getCurrentDrawPage() );
                         drawPanel.addChangeAction( aca );
 
                     }
@@ -1360,7 +1360,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
                     drawPanel.addShape( text );
                     
-                    AddChangeAction aca = new AddChangeAction( text, drawPanel.getCurrentDrawPage() );
+                    AddShapeChangeAction aca = new AddShapeChangeAction( text, drawPanel.getCurrentDrawPage() );
                     drawPanel.addChangeAction( aca );
                         
                 }
@@ -1463,7 +1463,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 drawPanel.setTempShape( null );
                 drawPanel.addShape( currentShape );
                 
-                AddChangeAction aca = new AddChangeAction( currentShape, drawPanel.getCurrentDrawPage() );
+                AddShapeChangeAction aca = new AddShapeChangeAction( currentShape, drawPanel.getCurrentDrawPage() );
                 drawPanel.addChangeAction( aca );
                 
                 currentShape = null;
@@ -2802,7 +2802,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             
             selectedShape.setSelected( false );
             
-            RemoveChangeAction rca = new RemoveChangeAction( selectedShape, drawPanel.getCurrentDrawPage() );
+            RemoveShapeChangeAction rca = new RemoveShapeChangeAction( selectedShape, drawPanel.getCurrentDrawPage() );
             drawPanel.addChangeAction( rca );
             
             drawPanel.removeShape( selectedShape );

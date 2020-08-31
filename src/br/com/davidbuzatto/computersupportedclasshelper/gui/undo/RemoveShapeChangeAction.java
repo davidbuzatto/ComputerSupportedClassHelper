@@ -12,26 +12,26 @@ import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
  *
  * @author David
  */
-public class AddChangeAction extends ChangeAction {
+public class RemoveShapeChangeAction extends ChangeAction {
     
     private Shape shape;
     private int position;
     private DrawPage drawPage;
     
-    public AddChangeAction( Shape shape, DrawPage drawPage ) {
+    public RemoveShapeChangeAction( Shape shape, DrawPage drawPage ) {
         this.shape = shape;
         this.drawPage = drawPage;
-        position = drawPage.getShapes().size() - 1; // always inserted in the end
+        position = drawPage.getShapes().indexOf( shape );
     }
     
     @Override
     public void applyBeforeChange() {
-        drawPage.getShapes().remove( shape );
+        drawPage.getShapes().add( position, shape );
     }
     
     @Override
     public void applyAfterChange() {
-        drawPage.getShapes().add( position, shape );
+        drawPage.getShapes().remove( shape );
     }
     
 }
