@@ -22,6 +22,8 @@ import java.util.Map;
  */
 public class DrawingConfigs implements Serializable {
     
+    private static final long serialVersionUID = Constants.SERIAL_VERSION;
+    
     private static final DrawingConfigs INSTANCE;
     
     private double strokeWidth;

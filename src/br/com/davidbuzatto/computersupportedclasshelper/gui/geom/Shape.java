@@ -17,6 +17,8 @@ import java.io.Serializable;
  */
 public abstract class Shape implements Serializable, Cloneable {
     
+    private static final long serialVersionUID = Constants.SERIAL_VERSION;
+    
     private static int idCount;
     private int id;
     
@@ -90,16 +92,16 @@ public abstract class Shape implements Serializable, Cloneable {
         return id;
     }
     
-    public void setStrokeColor( Color corTraco ) {
-        this.strokeColor = corTraco;
+    public void setStrokeColor( Color strokeColor ) {
+        this.strokeColor = strokeColor;
     }
 
-    public void setFillColor( Color corPreenchimento ) {
-        this.fillColor = corPreenchimento;
+    public void setFillColor( Color fillColor ) {
+        this.fillColor = fillColor;
     }
 
-    public void setStrokeWidth( double espessuraTraco ) {
-        this.strokeWidth = espessuraTraco;
+    public void setStrokeWidth( double strokeWidth ) {
+        this.strokeWidth = strokeWidth;
     }
 
     public void setXStart( double xIni ) {

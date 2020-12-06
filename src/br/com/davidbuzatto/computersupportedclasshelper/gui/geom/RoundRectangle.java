@@ -5,6 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
 
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
@@ -16,6 +17,8 @@ import java.io.Serializable;
  */
 public class RoundRectangle extends Shape implements Serializable, Cloneable {
 
+    private static final long serialVersionUID = Constants.SERIAL_VERSION;
+    
     protected double arcRadius;
     
     @Override

@@ -5,12 +5,14 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
 
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.simplify.DouglasPeuckerSimplifier;
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.io.Serializable;
@@ -24,10 +26,19 @@ import java.util.List;
  */
 public class Curve extends Shape implements Serializable, Cloneable {
 
+    private static final long serialVersionUID = Constants.SERIAL_VERSION;
+    
     private List<Coordinate> coords;
+    private Color strokeAlphaColor;
+    private int smoothIterations;
     
     public Curve() {
+        this( 0 );
+    }
+    
+    public Curve( int smoothIterations ) {
         coords = new ArrayList<>();
+        this.smoothIterations = smoothIterations;
     }
     
     @Override
@@ -80,9 +91,32 @@ public class Curve extends Shape implements Serializable, Cloneable {
             }
 
             if ( strokeColor != null ) {
-                g2d.setPaint( strokeColor );
-                g2d.setStroke( new BasicStroke( (float) strokeWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND ) );
-                g2d.draw( path );
+                
+                if ( smoothIterations == 0 ) {
+                    
+                    g2d.setPaint( strokeColor );
+                    g2d.setStroke( new BasicStroke( (float) strokeWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND ) );
+                    g2d.draw( path );
+                    
+                } else {
+                    
+                    float b = (float) strokeWidth / ( smoothIterations + 1 );
+                    float cB = (float) strokeWidth;
+                    
+                    g2d.setPaint( strokeAlphaColor );
+                    
+                    for ( int i = 0; i < smoothIterations; i++ ) {
+                        g2d.setStroke( new BasicStroke( cB, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND ) );
+                        g2d.draw( path );
+                        cB -= b;
+                    }
+                    
+                    g2d.setPaint( strokeColor );
+                    g2d.setStroke( new BasicStroke( (float) cB, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND ) );
+                    g2d.draw( path );
+                    
+                }
+                
             }
             
         } catch ( Exception exc ) {
@@ -138,10 +172,22 @@ public class Curve extends Shape implements Serializable, Cloneable {
     @Override
     public Curve clone() throws CloneNotSupportedException {
             
-        Curve clone = new Curve();
+        Curve clone = new Curve( smoothIterations );
         copyCurveData( this, clone );
         
         return clone;
+        
+    }
+
+    @Override
+    public void setStrokeColor( Color strokeColor ) {
+        
+        super.setStrokeColor( strokeColor );
+        
+        strokeAlphaColor = new Color( 
+                strokeColor.getRed(),
+                strokeColor.getGreen(),
+                strokeColor.getBlue(), 255 / ( smoothIterations + 1 ) );
         
     }
     

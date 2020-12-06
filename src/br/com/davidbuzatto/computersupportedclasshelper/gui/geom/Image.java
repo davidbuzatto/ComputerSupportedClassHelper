@@ -5,6 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
 
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -19,6 +20,8 @@ import javax.imageio.ImageIO;
  */
 public class Image extends Shape implements Serializable, Cloneable {
 
+    private static final long serialVersionUID = Constants.SERIAL_VERSION;
+    
     transient private BufferedImage image;
     
     private String format;

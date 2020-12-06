@@ -5,6 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
 
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
@@ -15,6 +16,8 @@ import java.io.Serializable;
  * @author David
  */
 public class Star extends Polygon implements Serializable, Cloneable {
+    
+    private static final long serialVersionUID = Constants.SERIAL_VERSION;
     
     @Override
     public void draw( Graphics2D g2d ) {

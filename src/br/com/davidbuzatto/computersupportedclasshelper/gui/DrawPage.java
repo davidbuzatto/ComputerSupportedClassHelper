@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class DrawPage implements Serializable, Cloneable {
     
+    private static final long serialVersionUID = Constants.SERIAL_VERSION;
     private Color backgroundColor;
 
     private Shape tempShape;

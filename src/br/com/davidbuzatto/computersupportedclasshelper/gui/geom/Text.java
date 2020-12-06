@@ -5,6 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
 
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.FontAlignmentEnum;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.FontTypeEnum;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Utils;
@@ -21,6 +22,8 @@ import java.io.Serializable;
  */
 public class Text extends Shape implements Serializable, Cloneable {
 
+    private static final long serialVersionUID = Constants.SERIAL_VERSION;
+    
     private String text;
     transient private String[] lines;
     

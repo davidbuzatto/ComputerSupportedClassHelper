@@ -5,6 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
 
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
@@ -17,6 +18,8 @@ import java.util.Arrays;
  */
 public class Polygon extends Shape implements Serializable, Cloneable {
 
+    private static final long serialVersionUID = Constants.SERIAL_VERSION;
+    
     protected double xCenter;
     protected double yCenter;
     protected double[] xs;
