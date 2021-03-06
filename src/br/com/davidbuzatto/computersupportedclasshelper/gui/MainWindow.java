@@ -1267,12 +1267,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                         movingSca.inspectShapeBeforeChange( selectedShape );
                     }
                     
-                    xPrev = xPressed;
-                    yPrev = yPressed;
                     selectedShape.setSelected( true );
                     createSelectedRepaintRunnable();
                     
                 }
+                
+                xPrev = xPressed;
+                yPrev = yPressed;
 
             } else if ( btnFill.isSelected() ) {
 
@@ -1456,6 +1457,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 }
                 
                 selectedShape = null;
+                
             }
 
             if ( currentShape != null ) {
@@ -1645,13 +1647,18 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             drawPanel.repaint();
 
         } else if ( SwingUtilities.isLeftMouseButton( evt ) && 
-                    btnMove.isSelected() && selectedShape != null ) {
-
-            selectedShape.move( evt.getX() - xPrev, evt.getY() - yPrev );
-
+                    btnMove.isSelected() ) {
+            
+            if ( selectedShape != null ) {
+                selectedShape.move( evt.getX() - xPrev, evt.getY() - yPrev );
+            } else {
+                for ( Shape s : drawPanel.getShapes() ) {
+                    s.move( evt.getX() - xPrev, evt.getY() - yPrev );
+                }
+            }
+            
             xPrev = evt.getX();
             yPrev = evt.getY();
-
             drawPanel.repaint();
         
         }
@@ -2402,13 +2409,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 dispatchActionEvent( btnSave );
                                 break;
                                 
-                            case KeyEvent.VK_Z: // undo
+                            /*case KeyEvent.VK_Z: // undo
                                 dispatchActionEvent( btnUndo );
                                 break;
                                 
                             case KeyEvent.VK_Y: // redo
                                 dispatchActionEvent( btnRedo );
-                                break;
+                                break;*/
                                 
                             case KeyEvent.VK_BACK_SPACE: // clear current draw page
                                 dispatchActionEvent( btnClearCurrentDrawPage );
@@ -2704,7 +2711,21 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
                 } else if ( e.getID() == KeyEvent.KEY_PRESSED ) {
                     
-                    if ( e.isShiftDown() ) {
+                    if ( e.isControlDown() ) {
+
+                        switch ( e.getKeyCode() ) {
+                                
+                            case KeyEvent.VK_Z: // undo
+                                dispatchActionEvent( btnUndo );
+                                break;
+                                
+                            case KeyEvent.VK_Y: // redo
+                                dispatchActionEvent( btnRedo );
+                                break;
+                                
+                        }
+                                
+                    } else if ( e.isShiftDown() ) {
                         
                         isShiftDown = true;
                         

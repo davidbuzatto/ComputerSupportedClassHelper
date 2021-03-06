@@ -1,5 +1,10 @@
 Release Planning
     v1.4.1
+        Move all the drawings when the move tool is selected and no shape
+        is selected: ok
+        Multiple undos and redos when pressing the respective shorcuts: ok
+        Some predefined backgrounds like OneNote (line sheet and grids);
+        GUI consistence in all dialogs: ok
         Undo and Redo for each draw page
             Undo/Redo shape changes: ok
             Undo/Redo add shape: ok
