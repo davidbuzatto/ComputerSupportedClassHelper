@@ -5,6 +5,8 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui;
 
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Grid;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.LineSheet;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Rectangle;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
@@ -25,13 +27,24 @@ public class DrawPage implements Serializable, Cloneable {
     private Shape tempShape;
     private List<Shape> shapes;
 
+    private LineSheet lineSheet;
+    private Grid grid;
+    private boolean drawLineSheet;
+    private boolean drawGrid;
+    
     public DrawPage( Color backgroundColor ) {
+        
         if ( backgroundColor == null ) {
             this.backgroundColor = Constants.TRANSPARENT_COLOR;
         } else {
             this.backgroundColor = backgroundColor;
         }
+        
         this.shapes = new ArrayList<>();
+        
+        lineSheet = new LineSheet();
+        grid = new Grid();
+        
     }
 
     public void reset() {
@@ -133,6 +146,30 @@ public class DrawPage implements Serializable, Cloneable {
         
         return clone;
         
+    }
+
+    public LineSheet getLineSheet() {
+        return lineSheet;
+    }
+
+    public Grid getGrid() {
+        return grid;
+    }
+
+    public boolean isDrawLineSheet() {
+        return drawLineSheet;
+    }
+
+    public void setDrawLineSheet( boolean drawLineSheet ) {
+        this.drawLineSheet = drawLineSheet;
+    }
+
+    public boolean isDrawGrid() {
+        return drawGrid;
+    }
+
+    public void setDrawGrid( boolean drawGrid ) {
+        this.drawGrid = drawGrid;
     }
     
 }

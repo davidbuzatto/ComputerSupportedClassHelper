@@ -14,6 +14,7 @@ Release Planning
             Undo/Redo move current draw page: under development
             Undo/Redo new draw page: under development
             Undo/Redo duplicate current draw page: under development
+        Copy/Cut/Paste;
 
     v1.4.2
         Selection Tool

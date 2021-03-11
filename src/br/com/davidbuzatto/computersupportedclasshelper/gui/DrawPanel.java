@@ -61,6 +61,12 @@ public class DrawPanel extends JPanel {
         g2d.setPaint( currentDrawPage.getBackgroundColor() );
         g2d.fillRect( 0, 0, getWidth(), getHeight() );
         
+        if ( currentDrawPage.isDrawLineSheet() ) {
+            currentDrawPage.getLineSheet().draw( g2d );
+        } else if ( currentDrawPage.isDrawGrid() ) {
+            currentDrawPage.getGrid().draw( g2d );
+        }
+        
         for ( Shape shape : currentDrawPage.getShapes() ) {
             shape.draw( g2d );
         }

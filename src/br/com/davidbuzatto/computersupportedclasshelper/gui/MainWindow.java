@@ -5,11 +5,14 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui;
 
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.BrushCurve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Curve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Ellipse;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.EraserCurve;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Grid;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Image;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Line;
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.LineSheet;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Polygon;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Rectangle;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.RoundRectangle;
@@ -125,6 +128,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup = new javax.swing.ButtonGroup();
+        buttonGroupLineSheetConfig = new javax.swing.ButtonGroup();
+        buttonGroupGridConfig = new javax.swing.ButtonGroup();
         popupMenuNoColor = new javax.swing.JPopupMenu();
         menuItemNoColor = new javax.swing.JMenuItem();
         popupMenuShapeOptions = new javax.swing.JPopupMenu();
@@ -140,6 +145,20 @@ public class MainWindow extends javax.swing.JFrame {
         menuItemBackwards = new javax.swing.JMenuItem();
         sepShapeOptions3 = new javax.swing.JPopupMenu.Separator();
         menuItemRemove = new javax.swing.JMenuItem();
+        popupMenuLineSheet = new javax.swing.JPopupMenu();
+        menuItemLineSheetColor = new ColoredJMenuItem();
+        jSeparator13 = new javax.swing.JPopupMenu.Separator();
+        radioItemLineSheetTiny = new javax.swing.JRadioButtonMenuItem();
+        radioItemLineSheetSmall = new javax.swing.JRadioButtonMenuItem();
+        radioItemLineSheetMedium = new javax.swing.JRadioButtonMenuItem();
+        radioItemLineSheetBig = new javax.swing.JRadioButtonMenuItem();
+        popupMenuGrid = new javax.swing.JPopupMenu();
+        menuItemGridColor = new ColoredJMenuItem();
+        jSeparator14 = new javax.swing.JPopupMenu.Separator();
+        radioItemGridTiny = new javax.swing.JRadioButtonMenuItem();
+        radioItemGridSmall = new javax.swing.JRadioButtonMenuItem();
+        radioItemGridMedium = new javax.swing.JRadioButtonMenuItem();
+        radioItemGridBig = new javax.swing.JRadioButtonMenuItem();
         drawPanel = new br.com.davidbuzatto.computersupportedclasshelper.gui.DrawPanel();
         mainToolBar = new ToolBar( ToolBar.Side.LEFT );
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
@@ -155,6 +174,7 @@ public class MainWindow extends javax.swing.JFrame {
         btnPreview = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnPencil = new javax.swing.JToggleButton();
+        btnBrush = new javax.swing.JToggleButton();
         btnEraser = new javax.swing.JToggleButton();
         jSeparator10 = new javax.swing.JToolBar.Separator();
         btnLine = new javax.swing.JToggleButton();
@@ -178,6 +198,11 @@ public class MainWindow extends javax.swing.JFrame {
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
         jSeparator5 = new javax.swing.JToolBar.Separator();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
+        btnDrawLineSheet = new javax.swing.JToggleButton();
+        btnDrawGrid = new javax.swing.JToggleButton();
+        filler10 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
+        jSeparator12 = new javax.swing.JToolBar.Separator();
+        filler9 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
         colorPanelBackground = new br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
         jSeparator6 = new javax.swing.JToolBar.Separator();
@@ -309,6 +334,96 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         popupMenuShapeOptions.add(menuItemRemove);
+
+        menuItemLineSheetColor.setText("color");
+        menuItemLineSheetColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemLineSheetColorActionPerformed(evt);
+            }
+        });
+        popupMenuLineSheet.add(menuItemLineSheetColor);
+        popupMenuLineSheet.add(jSeparator13);
+
+        buttonGroupLineSheetConfig.add(radioItemLineSheetTiny);
+        radioItemLineSheetTiny.setText("tiny");
+        radioItemLineSheetTiny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioItemLineSheetTinyActionPerformed(evt);
+            }
+        });
+        popupMenuLineSheet.add(radioItemLineSheetTiny);
+
+        buttonGroupLineSheetConfig.add(radioItemLineSheetSmall);
+        radioItemLineSheetSmall.setText("small");
+        radioItemLineSheetSmall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioItemLineSheetSmallActionPerformed(evt);
+            }
+        });
+        popupMenuLineSheet.add(radioItemLineSheetSmall);
+
+        buttonGroupLineSheetConfig.add(radioItemLineSheetMedium);
+        radioItemLineSheetMedium.setText("medium");
+        radioItemLineSheetMedium.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioItemLineSheetMediumActionPerformed(evt);
+            }
+        });
+        popupMenuLineSheet.add(radioItemLineSheetMedium);
+
+        buttonGroupLineSheetConfig.add(radioItemLineSheetBig);
+        radioItemLineSheetBig.setText("big");
+        radioItemLineSheetBig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioItemLineSheetBigActionPerformed(evt);
+            }
+        });
+        popupMenuLineSheet.add(radioItemLineSheetBig);
+
+        menuItemGridColor.setText("color");
+        menuItemGridColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemGridColorActionPerformed(evt);
+            }
+        });
+        popupMenuGrid.add(menuItemGridColor);
+        popupMenuGrid.add(jSeparator14);
+
+        buttonGroupGridConfig.add(radioItemGridTiny);
+        radioItemGridTiny.setText("tiny");
+        radioItemGridTiny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioItemGridTinyActionPerformed(evt);
+            }
+        });
+        popupMenuGrid.add(radioItemGridTiny);
+
+        buttonGroupGridConfig.add(radioItemGridSmall);
+        radioItemGridSmall.setText("small");
+        radioItemGridSmall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioItemGridSmallActionPerformed(evt);
+            }
+        });
+        popupMenuGrid.add(radioItemGridSmall);
+
+        buttonGroupGridConfig.add(radioItemGridMedium);
+        radioItemGridMedium.setText("medium");
+        radioItemGridMedium.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioItemGridMediumActionPerformed(evt);
+            }
+        });
+        popupMenuGrid.add(radioItemGridMedium);
+
+        buttonGroupGridConfig.add(radioItemGridBig);
+        radioItemGridBig.setText("big");
+        radioItemGridBig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioItemGridBigActionPerformed(evt);
+            }
+        });
+        popupMenuGrid.add(radioItemGridBig);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("CSCH");
@@ -458,6 +573,25 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         }
     });
     mainToolBar.add(btnPencil);
+
+    buttonGroup.add(btnBrush);
+    btnBrush.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/paintbrush.png"))); // NOI18N
+    btnBrush.setToolTipText("brush (B)");
+    btnBrush.setFocusPainted(false);
+    btnBrush.setFocusable(false);
+    btnBrush.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnBrush.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnBrush.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnBrushMouseReleased(evt);
+        }
+    });
+    btnBrush.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnBrushActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnBrush);
 
     buttonGroup.add(btnEraser);
     btnEraser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/eraser.png"))); // NOI18N
@@ -636,7 +770,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     mainToolBar.add(btnMove);
 
     buttonGroup.add(btnFill);
-    btnFill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/bucket.png"))); // NOI18N
+    btnFill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/paintcan.png"))); // NOI18N
     btnFill.setToolTipText("change fill (F)");
     btnFill.setFocusPainted(false);
     btnFill.setFocusable(false);
@@ -710,6 +844,45 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     mainToolBar.add(filler4);
     mainToolBar.add(jSeparator5);
     mainToolBar.add(filler6);
+
+    btnDrawLineSheet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/page_white_text.png"))); // NOI18N
+    btnDrawLineSheet.setToolTipText("draw line sheet (H)");
+    btnDrawLineSheet.setFocusPainted(false);
+    btnDrawLineSheet.setFocusable(false);
+    btnDrawLineSheet.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnDrawLineSheet.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnDrawLineSheet.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnDrawLineSheetMouseReleased(evt);
+        }
+    });
+    btnDrawLineSheet.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnDrawLineSheetActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnDrawLineSheet);
+
+    btnDrawGrid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/page_white_grid.png"))); // NOI18N
+    btnDrawGrid.setToolTipText("draw grid (D)");
+    btnDrawGrid.setFocusPainted(false);
+    btnDrawGrid.setFocusable(false);
+    btnDrawGrid.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnDrawGrid.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnDrawGrid.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
+            btnDrawGridMouseReleased(evt);
+        }
+    });
+    btnDrawGrid.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnDrawGridActionPerformed(evt);
+        }
+    });
+    mainToolBar.add(btnDrawGrid);
+    mainToolBar.add(filler10);
+    mainToolBar.add(jSeparator12);
+    mainToolBar.add(filler9);
 
     colorPanelBackground.setToolTipText("background color (Shift+B)");
     colorPanelBackground.setAlignmentX(0.0F);
@@ -1377,6 +1550,15 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                         c.addCoordinate( xPressed, yPressed );
                         currentShape = c;
                     }
+                } else if ( btnBrush.isSelected() ) {
+                    if ( currentShape == null ) {
+                        BrushCurve b = new BrushCurve();
+                        b.setStrokeColor( colorPanelStroke.getColor() );
+                        b.setFillColor( colorPanelFill.getColor() );
+                        b.setStrokeWidth( dConfig.getStrokeWidth() );
+                        b.addCoordinate( xPressed, yPressed );
+                        currentShape = b;
+                    }
                 } else if ( btnEraser.isSelected() ) {
                     if ( currentShape == null ) {
                         EraserCurve e = new EraserCurve();
@@ -1491,6 +1673,24 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     curve = (Curve) currentShape;
                 } else {
                     curve = new Curve();
+                }
+
+                curve.setStrokeColor( colorPanelStroke.getColor() );
+                curve.setFillColor( colorPanelFill.getColor() );
+
+                curve.setStrokeWidth( dConfig.getStrokeWidth() );
+                curve.addCoordinate( evt.getX(), evt.getY() );
+
+                currentShape = curve;
+
+            } else if ( btnBrush.isSelected() ) {
+
+                BrushCurve curve;
+
+                if ( currentShape != null && currentShape instanceof BrushCurve ) {
+                    curve = (BrushCurve) currentShape;
+                } else {
+                    curve = new BrushCurve();
                 }
 
                 curve.setStrokeColor( colorPanelStroke.getColor() );
@@ -2215,6 +2415,110 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         removeSelectedShape();
     }//GEN-LAST:event_menuItemRemoveActionPerformed
 
+    private void btnDrawLineSheetMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDrawLineSheetMouseReleased
+        openLineSheetConfiguration( evt );
+    }//GEN-LAST:event_btnDrawLineSheetMouseReleased
+
+    private void btnDrawLineSheetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrawLineSheetActionPerformed
+        
+        drawPanel.getCurrentDrawPage().setDrawLineSheet( btnDrawLineSheet.isSelected() );
+        drawPanel.getCurrentDrawPage().setDrawGrid( false );
+        btnDrawGrid.setSelected( false );
+        
+        drawPanel.repaint();
+        
+    }//GEN-LAST:event_btnDrawLineSheetActionPerformed
+
+    private void btnDrawGridMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDrawGridMouseReleased
+        openGridConfiguration( evt );
+    }//GEN-LAST:event_btnDrawGridMouseReleased
+
+    private void btnDrawGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrawGridActionPerformed
+        
+        drawPanel.getCurrentDrawPage().setDrawGrid( btnDrawGrid.isSelected() );
+        drawPanel.getCurrentDrawPage().setDrawLineSheet( false );
+        btnDrawLineSheet.setSelected( false );
+        
+        drawPanel.repaint();
+        
+    }//GEN-LAST:event_btnDrawGridActionPerformed
+
+    private void btnBrushMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBrushMouseReleased
+        openNewToolConfigDialogStrokeWidth( evt );
+    }//GEN-LAST:event_btnBrushMouseReleased
+
+    private void btnBrushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrushActionPerformed
+        drawPanel.setCursor( Cursors.getCursor( Cursors.Type.BRUSH, null ) );
+    }//GEN-LAST:event_btnBrushActionPerformed
+
+    private void radioItemLineSheetTinyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemLineSheetTinyActionPerformed
+        drawPanel.getCurrentDrawPage().getLineSheet().setDistanceTo15();
+        drawPanel.repaint();
+    }//GEN-LAST:event_radioItemLineSheetTinyActionPerformed
+
+    private void radioItemLineSheetSmallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemLineSheetSmallActionPerformed
+        drawPanel.getCurrentDrawPage().getLineSheet().setDistanceTo30();
+        drawPanel.repaint();
+    }//GEN-LAST:event_radioItemLineSheetSmallActionPerformed
+
+    private void radioItemLineSheetMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemLineSheetMediumActionPerformed
+        drawPanel.getCurrentDrawPage().getLineSheet().setDistanceTo45();
+        drawPanel.repaint();
+    }//GEN-LAST:event_radioItemLineSheetMediumActionPerformed
+
+    private void radioItemLineSheetBigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemLineSheetBigActionPerformed
+        drawPanel.getCurrentDrawPage().getLineSheet().setDistanceTo60();
+        drawPanel.repaint();
+    }//GEN-LAST:event_radioItemLineSheetBigActionPerformed
+
+    private void menuItemLineSheetColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemLineSheetColorActionPerformed
+        
+        LineSheet ls = drawPanel.getCurrentDrawPage().getLineSheet();
+        
+        Color c = JColorChooser.showDialog( this, "Line Sheet Color", ls.getStrokeColor() );
+        
+        if ( c != null ) {
+            ls.setStrokeColor( c );
+            drawPanel.repaint();
+            dConfig.getColors().put( "lsc", c );
+        }
+        
+    }//GEN-LAST:event_menuItemLineSheetColorActionPerformed
+
+    private void menuItemGridColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGridColorActionPerformed
+        
+        Grid g = drawPanel.getCurrentDrawPage().getGrid();
+        
+        Color c = JColorChooser.showDialog( this, "Grid Color", g.getStrokeColor() );
+        
+        if ( c != null ) {
+            g.setStrokeColor( c );
+            drawPanel.repaint();
+            dConfig.getColors().put( "gc", c );
+        }
+        
+    }//GEN-LAST:event_menuItemGridColorActionPerformed
+
+    private void radioItemGridTinyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemGridTinyActionPerformed
+        drawPanel.getCurrentDrawPage().getGrid().setDistanceTo15();
+        drawPanel.repaint();
+    }//GEN-LAST:event_radioItemGridTinyActionPerformed
+
+    private void radioItemGridSmallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemGridSmallActionPerformed
+        drawPanel.getCurrentDrawPage().getGrid().setDistanceTo30();
+        drawPanel.repaint();
+    }//GEN-LAST:event_radioItemGridSmallActionPerformed
+
+    private void radioItemGridMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemGridMediumActionPerformed
+        drawPanel.getCurrentDrawPage().getGrid().setDistanceTo45();
+        drawPanel.repaint();
+    }//GEN-LAST:event_radioItemGridMediumActionPerformed
+
+    private void radioItemGridBigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemGridBigActionPerformed
+        drawPanel.getCurrentDrawPage().getGrid().setDistanceTo60();
+        drawPanel.repaint();
+    }//GEN-LAST:event_radioItemGridBigActionPerformed
+
     public void moveColors( Map<String, Color> colors ) {
         
         colorPanelSC1.setColor( colors.get( "sc1" ) );
@@ -2642,6 +2946,11 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 dispatchActionEvent( btnPencil );
                                 break;
                                 
+                            case KeyEvent.VK_B: // brush
+                                btnBrush.setSelected( true );
+                                dispatchActionEvent( btnBrush );
+                                break;
+                                
                             case KeyEvent.VK_E: // eraser
                                 btnEraser.setSelected( true );
                                 dispatchActionEvent( btnEraser );
@@ -2699,6 +3008,16 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 
                             case KeyEvent.VK_C: // palette
                                 dispatchActionEvent( btnPalette );
+                                break;
+                                
+                            case KeyEvent.VK_H: // draw line sheet
+                                btnDrawLineSheet.setSelected( !btnDrawLineSheet.isSelected() );
+                                dispatchActionEvent( btnDrawLineSheet );
+                                break;
+                                
+                            case KeyEvent.VK_D: // draw grid
+                                btnDrawGrid.setSelected( !btnDrawGrid.isSelected() );
+                                dispatchActionEvent( btnDrawGrid );
                                 break;
                                 
                             case KeyEvent.VK_F1: // help and about
@@ -2792,6 +3111,60 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         } else if ( SwingUtilities.isRightMouseButton( evt ) ) {
             popupMenuNoColor.setName( colorName );
             popupMenuNoColor.show( evt.getComponent(), evt.getX(), evt.getY() );
+        }
+        
+    }
+    
+    private void openLineSheetConfiguration( MouseEvent evt ) {
+        
+        LineSheet ls = drawPanel.getCurrentDrawPage().getLineSheet();
+        
+        switch ( ls.getDistance() ) {
+            case 15:
+                radioItemLineSheetTiny.setSelected( true );
+                break;
+            case 30:
+                radioItemLineSheetSmall.setSelected( true );
+                break;
+            case 45:
+                radioItemLineSheetMedium.setSelected( true );
+                break;
+            case 60:
+                radioItemLineSheetBig.setSelected( true );
+                break;
+        }
+        
+        ( (ColoredJMenuItem) menuItemLineSheetColor ).setColor( ls.getStrokeColor() );
+        
+        if ( SwingUtilities.isRightMouseButton( evt ) ) {
+            popupMenuLineSheet.show( evt.getComponent(), evt.getX(), evt.getY() );
+        }
+        
+    }
+    
+    private void openGridConfiguration( MouseEvent evt ) {
+        
+        Grid g = drawPanel.getCurrentDrawPage().getGrid();
+        
+        switch ( g.getDistance() ) {
+            case 15:
+                radioItemGridTiny.setSelected( true );
+                break;
+            case 30:
+                radioItemGridSmall.setSelected( true );
+                break;
+            case 45:
+                radioItemGridMedium.setSelected( true );
+                break;
+            case 60:
+                radioItemGridBig.setSelected( true );
+                break;
+        }
+        
+        ( (ColoredJMenuItem) menuItemGridColor ).setColor( g.getStrokeColor() );
+        
+        if ( SwingUtilities.isRightMouseButton( evt ) ) {
+            popupMenuGrid.show( evt.getComponent(), evt.getX(), evt.getY() );
         }
         
     }
@@ -3079,7 +3452,10 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAddImage;
     private javax.swing.JToggleButton btnAddText;
+    private javax.swing.JToggleButton btnBrush;
     private javax.swing.JButton btnClearCurrentDrawPage;
+    private javax.swing.JToggleButton btnDrawGrid;
+    private javax.swing.JToggleButton btnDrawLineSheet;
     private javax.swing.JToggleButton btnEllipse;
     private javax.swing.JToggleButton btnEraser;
     private javax.swing.JToggleButton btnFill;
@@ -3101,6 +3477,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private javax.swing.JToggleButton btnStar;
     private javax.swing.JButton btnUndo;
     private javax.swing.ButtonGroup buttonGroup;
+    private javax.swing.ButtonGroup buttonGroupGridConfig;
+    private javax.swing.ButtonGroup buttonGroupLineSheetConfig;
     private br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel colorPanelBackground;
     private br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel colorPanelFC1;
     private br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel colorPanelFC2;
@@ -3122,6 +3500,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private br.com.davidbuzatto.computersupportedclasshelper.gui.ColorPanel colorPanelStroke;
     private br.com.davidbuzatto.computersupportedclasshelper.gui.DrawPanel drawPanel;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler10;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
@@ -3129,9 +3508,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private javax.swing.Box.Filler filler6;
     private javax.swing.Box.Filler filler7;
     private javax.swing.Box.Filler filler8;
+    private javax.swing.Box.Filler filler9;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
+    private javax.swing.JToolBar.Separator jSeparator12;
+    private javax.swing.JPopupMenu.Separator jSeparator13;
+    private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
@@ -3146,6 +3529,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private javax.swing.JMenuItem menuItemDuplicate;
     private javax.swing.JMenuItem menuItemEditText;
     private javax.swing.JMenuItem menuItemForwards;
+    private javax.swing.JMenuItem menuItemGridColor;
+    private javax.swing.JMenuItem menuItemLineSheetColor;
     private javax.swing.JMenuItem menuItemMoveBack;
     private javax.swing.JMenuItem menuItemMoveFront;
     private javax.swing.JMenuItem menuItemNoColor;
@@ -3161,8 +3546,18 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     private javax.swing.JPanel panelC6;
     private javax.swing.JPanel panelC7;
     private javax.swing.JPanel panelC8;
+    private javax.swing.JPopupMenu popupMenuGrid;
+    private javax.swing.JPopupMenu popupMenuLineSheet;
     private javax.swing.JPopupMenu popupMenuNoColor;
     private javax.swing.JPopupMenu popupMenuShapeOptions;
+    private javax.swing.JRadioButtonMenuItem radioItemGridBig;
+    private javax.swing.JRadioButtonMenuItem radioItemGridMedium;
+    private javax.swing.JRadioButtonMenuItem radioItemGridSmall;
+    private javax.swing.JRadioButtonMenuItem radioItemGridTiny;
+    private javax.swing.JRadioButtonMenuItem radioItemLineSheetBig;
+    private javax.swing.JRadioButtonMenuItem radioItemLineSheetMedium;
+    private javax.swing.JRadioButtonMenuItem radioItemLineSheetSmall;
+    private javax.swing.JRadioButtonMenuItem radioItemLineSheetTiny;
     private javax.swing.JPopupMenu.Separator sepShapeOptions1;
     private javax.swing.JPopupMenu.Separator sepShapeOptions2;
     private javax.swing.JPopupMenu.Separator sepShapeOptions3;

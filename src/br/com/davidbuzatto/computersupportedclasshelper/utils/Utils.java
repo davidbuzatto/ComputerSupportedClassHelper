@@ -5,8 +5,10 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.utils;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
@@ -27,6 +29,10 @@ public class Utils {
         T temp = list.get( v );
         list.set( v, list.get( w ) );
         list.set( w, temp );
+    }
+    
+    public static Dimension getScreenSize() {
+        return Toolkit.getDefaultToolkit().getScreenSize();
     }
     
 }
