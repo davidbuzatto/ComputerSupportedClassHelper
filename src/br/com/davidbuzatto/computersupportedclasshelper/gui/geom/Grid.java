@@ -24,8 +24,8 @@ public class Grid extends Shape implements Serializable, Cloneable {
     private static final Dimension screenSize = Utils.getScreenSize();
     
     public Grid() {
-        setDistanceTo30();
-        strokeColor = new Color( 0, 0, 0, 100 );
+        //setDistanceTo30();
+        //strokeColor = new Color( 0, 0, 0, 100 );
     }
     
     @Override
@@ -65,6 +65,10 @@ public class Grid extends Shape implements Serializable, Cloneable {
         
         return clone;
         
+    }
+
+    public void setDistance( int distance ) {
+        this.distance = distance;
     }
 
     public void setDistanceTo15() {

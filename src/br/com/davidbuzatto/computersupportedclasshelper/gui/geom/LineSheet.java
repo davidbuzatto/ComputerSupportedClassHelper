@@ -24,8 +24,8 @@ public class LineSheet extends Shape implements Serializable, Cloneable {
     private static final Dimension screenSize = Utils.getScreenSize();
     
     public LineSheet() {
-        setDistanceTo30();
-        strokeColor = new Color( 0, 0, 0, 100 );
+        //setDistanceTo30();
+        //strokeColor = new Color( 0, 0, 0, 100 );
     }
     
     @Override
@@ -63,6 +63,10 @@ public class LineSheet extends Shape implements Serializable, Cloneable {
         
     }
 
+    public void setDistance( int distance ) {
+        this.distance = distance;
+    }
+    
     public void setDistanceTo15() {
         this.distance = 15;
     }

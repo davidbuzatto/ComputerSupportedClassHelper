@@ -38,6 +38,11 @@ public class DrawingConfigs implements Serializable {
     private boolean fontIsItalic;
     private FontAlignmentEnum fontAlignment;
     
+    private int lineSheetDistance;
+    private int gridDistance;
+    private boolean drawLineSheet;
+    private boolean drawGrid;
+    
     private Map<String, Color> colors;
     private File defaultDir;
     
@@ -58,11 +63,19 @@ public class DrawingConfigs implements Serializable {
         fontType = FontTypeEnum.DIALOG;
         fontAlignment = FontAlignmentEnum.LEFT;
         
+        lineSheetDistance = 30;
+        gridDistance = 30;
+        drawLineSheet = false;
+        drawGrid = false;
+        
         colors = new HashMap<>();
         
         colors.put( "sc", new Color( 0, 0, 0 ) );
         colors.put( "fc", null );
         colors.put( "bc", null );
+        
+        colors.put( "lsc", new Color( 0, 0, 0, 100 ) );
+        colors.put( "gc", new Color( 0, 0, 0, 100 ) );
         
         colors.put( "sc1", new Color( 0, 0, 0 ) );
         colors.put( "sc2", new Color( 255, 255, 255 ) );
@@ -128,6 +141,11 @@ public class DrawingConfigs implements Serializable {
             this.fontIsBold = c.fontIsBold;
             this.fontIsItalic = c.fontIsItalic;
             this.fontAlignment = c.fontAlignment;
+            
+            this.lineSheetDistance = c.lineSheetDistance;
+            this.gridDistance = c.gridDistance;
+            this.drawLineSheet = c.drawLineSheet;
+            this.drawGrid = c.drawGrid;
             
             this.colors = c.colors;
             this.defaultDir = c.defaultDir;
@@ -236,6 +254,38 @@ public class DrawingConfigs implements Serializable {
 
     public void setFontAlignment( FontAlignmentEnum fontAlignment ) {
         this.fontAlignment = fontAlignment;
+    }
+
+    public int getLineSheetDistance() {
+        return lineSheetDistance;
+    }
+
+    public void setLineSheetDistance( int lineSheetDistance ) {
+        this.lineSheetDistance = lineSheetDistance;
+    }
+
+    public int getGridDistance() {
+        return gridDistance;
+    }
+
+    public void setGridDistance( int gridDistance ) {
+        this.gridDistance = gridDistance;
+    }
+
+    public boolean isDrawLineSheet() {
+        return drawLineSheet;
+    }
+
+    public void setDrawLineSheet( boolean drawLineSheet ) {
+        this.drawLineSheet = drawLineSheet;
+    }
+
+    public boolean isDrawGrid() {
+        return drawGrid;
+    }
+
+    public void setDrawGrid( boolean drawGrid ) {
+        this.drawGrid = drawGrid;
     }
     
 }

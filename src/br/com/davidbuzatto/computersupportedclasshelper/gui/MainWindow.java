@@ -1918,12 +1918,16 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 File f = jfc.getSelectedFile();
                 
                 if ( currentFile == null || !f.equals( currentFile ) ) {
+                    
                     currentFile = f;
                     dConfig.setDefaultDir( currentFile.getParentFile() );
+                    
                     ObjectInputStream i = new ObjectInputStream( new FileInputStream( currentFile ) );
                     drawPanel.loadDrawPagesFromOutside( i.readObject() );
                     i.close();
+                    
                     drawPanel.repaint();
+                    
                     Shape.setIdCount( drawPanel.getMaxShapeId() + 1 );
                     updateLabelPages();
                     verifyHistory();
@@ -1933,6 +1937,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     } else {
                         colorPanelBackground.setColor( drawPanel.getBackgroundColor() );
                     }
+                    
+                    configureLineSheetAndGridGUI();
                     
                 }
                 
@@ -1945,6 +1951,19 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         dConfig.setProcessEventsMainWindow( true );
         
     }//GEN-LAST:event_btnOpenActionPerformed
+
+    private void configureLineSheetAndGridGUI() {
+        if ( drawPanel.getCurrentDrawPage().isDrawLineSheet() ) {
+            btnDrawLineSheet.setSelected( true );
+            btnDrawGrid.setSelected( false );
+        } else if ( drawPanel.getCurrentDrawPage().isDrawGrid() ) {
+            btnDrawLineSheet.setSelected( false );
+            btnDrawGrid.setSelected( true );
+        }  else {
+            btnDrawLineSheet.setSelected( false );
+            btnDrawGrid.setSelected( false );
+        }
+    }
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         saveProject( );
@@ -2425,6 +2444,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         drawPanel.getCurrentDrawPage().setDrawGrid( false );
         btnDrawGrid.setSelected( false );
         
+        dConfig.setDrawLineSheet( drawPanel.getCurrentDrawPage().isDrawLineSheet() );
+        dConfig.setDrawGrid( drawPanel.getCurrentDrawPage().isDrawGrid() );
+        
         drawPanel.repaint();
         
     }//GEN-LAST:event_btnDrawLineSheetActionPerformed
@@ -2438,6 +2460,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         drawPanel.getCurrentDrawPage().setDrawGrid( btnDrawGrid.isSelected() );
         drawPanel.getCurrentDrawPage().setDrawLineSheet( false );
         btnDrawLineSheet.setSelected( false );
+        
+        dConfig.setDrawLineSheet( drawPanel.getCurrentDrawPage().isDrawLineSheet() );
+        dConfig.setDrawGrid( drawPanel.getCurrentDrawPage().isDrawGrid() );
         
         drawPanel.repaint();
         
@@ -2453,21 +2478,25 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
     private void radioItemLineSheetTinyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemLineSheetTinyActionPerformed
         drawPanel.getCurrentDrawPage().getLineSheet().setDistanceTo15();
+        dConfig.setLineSheetDistance( drawPanel.getCurrentDrawPage().getLineSheet().getDistance() );
         drawPanel.repaint();
     }//GEN-LAST:event_radioItemLineSheetTinyActionPerformed
 
     private void radioItemLineSheetSmallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemLineSheetSmallActionPerformed
         drawPanel.getCurrentDrawPage().getLineSheet().setDistanceTo30();
+        dConfig.setLineSheetDistance( drawPanel.getCurrentDrawPage().getLineSheet().getDistance() );
         drawPanel.repaint();
     }//GEN-LAST:event_radioItemLineSheetSmallActionPerformed
 
     private void radioItemLineSheetMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemLineSheetMediumActionPerformed
         drawPanel.getCurrentDrawPage().getLineSheet().setDistanceTo45();
+        dConfig.setLineSheetDistance( drawPanel.getCurrentDrawPage().getLineSheet().getDistance() );
         drawPanel.repaint();
     }//GEN-LAST:event_radioItemLineSheetMediumActionPerformed
 
     private void radioItemLineSheetBigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemLineSheetBigActionPerformed
         drawPanel.getCurrentDrawPage().getLineSheet().setDistanceTo60();
+        dConfig.setLineSheetDistance( drawPanel.getCurrentDrawPage().getLineSheet().getDistance() );
         drawPanel.repaint();
     }//GEN-LAST:event_radioItemLineSheetBigActionPerformed
 
@@ -2501,21 +2530,25 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
     private void radioItemGridTinyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemGridTinyActionPerformed
         drawPanel.getCurrentDrawPage().getGrid().setDistanceTo15();
+        dConfig.setGridDistance( drawPanel.getCurrentDrawPage().getGrid().getDistance() );
         drawPanel.repaint();
     }//GEN-LAST:event_radioItemGridTinyActionPerformed
 
     private void radioItemGridSmallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemGridSmallActionPerformed
         drawPanel.getCurrentDrawPage().getGrid().setDistanceTo30();
+        dConfig.setGridDistance( drawPanel.getCurrentDrawPage().getGrid().getDistance() );
         drawPanel.repaint();
     }//GEN-LAST:event_radioItemGridSmallActionPerformed
 
     private void radioItemGridMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemGridMediumActionPerformed
         drawPanel.getCurrentDrawPage().getGrid().setDistanceTo45();
+        dConfig.setGridDistance( drawPanel.getCurrentDrawPage().getGrid().getDistance() );
         drawPanel.repaint();
     }//GEN-LAST:event_radioItemGridMediumActionPerformed
 
     private void radioItemGridBigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioItemGridBigActionPerformed
         drawPanel.getCurrentDrawPage().getGrid().setDistanceTo60();
+        dConfig.setGridDistance( drawPanel.getCurrentDrawPage().getGrid().getDistance() );
         drawPanel.repaint();
     }//GEN-LAST:event_radioItemGridBigActionPerformed
 
@@ -2578,25 +2611,35 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 
                             case KeyEvent.VK_RIGHT:
                                 if ( drawPanel.willMoveToRightCurrentDrawPage() ) {
+                                    
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
                                             "<html>Move the current draw page to the right?</html>", "Move Current Draw Page" ) == JOptionPane.YES_OPTION ) {
                                         drawPanel.moveCurrentDrawPageToRight();
                                         drawPanel.repaint();
                                     }
+                                    
+                                    configureLineSheetAndGridGUI();
+
                                     updateLabelPages();
+                                    
                                 }
                                 break;
                                 
                             case KeyEvent.VK_LEFT:
                                 if ( drawPanel.willMoveToLeftCurrentDrawPage() ) {
+                                    
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
                                             "<html>Move the current draw page to the left?</html>", "Move Current Draw Page" ) == JOptionPane.YES_OPTION ) {
                                         drawPanel.moveCurrentDrawPageToLeft();
                                         drawPanel.repaint();
                                     }
+                                    
+                                    configureLineSheetAndGridGUI();
+                                    
                                     updateLabelPages();
+                                    
                                 }
                                 break;
                                 
@@ -2819,7 +2862,19 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
                                             "<html>Create a new draw page to the right?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                        
+                                        DrawPage dp = drawPanel.getCurrentDrawPage();
+                                        
                                         drawPanel.nextDrawPage( colorPanelBackground.getColor() );
+                                        
+                                        drawPanel.getCurrentDrawPage().getLineSheet().setStrokeColor( dp.getLineSheet().getStrokeColor() );
+                                        drawPanel.getCurrentDrawPage().getLineSheet().setDistance( dp.getLineSheet().getDistance() );
+                                        drawPanel.getCurrentDrawPage().setDrawLineSheet( dp.isDrawLineSheet() );
+                                        
+                                        drawPanel.getCurrentDrawPage().getGrid().setStrokeColor( dp.getGrid().getStrokeColor() );
+                                        drawPanel.getCurrentDrawPage().getGrid().setDistance( dp.getGrid().getDistance() );
+                                        drawPanel.getCurrentDrawPage().setDrawGrid( dp.isDrawGrid() );
+                                        
                                     }
                                 } else {
                                     
@@ -2833,6 +2888,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                     
                                 }
                                 
+                                configureLineSheetAndGridGUI();
+                                
                                 drawPanel.repaint();
                                 updateLabelPages();
                                 break;
@@ -2843,7 +2900,19 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
                                             "<html>Create a new draw page to the left?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                        
+                                        DrawPage dp = drawPanel.getCurrentDrawPage();
+                                        
                                         drawPanel.previousDrawPage( colorPanelBackground.getColor() );
+                                        
+                                        drawPanel.getCurrentDrawPage().getLineSheet().setStrokeColor( dp.getLineSheet().getStrokeColor() );
+                                        drawPanel.getCurrentDrawPage().getLineSheet().setDistance( dp.getLineSheet().getDistance() );
+                                        drawPanel.getCurrentDrawPage().setDrawLineSheet( dp.isDrawLineSheet() );
+                                        
+                                        drawPanel.getCurrentDrawPage().getGrid().setStrokeColor( dp.getGrid().getStrokeColor() );
+                                        drawPanel.getCurrentDrawPage().getGrid().setDistance( dp.getGrid().getDistance() );
+                                        drawPanel.getCurrentDrawPage().setDrawGrid( dp.isDrawGrid() );
+                                        
                                     }
                                 } else {
                                     
@@ -2856,6 +2925,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                     }
                                     
                                 }
+                                
+                                configureLineSheetAndGridGUI();
                                 
                                 drawPanel.repaint();
                                 updateLabelPages();
@@ -3314,6 +3385,20 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         colorPanelStroke.setColor( dConfig.getColors().get( "sc" ) );
         colorPanelFill.setColor( dConfig.getColors().get( "fc" ) );
         colorPanelBackground.setColor( dConfig.getColors().get( "bc" ) );
+        
+        LineSheet ls = drawPanel.getCurrentDrawPage().getLineSheet();
+        Grid g = drawPanel.getCurrentDrawPage().getGrid();
+        
+        ls.setStrokeColor( dConfig.getColors().get( "lsc" ) );
+        ls.setDistance( dConfig.getLineSheetDistance() );
+        drawPanel.getCurrentDrawPage().setDrawLineSheet( dConfig.isDrawLineSheet() );
+        
+        g.setStrokeColor( dConfig.getColors().get( "gc" ) );
+        g.setDistance( dConfig.getGridDistance() );
+        drawPanel.getCurrentDrawPage().setDrawGrid( dConfig.isDrawGrid() );
+        
+        configureLineSheetAndGridGUI();
+        
         mainToolBar.repaint();
         
         drawPanel.setBackgroundColor( colorPanelBackground.getColor() );

@@ -103,9 +103,17 @@ public class DrawPagesPreviewPanel extends JPanel {
 
         Graphics2D g2d2 = (Graphics2D) g2d1.create();
         g2d2.scale( scale, scale );
+        
+        if ( currentDrawPage.isDrawLineSheet() ) {
+            currentDrawPage.getLineSheet().draw( g2d2 );
+        } else if ( currentDrawPage.isDrawGrid() ) {
+            currentDrawPage.getGrid().draw( g2d2 );
+        }
+        
         for ( Shape shape : currentDrawPage.getShapes() ) {
             shape.draw( g2d2 );
         }
+        
         g2d2.dispose();
         
         g2d1.setPaint( Color.WHITE );

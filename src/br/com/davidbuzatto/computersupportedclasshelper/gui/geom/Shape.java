@@ -33,6 +33,9 @@ public abstract class Shape implements Serializable, Cloneable {
     protected double xEndD;
     protected double yEndD;
     
+    protected double scale;
+    protected double angle;
+    
     protected Color strokeColor;
     protected Color fillColor;
     protected double strokeWidth;
@@ -41,6 +44,7 @@ public abstract class Shape implements Serializable, Cloneable {
     transient private int selectedPhase;
     
     public Shape() {
+        scale = 1;
         strokeColor = Color.BLACK;
         fillColor = Color.WHITE;
         id = idCount++;
@@ -170,6 +174,22 @@ public abstract class Shape implements Serializable, Cloneable {
 
     public double getYEndD() {
         return yEndD;
+    }
+
+    public double getScale() {
+        return scale;
+    }
+
+    public void setScale( double scale ) {
+        this.scale = scale;
+    }
+
+    public double getAngle() {
+        return angle;
+    }
+
+    public void setAngle( double angle ) {
+        this.angle = angle;
     }
     
     @Override

@@ -11,7 +11,6 @@ import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.simplify.DouglasPeuckerSimplifier;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
@@ -77,8 +76,6 @@ public class BrushCurve extends Shape implements Serializable, Cloneable {
 
                 }
                 
-                /*Coordinate cc = spline.get( spline.size() - 1 );
-                path.lineTo( cc.x - 10, cc.y + 10 );*/
                 Collections.reverse( spline );
                 
                 for ( Coordinate c : spline ) {
