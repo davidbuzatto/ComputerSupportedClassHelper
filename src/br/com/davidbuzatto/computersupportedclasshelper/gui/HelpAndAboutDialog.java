@@ -5,6 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui;
 
+import br.com.davidbuzatto.computersupportedclasshelper.utils.Constants;
 import br.com.davidbuzatto.computersupportedclasshelper.utils.DrawingConfigs;
 import java.awt.Color;
 import java.awt.Font;
@@ -40,7 +41,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         lblAbout.setText( "<html>CSCH (Computer Supported Class Helper) is being developed "
                 + "as a non profit hobby and for personal use by professor "
                 + "David Buzatto from IFSP, São Paulo, Brazil. Use it at your own risk. " 
-                + MainWindow.VERSION + ".</html>" );
+                + Constants.VERSION + ".</html>" );
         
         keyEventDispatcher = new KeyEventDispatcher() {
             @Override
@@ -127,6 +128,12 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel134 = new javax.swing.JLabel();
         jLabel135 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel136 = new javax.swing.JLabel();
+        jLabel137 = new javax.swing.JLabel();
+        jLabel138 = new javax.swing.JLabel();
+        jLabel139 = new javax.swing.JLabel();
+        jLabel140 = new javax.swing.JLabel();
+        jLabel141 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -169,13 +176,10 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel67 = new javax.swing.JLabel();
         jLabel104 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
-        jLabel71 = new javax.swing.JLabel();
-        jLabel105 = new javax.swing.JLabel();
-        jLabel72 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jLabel73 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
         jLabel77 = new javax.swing.JLabel();
         jLabel78 = new javax.swing.JLabel();
         jLabel79 = new javax.swing.JLabel();
@@ -218,6 +222,9 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel131 = new javax.swing.JLabel();
         jLabel132 = new javax.swing.JLabel();
         jLabel133 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        jLabel105 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
         customDialogContainerPanel2 = new br.com.davidbuzatto.computersupportedclasshelper.gui.CustomDialogContainerPanel();
         lblTitle2 = new javax.swing.JLabel();
         lblAbout = new javax.swing.JLabel();
@@ -699,24 +706,82 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jPanel3.setOpaque(false);
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jLabel22.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel22.setText("New Project");
+        jLabel136.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel136.setText("New Project");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel136, gridBagConstraints);
+
+        jLabel137.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_add.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel137, gridBagConstraints);
+
+        jLabel138.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel138.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel138.setText("Ctrl+N");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel138, gridBagConstraints);
+
+        jLabel139.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel139.setText("Show/Hide Line Sheet");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jLabel139, gridBagConstraints);
+
+        jLabel140.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/page_white_text.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel3.add(jLabel140, gridBagConstraints);
+
+        jLabel141.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel141.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel141.setText("H");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel141, gridBagConstraints);
+
+        jLabel22.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel22.setText("Show/Hide Grid");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         jPanel3.add(jLabel22, gridBagConstraints);
 
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_add.png"))); // NOI18N
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/page_white_grid.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel23, gridBagConstraints);
 
         jLabel24.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel24.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel24.setText("Ctrl+N");
+        jLabel24.setText("D");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -726,7 +791,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel25.setText("Open Project");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -735,7 +800,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/folder_edit.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel26, gridBagConstraints);
@@ -745,7 +810,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel27.setText("Ctrl+O");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -754,7 +819,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/disk.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel28, gridBagConstraints);
@@ -763,7 +828,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel29.setText("Save Project");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -774,7 +839,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel30.setText("Ctrl+S");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -784,7 +849,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel31.setText("Save Print Screen");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -795,7 +860,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel32.setText("PrtScn");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -804,7 +869,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/picture.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel33, gridBagConstraints);
@@ -812,7 +877,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_undo.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel34, gridBagConstraints);
@@ -821,7 +886,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel35.setText("Undo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -832,7 +897,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel36.setText("Ctrl+Z");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -842,7 +907,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel37.setText("Redo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -851,7 +916,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/arrow_redo.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel38, gridBagConstraints);
@@ -861,7 +926,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel39.setText("Ctrl+Y");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -871,7 +936,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel40.setText("Clear Curr. Draw Page");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -880,7 +945,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/delete.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel41, gridBagConstraints);
@@ -890,7 +955,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel42.setText("Ctrl+Backspace");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -900,7 +965,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel49.setText("Help and About");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -909,7 +974,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/help.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel50, gridBagConstraints);
@@ -919,7 +984,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel51.setText("F1");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -929,7 +994,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel55.setText("Quit");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -938,7 +1003,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/cancel.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel56, gridBagConstraints);
@@ -948,7 +1013,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel57.setText("Alt+F4");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -958,7 +1023,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel68.setText("Remove Stroke Color");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -969,7 +1034,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel70.setText("Alt+S");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -979,7 +1044,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel75.setText("Remove Fill Color");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -990,7 +1055,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel76.setText("Alt+F");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1000,7 +1065,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel80.setText("Remove Background Color");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1011,7 +1076,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel83.setText("Alt+B");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1022,7 +1087,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel101.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.ipadx = 4;
         gridBagConstraints.ipady = 4;
         jPanel3.add(jLabel101, gridBagConstraints);
@@ -1032,7 +1097,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel102.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.ipadx = 4;
         gridBagConstraints.ipady = 4;
         jPanel3.add(jLabel102, gridBagConstraints);
@@ -1042,7 +1107,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel103.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel103, gridBagConstraints);
@@ -1051,7 +1116,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel64.setText("Palettes");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1060,7 +1125,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/palette.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel65, gridBagConstraints);
@@ -1070,7 +1135,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel66.setText("C");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1080,7 +1145,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel67.setText("Select Palette Color");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 15;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1091,7 +1156,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel104.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 15;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel3.add(jLabel104, gridBagConstraints);
@@ -1101,83 +1166,52 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel69.setText("1 to 8");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 15;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel3.add(jLabel69, gridBagConstraints);
 
-        jLabel71.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel71.setText("Change Palette Stroke Color");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(jLabel71, gridBagConstraints);
-
-        jLabel105.setFont(new Font( "Dialog", Font.BOLD, 12 ));
-        jLabel105.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel105.setText("-");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
-        jPanel3.add(jLabel105, gridBagConstraints);
-
-        jLabel72.setFont(new Font( "Dialog", Font.BOLD, 12 ));
-        jLabel72.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel72.setText("Shift+1 to Shift+8");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanel3.add(jLabel72, gridBagConstraints);
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel4.setOpaque(false);
+        jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jLabel73.setForeground(new java.awt.Color(204, 204, 204));
         jLabel73.setText("Change Palette Fill Color");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel3.add(jLabel73, gridBagConstraints);
+        jPanel4.add(jLabel73, gridBagConstraints);
 
         jLabel107.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel107.setForeground(new java.awt.Color(204, 204, 204));
         jLabel107.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
-        jPanel3.add(jLabel107, gridBagConstraints);
+        jPanel4.add(jLabel107, gridBagConstraints);
 
         jLabel74.setFont(new Font( "Dialog", Font.BOLD, 12 ));
         jLabel74.setForeground(new java.awt.Color(204, 204, 204));
         jLabel74.setText("Ctrl+1 to Ctrl+8");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanel3.add(jLabel74, gridBagConstraints);
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel4.setOpaque(false);
-        jPanel4.setLayout(new java.awt.GridBagLayout());
+        jPanel4.add(jLabel74, gridBagConstraints);
 
         jLabel77.setForeground(new java.awt.Color(204, 204, 204));
         jLabel77.setText("Preview Draw Pages");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1188,7 +1222,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel78.setText("Home");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1198,7 +1232,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel79.setText("Duplicate Draw Page to Right");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1209,7 +1243,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel81.setText("Ctrl+Right arrow");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1219,7 +1253,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel82.setText("Delete Curr. Draw Page");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1230,7 +1264,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel84.setText("Ctrl+Delete");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1240,7 +1274,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel85.setText("Delete Selected Drawing");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1251,7 +1285,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel87.setText("While moving, Delete");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1261,7 +1295,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel88.setText("Toogle ToolBars");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1272,7 +1306,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel90.setText("Shift+Esc");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1282,7 +1316,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel52.setText("Minimize");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1293,7 +1327,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel53.setText("Ctrl+D");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1303,7 +1337,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel54.setText("Increase Window Height");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1314,7 +1348,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel89.setText("Shift+Down arrow");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1324,7 +1358,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel86.setText("Decrease Window Height");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 15;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1335,7 +1369,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel91.setText("Shift+Up arrow");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 15;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1346,7 +1380,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel106.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel106, gridBagConstraints);
@@ -1356,7 +1390,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel109.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel109, gridBagConstraints);
@@ -1366,7 +1400,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel110.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel110, gridBagConstraints);
@@ -1376,7 +1410,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel111.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel111, gridBagConstraints);
@@ -1386,7 +1420,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel112.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel112, gridBagConstraints);
@@ -1396,7 +1430,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel113.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel113, gridBagConstraints);
@@ -1406,7 +1440,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel114.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel114, gridBagConstraints);
@@ -1416,7 +1450,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel115.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel115, gridBagConstraints);
@@ -1426,7 +1460,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel116.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel116, gridBagConstraints);
@@ -1436,7 +1470,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel117.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 15;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel117, gridBagConstraints);
@@ -1446,7 +1480,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel118.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel118, gridBagConstraints);
@@ -1455,7 +1489,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel119.setText("Move Draw Page to Left");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1465,7 +1499,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel120.setText("Duplicate Draw Page to Left");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1475,7 +1509,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel121.setText("Move Draw Page to Right");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1485,7 +1519,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel122.setText("Previous/New Draw Page");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1496,7 +1530,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel123.setText("Ctrl+Left arrow");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1507,7 +1541,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel124.setText("Shift+Right arrow");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1518,7 +1552,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel125.setText("Shift+Left arrow");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1529,7 +1563,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel126.setText("Left arrow");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1539,7 +1573,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel127.setText("Next/New Draw Page");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1550,7 +1584,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel128.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel128, gridBagConstraints);
@@ -1560,7 +1594,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel129.setText("Right arrow");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1570,7 +1604,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel130.setText("New Draw Page");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1581,7 +1615,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel131.setText("-");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel131, gridBagConstraints);
@@ -1591,7 +1625,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel132.setText("Up arrow");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -1600,10 +1634,35 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
         jLabel133.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/davidbuzatto/computersupportedclasshelper/gui/icons/layers.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.ipady = 5;
         jPanel4.add(jLabel133, gridBagConstraints);
+
+        jLabel71.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel71.setText("Change Palette Stroke Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel4.add(jLabel71, gridBagConstraints);
+
+        jLabel105.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel105.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel105.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        jPanel4.add(jLabel105, gridBagConstraints);
+
+        jLabel72.setFont(new Font( "Dialog", Font.BOLD, 12 ));
+        jLabel72.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel72.setText("Shift+1 to Shift+8");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel72, gridBagConstraints);
 
         javax.swing.GroupLayout customDialogContainerPanel1Layout = new javax.swing.GroupLayout(customDialogContainerPanel1);
         customDialogContainerPanel1.setLayout(customDialogContainerPanel1Layout);
@@ -1618,7 +1677,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         customDialogContainerPanel1Layout.setVerticalGroup(
@@ -1673,7 +1732,7 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
                     .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(customDialogContainerPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(customDialogContainerPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE))
+                    .addComponent(pCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         containerPanelLayout.setVerticalGroup(
@@ -1760,7 +1819,13 @@ public class HelpAndAboutDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel134;
     private javax.swing.JLabel jLabel135;
+    private javax.swing.JLabel jLabel136;
+    private javax.swing.JLabel jLabel137;
+    private javax.swing.JLabel jLabel138;
+    private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel140;
+    private javax.swing.JLabel jLabel141;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;

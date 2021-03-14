@@ -25,6 +25,9 @@ public class Rectangle extends Shape implements Serializable, Cloneable {
         calculateDrawingBounds();
         g2d = (Graphics2D) g2d.create();
         
+        //g2d.rotate( Math.toRadians( angle ), xStartD, yStartD );
+        //g2d.scale( scale, scale );
+        
         if ( fillColor != null ) {
             g2d.setPaint(fillColor );
             g2d.fill( new Rectangle2D.Double( xStartD, yStartD, xEndD-xStartD, yEndD-yStartD ) );

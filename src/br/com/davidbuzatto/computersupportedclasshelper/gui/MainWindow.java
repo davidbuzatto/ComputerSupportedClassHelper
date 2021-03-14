@@ -82,15 +82,13 @@ public class MainWindow extends javax.swing.JFrame {
     
     private ShapeChangeAction movingSca;
     
-    public static final String VERSION = "v1.4.1";
-    
     /**
      * Creates new form MainWindowa
      */
     public MainWindow( DrawingConfigs dConfig ) {
         
         initComponents();
-        setTitle( getTitle() + " - " + VERSION );
+        setTitle( getTitle() + " - " + Constants.VERSION );
         setBackground( new Color( 0, 0, 0, 0 ) );
         
         colorPanelSC1.setId( "1" );
@@ -2620,7 +2618,6 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                     }
                                     
                                     configureLineSheetAndGridGUI();
-
                                     updateLabelPages();
                                     
                                 }
@@ -2637,7 +2634,6 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                     }
                                     
                                     configureLineSheetAndGridGUI();
-                                    
                                     updateLabelPages();
                                     
                                 }
@@ -2721,23 +2717,27 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 break;
                                 
                             case KeyEvent.VK_RIGHT:
-                                if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
-                                        mainFrame, 
-                                        "<html>Duplicate the current draw page to the right?</html>", "Duplicate Current Draw Page" ) == JOptionPane.YES_OPTION ) {
-                                    drawPanel.duplicateCurrentDrawPageToRight();
-                                    drawPanel.repaint();
+                                if ( !btnMove.isSelected() && selectedShape == null ) {
+                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                            mainFrame, 
+                                            "<html>Duplicate the current draw page to the right?</html>", "Duplicate Current Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                        drawPanel.duplicateCurrentDrawPageToRight();
+                                        drawPanel.repaint();
+                                    }
+                                    updateLabelPages();
                                 }
-                                updateLabelPages();
                                 break;
                                 
                             case KeyEvent.VK_LEFT:
-                                if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
-                                        mainFrame, 
-                                        "<html>Duplicate the current draw page to the left?</html>", "Duplicate Current Draw Page" ) == JOptionPane.YES_OPTION ) {
-                                    drawPanel.duplicateCurrentDrawPageToLeft();
-                                    drawPanel.repaint();
+                                if ( !btnMove.isSelected() && selectedShape == null ) {
+                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                            mainFrame, 
+                                            "<html>Duplicate the current draw page to the left?</html>", "Duplicate Current Draw Page" ) == JOptionPane.YES_OPTION ) {
+                                        drawPanel.duplicateCurrentDrawPageToLeft();
+                                        drawPanel.repaint();
+                                    }
+                                    updateLabelPages();
                                 }
-                                updateLabelPages();
                                 break;
                                 
                             case KeyEvent.VK_D: // minimize
@@ -2844,92 +2844,115 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 
                             case KeyEvent.VK_UP:
                                 
-                                if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
-                                        mainFrame, 
-                                        "<html>Create a new draw page?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
-                                    
-                                    drawPanel.newDrawPage( colorPanelBackground.getColor() );
-                                    drawPanel.repaint();
-                                    updateLabelPages();
-                                    
+                                if ( !btnMove.isSelected() && selectedShape == null ) {
+                                
+                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                            mainFrame, 
+                                            "<html>Create a new draw page?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
+
+                                        DrawPage dp = drawPanel.getCurrentDrawPage();
+                                        
+                                        drawPanel.newDrawPage( colorPanelBackground.getColor() );
+                                        
+                                        drawPanel.getCurrentDrawPage().getLineSheet().setStrokeColor( dp.getLineSheet().getStrokeColor() );
+                                        drawPanel.getCurrentDrawPage().getLineSheet().setDistance( dp.getLineSheet().getDistance() );
+                                        drawPanel.getCurrentDrawPage().setDrawLineSheet( dp.isDrawLineSheet() );
+
+                                        drawPanel.getCurrentDrawPage().getGrid().setStrokeColor( dp.getGrid().getStrokeColor() );
+                                        drawPanel.getCurrentDrawPage().getGrid().setDistance( dp.getGrid().getDistance() );
+                                        drawPanel.getCurrentDrawPage().setDrawGrid( dp.isDrawGrid() );
+                                            
+                                        configureLineSheetAndGridGUI();
+                                        drawPanel.repaint();
+                                        updateLabelPages();
+
+                                    }
+                                
                                 }
                                 
                                 break;
                                 
                             case KeyEvent.VK_RIGHT:
                                 
-                                if ( drawPanel.willCreateNewEndDrawPage() ) {
-                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
-                                            mainFrame, 
-                                            "<html>Create a new draw page to the right?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
-                                        
-                                        DrawPage dp = drawPanel.getCurrentDrawPage();
-                                        
-                                        drawPanel.nextDrawPage( colorPanelBackground.getColor() );
-                                        
-                                        drawPanel.getCurrentDrawPage().getLineSheet().setStrokeColor( dp.getLineSheet().getStrokeColor() );
-                                        drawPanel.getCurrentDrawPage().getLineSheet().setDistance( dp.getLineSheet().getDistance() );
-                                        drawPanel.getCurrentDrawPage().setDrawLineSheet( dp.isDrawLineSheet() );
-                                        
-                                        drawPanel.getCurrentDrawPage().getGrid().setStrokeColor( dp.getGrid().getStrokeColor() );
-                                        drawPanel.getCurrentDrawPage().getGrid().setDistance( dp.getGrid().getDistance() );
-                                        drawPanel.getCurrentDrawPage().setDrawGrid( dp.isDrawGrid() );
-                                        
-                                    }
-                                } else {
-                                    
-                                    drawPanel.nextDrawPage( null );
-                                    
-                                    if ( drawPanel.getBackgroundColor().equals( Constants.TRANSPARENT_COLOR ) ) {
-                                        colorPanelBackground.setColor( null );
+                                if ( !btnMove.isSelected() && selectedShape == null ) {
+                                
+                                    if ( drawPanel.willCreateNewEndDrawPage() ) {
+                                        if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                                mainFrame, 
+                                                "<html>Create a new draw page to the right?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
+
+                                            DrawPage dp = drawPanel.getCurrentDrawPage();
+
+                                            drawPanel.nextDrawPage( colorPanelBackground.getColor() );
+
+                                            drawPanel.getCurrentDrawPage().getLineSheet().setStrokeColor( dp.getLineSheet().getStrokeColor() );
+                                            drawPanel.getCurrentDrawPage().getLineSheet().setDistance( dp.getLineSheet().getDistance() );
+                                            drawPanel.getCurrentDrawPage().setDrawLineSheet( dp.isDrawLineSheet() );
+
+                                            drawPanel.getCurrentDrawPage().getGrid().setStrokeColor( dp.getGrid().getStrokeColor() );
+                                            drawPanel.getCurrentDrawPage().getGrid().setDistance( dp.getGrid().getDistance() );
+                                            drawPanel.getCurrentDrawPage().setDrawGrid( dp.isDrawGrid() );
+
+                                        }
                                     } else {
-                                        colorPanelBackground.setColor( drawPanel.getBackgroundColor() );
+
+                                        drawPanel.nextDrawPage( null );
+
+                                        if ( drawPanel.getBackgroundColor().equals( Constants.TRANSPARENT_COLOR ) ) {
+                                            colorPanelBackground.setColor( null );
+                                        } else {
+                                            colorPanelBackground.setColor( drawPanel.getBackgroundColor() );
+                                        }
+
                                     }
-                                    
+
+                                    configureLineSheetAndGridGUI();
+                                    drawPanel.repaint();
+                                    updateLabelPages();
+                                
                                 }
                                 
-                                configureLineSheetAndGridGUI();
-                                
-                                drawPanel.repaint();
-                                updateLabelPages();
                                 break;
 
                             case KeyEvent.VK_LEFT:
                                 
-                                if ( drawPanel.willCreateNewStartDrawPage() ) {
-                                    if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
-                                            mainFrame, 
-                                            "<html>Create a new draw page to the left?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
-                                        
-                                        DrawPage dp = drawPanel.getCurrentDrawPage();
-                                        
-                                        drawPanel.previousDrawPage( colorPanelBackground.getColor() );
-                                        
-                                        drawPanel.getCurrentDrawPage().getLineSheet().setStrokeColor( dp.getLineSheet().getStrokeColor() );
-                                        drawPanel.getCurrentDrawPage().getLineSheet().setDistance( dp.getLineSheet().getDistance() );
-                                        drawPanel.getCurrentDrawPage().setDrawLineSheet( dp.isDrawLineSheet() );
-                                        
-                                        drawPanel.getCurrentDrawPage().getGrid().setStrokeColor( dp.getGrid().getStrokeColor() );
-                                        drawPanel.getCurrentDrawPage().getGrid().setDistance( dp.getGrid().getDistance() );
-                                        drawPanel.getCurrentDrawPage().setDrawGrid( dp.isDrawGrid() );
-                                        
-                                    }
-                                } else {
+                                if ( !btnMove.isSelected() && selectedShape == null ) {
                                     
-                                    drawPanel.previousDrawPage( null );
-                                    
-                                    if ( drawPanel.getBackgroundColor().equals( Constants.TRANSPARENT_COLOR ) ) {
-                                        colorPanelBackground.setColor( null );
+                                    if ( drawPanel.willCreateNewStartDrawPage() ) {
+                                        if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
+                                                mainFrame, 
+                                                "<html>Create a new draw page to the left?</html>", "New Draw Page" ) == JOptionPane.YES_OPTION ) {
+
+                                            DrawPage dp = drawPanel.getCurrentDrawPage();
+
+                                            drawPanel.previousDrawPage( colorPanelBackground.getColor() );
+
+                                            drawPanel.getCurrentDrawPage().getLineSheet().setStrokeColor( dp.getLineSheet().getStrokeColor() );
+                                            drawPanel.getCurrentDrawPage().getLineSheet().setDistance( dp.getLineSheet().getDistance() );
+                                            drawPanel.getCurrentDrawPage().setDrawLineSheet( dp.isDrawLineSheet() );
+
+                                            drawPanel.getCurrentDrawPage().getGrid().setStrokeColor( dp.getGrid().getStrokeColor() );
+                                            drawPanel.getCurrentDrawPage().getGrid().setDistance( dp.getGrid().getDistance() );
+                                            drawPanel.getCurrentDrawPage().setDrawGrid( dp.isDrawGrid() );
+
+                                        }
                                     } else {
-                                        colorPanelBackground.setColor( drawPanel.getBackgroundColor() );
+
+                                        drawPanel.previousDrawPage( null );
+
+                                        if ( drawPanel.getBackgroundColor().equals( Constants.TRANSPARENT_COLOR ) ) {
+                                            colorPanelBackground.setColor( null );
+                                        } else {
+                                            colorPanelBackground.setColor( drawPanel.getBackgroundColor() );
+                                        }
+
                                     }
+
+                                    configureLineSheetAndGridGUI();
+                                    drawPanel.repaint();
+                                    updateLabelPages();
                                     
                                 }
-                                
-                                configureLineSheetAndGridGUI();
-                                
-                                drawPanel.repaint();
-                                updateLabelPages();
                                 break;
 
                             case KeyEvent.VK_1:
@@ -3104,6 +3127,30 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     if ( e.isControlDown() ) {
 
                         switch ( e.getKeyCode() ) {
+                            
+                            case KeyEvent.VK_RIGHT:
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.setAngle( selectedShape.getAngle() + 1 );
+                                }
+                                break;
+                                
+                            case KeyEvent.VK_LEFT:
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.setAngle( selectedShape.getAngle() - 1 );
+                                }
+                                break;
+                                
+                            case KeyEvent.VK_UP:
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.setScale( selectedShape.getScale() + 0.01 );
+                                }
+                                break;
+                                
+                            case KeyEvent.VK_DOWN:
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.setScale( selectedShape.getScale() - 0.01 );
+                                }
+                                break;
                                 
                             case KeyEvent.VK_Z: // undo
                                 dispatchActionEvent( btnUndo );
@@ -3121,12 +3168,62 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                         
                         switch ( e.getKeyCode() ) {
                             
+                            case KeyEvent.VK_RIGHT:
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.move( 10, 0 );
+                                }
+                                break;
+                                
+                            case KeyEvent.VK_LEFT:
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.move( -10, 0 );
+                                }
+                                break;
+                                
                             case KeyEvent.VK_UP:
-                                setBounds( 0, 0, getWidth(), getHeight() - 1 );
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.move( 0, -10 );
+                                } else {
+                                    setBounds( 0, 0, getWidth(), getHeight() - 1 );
+                                }
                                 break;
                                 
                             case KeyEvent.VK_DOWN:
-                                setBounds( 0, 0, getWidth(), getHeight() + 1 );
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.move( 0, 10 );
+                                } else {
+                                    setBounds( 0, 0, getWidth(), getHeight() + 1 );
+                                }
+                                break;
+                                
+                        }
+                        
+                    } else {
+                        
+                        switch ( e.getKeyCode() ) {
+                            
+                            case KeyEvent.VK_RIGHT:
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.move( 1, 0 );
+                                }
+                                break;
+                                
+                            case KeyEvent.VK_LEFT:
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.move( -1, 0 );
+                                }
+                                break;
+                                
+                            case KeyEvent.VK_UP:
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.move( 0, -1 );
+                                }
+                                break;
+                                
+                            case KeyEvent.VK_DOWN:
+                                if ( btnMove.isSelected() && selectedShape != null ) {
+                                    selectedShape.move( 0, 1 );
+                                }
                                 break;
                                 
                         }
