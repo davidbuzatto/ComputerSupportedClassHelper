@@ -17,7 +17,7 @@ import java.awt.event.WindowEvent;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class HelpAndAboutDialog extends javax.swing.JDialog {
 

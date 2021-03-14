@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class Polygon extends Shape implements Serializable, Cloneable {
 

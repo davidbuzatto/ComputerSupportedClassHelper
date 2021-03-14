@@ -19,7 +19,7 @@ import javax.swing.JToggleButton;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class ToolConfigDialogText extends javax.swing.JDialog {
 

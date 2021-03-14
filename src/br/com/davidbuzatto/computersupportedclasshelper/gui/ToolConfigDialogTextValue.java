@@ -16,7 +16,7 @@ import java.awt.event.WindowEvent;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class ToolConfigDialogTextValue extends javax.swing.JDialog {
 

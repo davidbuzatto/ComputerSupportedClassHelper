@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class PalettePanel extends javax.swing.JPanel {
 

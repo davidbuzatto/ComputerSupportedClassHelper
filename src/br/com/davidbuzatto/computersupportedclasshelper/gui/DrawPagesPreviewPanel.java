@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class DrawPagesPreviewPanel extends JPanel {
     

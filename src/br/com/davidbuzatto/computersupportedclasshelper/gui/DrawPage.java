@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class DrawPage implements Serializable, Cloneable {
     

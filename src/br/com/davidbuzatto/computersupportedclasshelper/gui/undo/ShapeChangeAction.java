@@ -20,7 +20,7 @@ import java.util.Map.Entry;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class ShapeChangeAction extends ChangeAction {
     

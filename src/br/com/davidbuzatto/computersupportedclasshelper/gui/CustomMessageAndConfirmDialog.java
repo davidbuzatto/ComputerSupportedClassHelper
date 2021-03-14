@@ -19,7 +19,7 @@ import javax.swing.UIManager;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class CustomMessageAndConfirmDialog extends javax.swing.JDialog {
 

@@ -11,7 +11,7 @@ import br.com.davidbuzatto.computersupportedclasshelper.utils.Utils;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class OneLayerChangeAction extends ChangeAction {
     

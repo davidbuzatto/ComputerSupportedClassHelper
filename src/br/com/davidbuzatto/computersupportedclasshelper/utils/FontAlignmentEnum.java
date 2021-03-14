@@ -7,7 +7,7 @@ package br.com.davidbuzatto.computersupportedclasshelper.utils;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public enum FontAlignmentEnum {
     

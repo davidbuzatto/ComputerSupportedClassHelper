@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class Utils {
     

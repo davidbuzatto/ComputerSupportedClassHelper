@@ -15,7 +15,7 @@ import javax.swing.JToolBar;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class ToolBar extends JToolBar {
     

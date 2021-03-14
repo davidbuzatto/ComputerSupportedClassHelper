@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public abstract class ChangeAction {
     

@@ -60,7 +60,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class MainWindow extends javax.swing.JFrame {
 

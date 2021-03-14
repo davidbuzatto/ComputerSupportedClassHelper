@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class DrawingConfigs implements Serializable {
     

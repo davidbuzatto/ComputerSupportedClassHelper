@@ -10,7 +10,7 @@ import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class RemoveShapeChangeAction extends ChangeAction {
     

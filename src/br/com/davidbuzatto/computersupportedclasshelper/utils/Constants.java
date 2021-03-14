@@ -10,7 +10,7 @@ import java.awt.Color;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public interface Constants {
     

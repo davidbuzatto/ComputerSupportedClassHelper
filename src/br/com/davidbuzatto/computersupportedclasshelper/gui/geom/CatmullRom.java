@@ -7,7 +7,7 @@ package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 import com.vividsolutions.jts.geom.Coordinate;
 import java.util.ArrayList;

@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class Curve extends Shape implements Serializable, Cloneable {
 

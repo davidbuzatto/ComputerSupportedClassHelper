@@ -7,7 +7,7 @@ package br.com.davidbuzatto.computersupportedclasshelper.tests;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class Tests {
     

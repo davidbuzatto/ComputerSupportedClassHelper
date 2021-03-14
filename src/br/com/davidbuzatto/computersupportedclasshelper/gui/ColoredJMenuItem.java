@@ -15,7 +15,7 @@ import javax.swing.JMenuItem;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class ColoredJMenuItem extends JMenuItem {
 

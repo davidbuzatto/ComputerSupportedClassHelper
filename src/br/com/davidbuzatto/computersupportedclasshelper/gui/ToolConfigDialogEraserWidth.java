@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class ToolConfigDialogEraserWidth extends javax.swing.JDialog {
 

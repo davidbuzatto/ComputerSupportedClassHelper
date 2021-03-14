@@ -11,7 +11,7 @@ import com.formdev.flatlaf.FlatDarkLaf;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class Main {
 

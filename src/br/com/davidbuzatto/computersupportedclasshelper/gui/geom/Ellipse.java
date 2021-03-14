@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class Ellipse extends Shape implements Serializable, Cloneable {
 

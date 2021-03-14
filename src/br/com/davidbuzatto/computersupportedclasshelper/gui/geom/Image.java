@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author David
+ * @author Prof. Dr. David Buzatto
  */
 public class Image extends Shape implements Serializable, Cloneable {
 
