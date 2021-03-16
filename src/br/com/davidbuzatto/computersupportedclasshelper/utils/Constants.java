@@ -15,7 +15,7 @@ import java.awt.Color;
 public interface Constants {
     
     public static final long SERIAL_VERSION = 1;
-    public static final String VERSION = "v1.5";
+    public static final String VERSION = "v1.5.1";
     
     public static final Color TRANSPARENT_COLOR = new Color( 0, 0, 0, 1 );
     
