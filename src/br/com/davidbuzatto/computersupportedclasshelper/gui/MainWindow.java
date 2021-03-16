@@ -2717,7 +2717,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 break;
                                 
                             case KeyEvent.VK_RIGHT:
-                                if ( !btnMove.isSelected() && selectedShape == null ) {
+                                //if ( !btnMove.isSelected() && selectedShape == null ) {
+                                if ( selectedShape == null ) {
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
                                             "<html>Duplicate the current draw page to the right?</html>", "Duplicate Current Draw Page" ) == JOptionPane.YES_OPTION ) {
@@ -2729,7 +2730,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 break;
                                 
                             case KeyEvent.VK_LEFT:
-                                if ( !btnMove.isSelected() && selectedShape == null ) {
+                                //if ( !btnMove.isSelected() && selectedShape == null ) {
+                                if ( selectedShape == null ) {
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
                                             "<html>Duplicate the current draw page to the left?</html>", "Duplicate Current Draw Page" ) == JOptionPane.YES_OPTION ) {
@@ -2844,7 +2846,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 
                             case KeyEvent.VK_UP:
                                 
-                                if ( !btnMove.isSelected() && selectedShape == null ) {
+                                //if ( !btnMove.isSelected() && selectedShape == null ) {
+                                if ( selectedShape == null ) {
                                 
                                     if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
                                             mainFrame, 
@@ -2874,7 +2877,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 
                             case KeyEvent.VK_RIGHT:
                                 
-                                if ( !btnMove.isSelected() && selectedShape == null ) {
+                                //if ( !btnMove.isSelected() && selectedShape == null ) {
+                                if ( selectedShape == null ) {
                                 
                                     if ( drawPanel.willCreateNewEndDrawPage() ) {
                                         if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
@@ -2916,7 +2920,8 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
                             case KeyEvent.VK_LEFT:
                                 
-                                if ( !btnMove.isSelected() && selectedShape == null ) {
+                                //if ( !btnMove.isSelected() && selectedShape == null ) {
+                                if ( selectedShape == null ) {
                                     
                                     if ( drawPanel.willCreateNewStartDrawPage() ) {
                                         if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
@@ -3142,13 +3147,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                                 
                             case KeyEvent.VK_UP:
                                 if ( btnMove.isSelected() && selectedShape != null ) {
-                                    selectedShape.setScale( selectedShape.getScale() + 0.01 );
+                                    selectedShape.setScale( selectedShape.getScale() + 0.005 );
                                 }
                                 break;
                                 
                             case KeyEvent.VK_DOWN:
                                 if ( btnMove.isSelected() && selectedShape != null ) {
-                                    selectedShape.setScale( selectedShape.getScale() - 0.01 );
+                                    selectedShape.setScale( selectedShape.getScale() - 0.005 );
                                 }
                                 break;
                                 

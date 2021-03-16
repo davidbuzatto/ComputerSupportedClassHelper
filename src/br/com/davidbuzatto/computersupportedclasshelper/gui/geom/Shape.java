@@ -232,6 +232,9 @@ public abstract class Shape implements Serializable, Cloneable {
         target.xEndD = origin.xEndD;
         target.yEndD = origin.yEndD;
 
+        target.scale = origin.scale;
+        target.angle = origin.angle;
+        
         target.strokeColor = origin.strokeColor;
         target.fillColor = origin.fillColor;
         target.strokeWidth = origin.strokeWidth;

@@ -1,16 +1,16 @@
 Release Planning
-    v1.5
-        Undo and Redo for each draw page
-            Undo/Redo clear current draw page: under development
-            Undo/Redo move current draw page: under development
-            Undo/Redo new draw page: under development
-            Undo/Redo duplicate current draw page: under development
-
-    v1.5.1
+    
+    v1.6
+        Shape resize
+        Shape rotation
+    
+    v1.7
         Selection Tool
         Duplicate selected shapes
         Alignment Tools
-
-    v1.5.2
-        Shape resize
-        Shape rotation
+    
+    v1.?
+        Undo/Redo clear current draw page
+        Undo/Redo move current draw page
+        Undo/Redo new draw page
+        Undo/Redo duplicate current draw page
