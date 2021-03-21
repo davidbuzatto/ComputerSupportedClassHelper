@@ -8,7 +8,6 @@ package br.com.davidbuzatto.computersupportedclasshelper.gui.undo;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Curve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Rectangle;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
-import com.vividsolutions.jts.geom.Coordinate;
 import java.awt.Color;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -17,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import org.locationtech.jts.geom.Coordinate;
 
 /**
  *

@@ -9,9 +9,9 @@ package br.com.davidbuzatto.computersupportedclasshelper.gui.geom;
  *
  * @author Prof. Dr. David Buzatto
  */
-import com.vividsolutions.jts.geom.Coordinate;
 import java.util.ArrayList;
 import java.util.List;
+import org.locationtech.jts.geom.Coordinate;
 
 /**
  *
