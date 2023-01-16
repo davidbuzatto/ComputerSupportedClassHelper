@@ -72,6 +72,7 @@
     -->
     
     <target name="-post-jar">
+        <copy file="LICENSE.MD" todir="${dist.dir}"/>
         <move file="${dist.dir}/ComputerSupportedClassHelper.jar" tofile="${dist.dir}/CSCH.jar"/>
         <delete file="${dist.dir}/README.TXT"/>
     </target>

@@ -1,0 +1,12 @@
+--input ../dist/
+--name CSCH
+--main-jar CSCH.jar
+--app-version 1.5.1
+--vendor 'Prof. Dr. David Buzatto'
+--description 'Computer Supported Class Helper'
+--icon pallete.ico
+--license-file ../dist/LICENSE.MD
+--win-dir-chooser
+--win-menu-group 'CSCH'
+--win-per-user-install
+--win-shortcut

@@ -34,6 +34,7 @@ public class ShapeChangeAction extends ChangeAction {
         afterChange = new HashMap<>();
     }
     
+    @SuppressWarnings( "unchecked" )
     private void inspect( Shape origin, Map<String, Object> saveTo ) {
         
         try {
