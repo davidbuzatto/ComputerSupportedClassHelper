@@ -22,7 +22,7 @@ public class Main {
      */
     public static void main( String args[] ) {
         
-        FlatDarkLaf.install();
+        FlatDarkLaf.setup();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
