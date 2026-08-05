@@ -107,10 +107,8 @@ public class DrawingConfigs implements Serializable {
     }
     
     public void save() {
-        try {
-            ObjectOutputStream o = new ObjectOutputStream( new FileOutputStream( new File( "conf" ) ) );
+        try ( ObjectOutputStream o = new ObjectOutputStream( new FileOutputStream( new File( "conf" ) ) ) ) {
             o.writeObject( this );
-            o.close();
         } catch ( IOException exc ) {
             exc.printStackTrace();
         }
@@ -127,10 +125,11 @@ public class DrawingConfigs implements Serializable {
                 save();
             }
 
-            ObjectInputStream i = new ObjectInputStream( new FileInputStream( new File( "conf" ) ) );
-            DrawingConfigs c = (DrawingConfigs) i.readObject();
-            i.close();
-            
+            DrawingConfigs c;
+            try ( ObjectInputStream i = new ObjectInputStream( new FileInputStream( new File( "conf" ) ) ) ) {
+                c = (DrawingConfigs) i.readObject();
+            }
+
             this.strokeWidth = c.strokeWidth;
             this.eraserWidth = c.eraserWidth;
             this.arcRadius = c.arcRadius;

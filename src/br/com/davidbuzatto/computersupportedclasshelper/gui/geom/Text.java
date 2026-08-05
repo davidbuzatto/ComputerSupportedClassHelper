@@ -14,6 +14,8 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 /**
@@ -162,8 +164,16 @@ public class Text extends Shape implements Serializable, Cloneable {
     }
 
     public void setText( String text ) {
-        lines = text.split( "\n" );
-        this.text = text;
+        this.text = text != null ? text : "";
+        lines = this.text.split( "\n" );
+    }
+
+    // "lines" is transient (derived from "text"), so it needs to be rebuilt after this
+    // shape is deserialized -- e.g. when a saved project is reopened -- otherwise it stays
+    // null and draw()/calculateDrawingBounds() silently skip this text.
+    private void readObject( ObjectInputStream in ) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        lines = ( text != null ? text : "" ).split( "\n" );
     }
 
     public FontTypeEnum getFontType() {

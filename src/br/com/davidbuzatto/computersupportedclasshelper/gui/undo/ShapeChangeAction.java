@@ -5,6 +5,7 @@
  */
 package br.com.davidbuzatto.computersupportedclasshelper.gui.undo;
 
+import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.BrushCurve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Curve;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Rectangle;
 import br.com.davidbuzatto.computersupportedclasshelper.gui.geom.Shape;
@@ -52,9 +53,12 @@ public class ShapeChangeAction extends ChangeAction {
                         
                         Object o = f.get( origin );
                         
-                        // special cases...
-                        if ( k == Curve.class ) {
-                            
+                        // special cases: both hold their stroke as a List<Coordinate> whose
+                        // Coordinate objects are mutated in place by move(), so a shallow
+                        // reference here would make beforeChange/afterChange alias the same
+                        // (already-moved) points instead of snapshotting the stroke.
+                        if ( k == Curve.class || k == BrushCurve.class ) {
+
                             if ( o instanceof List ) {
                                 List<Coordinate> lo = (List<Coordinate>) o;
                                 List<Coordinate> newCoords = new ArrayList<>();

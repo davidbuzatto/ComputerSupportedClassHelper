@@ -34,10 +34,10 @@ public class LineSheet extends Shape implements Serializable, Cloneable {
         calculateDrawingBounds();
         g2d = (Graphics2D) g2d.create();
         
-        if ( strokeColor != null ) {
-            
+        if ( strokeColor != null && distance > 0 ) {
+
             g2d.setPaint( strokeColor );
-            
+
             for ( int i = 1; i * distance <= screenSize.height; i++ ) {
                 g2d.drawLine( -10, i * distance, screenSize.width + 10, i * distance );
             }
@@ -58,7 +58,8 @@ public class LineSheet extends Shape implements Serializable, Cloneable {
             
         LineSheet clone = new LineSheet();
         copyData( this, clone );
-        
+        clone.distance = distance;
+
         return clone;
         
     }

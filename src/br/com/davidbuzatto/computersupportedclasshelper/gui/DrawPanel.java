@@ -387,18 +387,26 @@ public class DrawPanel extends JPanel {
                 drawPages = (List<DrawPage>) gList;
                 currentDrawPageIndex = 0;
                 currentDrawPage = drawPages.get( 0 );
+                // the loaded pages replace everything currently in memory, so any
+                // recorded undo/redo action from before this point is now stale.
+                undoStack.clear();
+                redoStack.clear();
             }
         }
-        
+
     }
-    
+
     public void reset() {
-        
+
         currentDrawPage = new DrawPage( Constants.TRANSPARENT_COLOR );
         drawPages.clear();
         drawPages.add( currentDrawPage );
         currentDrawPageIndex = 0;
-        
+        // starting a new project discards all pages, so any recorded undo/redo
+        // action from before this point is now stale.
+        undoStack.clear();
+        redoStack.clear();
+
     }
     
     public int getMaxShapeId() {

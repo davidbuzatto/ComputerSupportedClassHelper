@@ -75,12 +75,20 @@ public class Image extends Shape implements Serializable, Cloneable {
     
     private void writeObject( ObjectOutputStream out ) throws IOException {
         out.defaultWriteObject();
-        ImageIO.write( image, format, out );
+        // a flag is needed because a shape can end up with a null image (e.g. it failed to
+        // load); without it, readObject would still try to read image bytes that were never
+        // written, corrupting the rest of the stream.
+        out.writeBoolean( image != null );
+        if ( image != null ) {
+            ImageIO.write( image, format, out );
+        }
     }
 
     private void readObject( ObjectInputStream in ) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        image = ImageIO.read( in );
+        if ( in.readBoolean() ) {
+            image = ImageIO.read( in );
+        }
     }
     
     @Override

@@ -1486,19 +1486,31 @@ addWindowListener(new java.awt.event.WindowAdapter() {
 
                         File f = jfc.getSelectedFile();
                         BufferedImage bi = ImageIO.read( f );
-                        
-                        Image img = new Image();
-                        img.setImage( bi );
-                        img.setFormat( f.getName().substring( f.getName().lastIndexOf( "." ) + 1 ) );
-                        img.setXStart( xPressed );
-                        img.setYStart( yPressed );
-                        img.setXEnd( xPressed + bi.getWidth() );
-                        img.setYEnd( yPressed + bi.getHeight() );
-                        
-                        drawPanel.addShape( img );
-                        
-                        AddShapeChangeAction aca = new AddShapeChangeAction( img, drawPanel.getCurrentDrawPage() );
-                        drawPanel.addChangeAction( aca );
+
+                        if ( bi == null ) {
+
+                            // ImageIO.read() returns null (instead of throwing) for a file
+                            // it can't decode as an image, e.g. wrong/corrupted content.
+                            JOptionPane.showMessageDialog( this,
+                                    "<html>The selected file could not be read as an image.</html>",
+                                    "Add Image", JOptionPane.ERROR_MESSAGE );
+
+                        } else {
+
+                            Image img = new Image();
+                            img.setImage( bi );
+                            img.setFormat( f.getName().substring( f.getName().lastIndexOf( "." ) + 1 ) );
+                            img.setXStart( xPressed );
+                            img.setYStart( yPressed );
+                            img.setXEnd( xPressed + bi.getWidth() );
+                            img.setYEnd( yPressed + bi.getHeight() );
+
+                            drawPanel.addShape( img );
+
+                            AddShapeChangeAction aca = new AddShapeChangeAction( img, drawPanel.getCurrentDrawPage() );
+                            drawPanel.addChangeAction( aca );
+
+                        }
 
                     }
 
@@ -1924,14 +1936,17 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 File f = jfc.getSelectedFile();
                 
                 if ( currentFile == null || !f.equals( currentFile ) ) {
-                    
+
+                    // only point currentFile at f once the file has actually been read
+                    // successfully, so a failed/corrupted open can't cause a later Save
+                    // to overwrite it with the (unrelated) project still in memory.
+                    try ( ObjectInputStream i = new ObjectInputStream( new FileInputStream( f ) ) ) {
+                        drawPanel.loadDrawPagesFromOutside( i.readObject() );
+                    }
+
                     currentFile = f;
                     dConfig.setDefaultDir( currentFile.getParentFile() );
-                    
-                    ObjectInputStream i = new ObjectInputStream( new FileInputStream( currentFile ) );
-                    drawPanel.loadDrawPagesFromOutside( i.readObject() );
-                    i.close();
-                    
+
                     drawPanel.repaint();
                     
                     Shape.setIdCount( drawPanel.getMaxShapeId() + 1 );
@@ -1952,10 +1967,13 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             
         } catch ( IOException | ClassNotFoundException exc ) {
             exc.printStackTrace();
+            JOptionPane.showMessageDialog( this,
+                    "<html>Could not open the selected file.<br/>It may be corrupted or in an unsupported format.</html>",
+                    "Open Project", JOptionPane.ERROR_MESSAGE );
         }
-        
+
         dConfig.setProcessEventsMainWindow( true );
-        
+
     }//GEN-LAST:event_btnOpenActionPerformed
 
     private void configureLineSheetAndGridGUI() {
@@ -1992,51 +2010,59 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                 if ( jfc.showSaveDialog( this ) == JFileChooser.APPROVE_OPTION ) {
                     
                     currentFile = jfc.getSelectedFile();
+
+                    // append the extension before checking for an existing file, otherwise
+                    // typing a name without ".csch" that already exists on disk bypasses
+                    // the overwrite confirmation below.
+                    if ( !currentFile.getName().endsWith( ".csch" ) ) {
+                        currentFile = new File( currentFile.getAbsolutePath() + ".csch" );
+                    }
+
                     boolean save = false;
-                    
+
                     if ( currentFile.exists() ) {
-                        
-                        if ( CustomMessageAndConfirmDialog.showConfirmDialog( 
-                                this, 
-                                "<html>The selected file already exists.<br/>Do you want to continue?</html>", 
+
+                        if ( CustomMessageAndConfirmDialog.showConfirmDialog(
+                                this,
+                                "<html>The selected file already exists.<br/>Do you want to continue?</html>",
                                 "Overwrite Confirmation" ) == JOptionPane.YES_OPTION ) {
                             save = true;
                         } else {
                             save = false;
                             currentFile = null;
                         }
-                        
+
                     } else {
                         save = true;
                     }
-                    
+
                     if ( save ) {
-                        
-                        if ( !currentFile.getName().endsWith( ".csch" ) ) {
-                            currentFile = new File( currentFile.getAbsolutePath() + ".csch" );
-                        }
+
                         dConfig.setDefaultDir( currentFile.getParentFile() );
-                        ObjectOutputStream o = new ObjectOutputStream( new FileOutputStream( currentFile ) );
-                        o.writeObject( drawPanel.getDrawPages() );
-                        o.close();
-                        
+                        try ( ObjectOutputStream o = new ObjectOutputStream( new FileOutputStream( currentFile ) ) ) {
+                            o.writeObject( drawPanel.getDrawPages() );
+                        }
+
                     }
                 }
-                
+
             } else {
-                
-                ObjectOutputStream o = new ObjectOutputStream( new FileOutputStream( currentFile ) );
-                o.writeObject( drawPanel.getDrawPages() );
-                o.close();
-                
+
+                try ( ObjectOutputStream o = new ObjectOutputStream( new FileOutputStream( currentFile ) ) ) {
+                    o.writeObject( drawPanel.getDrawPages() );
+                }
+
             }
-            
+
         } catch ( IOException exc ) {
             exc.printStackTrace();
+            JOptionPane.showMessageDialog( this,
+                    "<html>Could not save the project.<br/>Check if the destination is writable and try again.</html>",
+                    "Save Project", JOptionPane.ERROR_MESSAGE );
         }
-        
+
         dConfig.setProcessEventsMainWindow( true );
-        
+
     }
 
     private void btnUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUndoActionPerformed
@@ -3576,7 +3602,9 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     
     private class SelectedRepaintRunnable implements Runnable {
 
-        boolean running;
+        // written by this runnable's own thread, read/written by the EDT (via stop()) --
+        // needs a visibility guarantee or the EDT's stop() may never be observed.
+        volatile boolean running;
         
         @Override
         public void run() {
