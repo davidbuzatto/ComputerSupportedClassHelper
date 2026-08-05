@@ -6,15 +6,16 @@
 package br.com.davidbuzatto.computersupportedclasshelper.utils;
 
 import java.awt.Color;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.prefs.Preferences;
 
 /**
  *
@@ -25,7 +26,14 @@ public class DrawingConfigs implements Serializable {
     private static final long serialVersionUID = Constants.SERIAL_VERSION;
     
     private static final DrawingConfigs INSTANCE;
-    
+
+    // Stored in the Windows Registry (via java.util.prefs) instead of a plain file, so it
+    // no longer depends on the process' current working directory -- which used to change
+    // (and silently move where "conf" was read from/written to) whenever the program was
+    // launched to open a .csch file associated with it, e.g. via double-click.
+    private static final Preferences PREFS = Preferences.userRoot().node( "br.com.davidbuzatto.computersupportedclasshelper" );
+    private static final String PREF_KEY_CONFIG = "drawingConfigs";
+
     private double strokeWidth;
     private double eraserWidth;
     private double arcRadius;
@@ -107,26 +115,33 @@ public class DrawingConfigs implements Serializable {
     }
     
     public void save() {
-        try ( ObjectOutputStream o = new ObjectOutputStream( new FileOutputStream( new File( "conf" ) ) ) ) {
-            o.writeObject( this );
+        try {
+
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            try ( ObjectOutputStream o = new ObjectOutputStream( bos ) ) {
+                o.writeObject( this );
+            }
+            PREFS.putByteArray( PREF_KEY_CONFIG, bos.toByteArray() );
+
         } catch ( IOException exc ) {
             exc.printStackTrace();
         }
     }
-    
+
     @SuppressWarnings( "unchecked" )
     public void load() {
-        
-        try {
-            
-            File f = new File( "conf" );
 
-            if ( !f.exists() ) {
+        try {
+
+            byte[] data = PREFS.getByteArray( PREF_KEY_CONFIG, null );
+
+            if ( data == null ) {
                 save();
+                return;
             }
 
             DrawingConfigs c;
-            try ( ObjectInputStream i = new ObjectInputStream( new FileInputStream( new File( "conf" ) ) ) ) {
+            try ( ObjectInputStream i = new ObjectInputStream( new ByteArrayInputStream( data ) ) ) {
                 c = (DrawingConfigs) i.readObject();
             }
 
