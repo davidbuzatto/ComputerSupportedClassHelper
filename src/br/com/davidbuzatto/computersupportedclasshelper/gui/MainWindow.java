@@ -1920,51 +1920,61 @@ addWindowListener(new java.awt.event.WindowAdapter() {
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
-        
+
         dConfig.setProcessEventsMainWindow( false );
-        
-        try {
-            
-            JFileChooser jfc = new JFileChooser();
-            jfc.setCurrentDirectory( dConfig.getDefaultDir() );
-            jfc.setDialogTitle( "Open Project" );
-            jfc.setMultiSelectionEnabled( false );
-            jfc.setFileFilter( new FileNameExtensionFilter( "Computer Supported Class Helper File", "csch" ) );
-            
-            if ( jfc.showOpenDialog( this ) == JFileChooser.APPROVE_OPTION ) {
-                
-                File f = jfc.getSelectedFile();
-                
-                if ( currentFile == null || !f.equals( currentFile ) ) {
 
-                    // only point currentFile at f once the file has actually been read
-                    // successfully, so a failed/corrupted open can't cause a later Save
-                    // to overwrite it with the (unrelated) project still in memory.
-                    try ( ObjectInputStream i = new ObjectInputStream( new FileInputStream( f ) ) ) {
-                        drawPanel.loadDrawPagesFromOutside( i.readObject() );
-                    }
+        JFileChooser jfc = new JFileChooser();
+        jfc.setCurrentDirectory( dConfig.getDefaultDir() );
+        jfc.setDialogTitle( "Open Project" );
+        jfc.setMultiSelectionEnabled( false );
+        jfc.setFileFilter( new FileNameExtensionFilter( "Computer Supported Class Helper File", "csch" ) );
 
-                    currentFile = f;
-                    dConfig.setDefaultDir( currentFile.getParentFile() );
+        if ( jfc.showOpenDialog( this ) == JFileChooser.APPROVE_OPTION ) {
 
-                    drawPanel.repaint();
-                    
-                    Shape.setIdCount( drawPanel.getMaxShapeId() + 1 );
-                    updateLabelPages();
-                    verifyHistory();
-                    
-                    if ( drawPanel.getBackgroundColor().equals( Constants.TRANSPARENT_COLOR ) ) {
-                        colorPanelBackground.setColor( null );
-                    } else {
-                        colorPanelBackground.setColor( drawPanel.getBackgroundColor() );
-                    }
-                    
-                    configureLineSheetAndGridGUI();
-                    
-                }
-                
+            File f = jfc.getSelectedFile();
+
+            if ( currentFile == null || !f.equals( currentFile ) ) {
+                openProject( f );
             }
-            
+
+        }
+
+        dConfig.setProcessEventsMainWindow( true );
+
+    }//GEN-LAST:event_btnOpenActionPerformed
+
+    /**
+     * Loads a saved .csch project file, replacing whatever is currently open. Used both by
+     * the "Open" toolbar button and to open a file passed on the command line -- e.g. when
+     * the OS launches this program to handle a double-clicked .csch file associated with it
+     * by the installer.
+     */
+    public void openProject( File f ) {
+
+        // only point currentFile at f once the file has actually been read successfully,
+        // so a failed/corrupted open can't cause a later Save to overwrite it with the
+        // (unrelated) project still in memory.
+        try ( ObjectInputStream i = new ObjectInputStream( new FileInputStream( f ) ) ) {
+
+            drawPanel.loadDrawPagesFromOutside( i.readObject() );
+
+            currentFile = f;
+            dConfig.setDefaultDir( currentFile.getParentFile() );
+
+            drawPanel.repaint();
+
+            Shape.setIdCount( drawPanel.getMaxShapeId() + 1 );
+            updateLabelPages();
+            verifyHistory();
+
+            if ( drawPanel.getBackgroundColor().equals( Constants.TRANSPARENT_COLOR ) ) {
+                colorPanelBackground.setColor( null );
+            } else {
+                colorPanelBackground.setColor( drawPanel.getBackgroundColor() );
+            }
+
+            configureLineSheetAndGridGUI();
+
         } catch ( IOException | ClassNotFoundException exc ) {
             exc.printStackTrace();
             JOptionPane.showMessageDialog( this,
@@ -1972,9 +1982,7 @@ addWindowListener(new java.awt.event.WindowAdapter() {
                     "Open Project", JOptionPane.ERROR_MESSAGE );
         }
 
-        dConfig.setProcessEventsMainWindow( true );
-
-    }//GEN-LAST:event_btnOpenActionPerformed
+    }
 
     private void configureLineSheetAndGridGUI() {
         if ( drawPanel.getCurrentDrawPage().isDrawLineSheet() ) {

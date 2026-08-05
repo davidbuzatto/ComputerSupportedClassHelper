@@ -1,7 +1,7 @@
 --input ../dist/
 --name CSCH
 --main-jar CSCH.jar
---app-version 1.5.4
+--app-version 1.5.5
 --vendor 'Prof. Dr. David Buzatto'
 --description 'Computer Supported Class Helper'
 --icon icons.ico
