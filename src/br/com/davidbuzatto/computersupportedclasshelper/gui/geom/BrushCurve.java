@@ -28,9 +28,18 @@ import org.locationtech.jts.simplify.DouglasPeuckerSimplifier;
 public class BrushCurve extends Shape implements Serializable, Cloneable {
 
     private static final long serialVersionUID = Constants.SERIAL_VERSION;
-    
+
+    // Simplification tolerance used once, in finalizeStroke(), instead of on every draw().
+    private static final double SIMPLIFY_TOLERANCE = 3.0;
+    //private static final double SIMPLIFY_TOLERANCE = 5.0;
+
     private List<Coordinate> coords;
-    
+
+    // Running position used by the exponential smoothing filter in addCoordinate().
+    // Only meaningful while the stroke is being captured, so it isn't serialized.
+    private transient Coordinate smoothedPos;
+    private boolean finalized;
+
     public BrushCurve() {
         coords = new ArrayList<>();
     }
@@ -52,18 +61,12 @@ public class BrushCurve extends Shape implements Serializable, Cloneable {
                 path.lineTo( coords.get( 0 ).x, coords.get( 0 ).y );
                 
             } else {
-                
-                GeometryFactory f = new GeometryFactory();
-                LineString ls = f.createLineString( coords.toArray( new Coordinate[0] ) );
-                Geometry simple = DouglasPeuckerSimplifier.simplify( ls, 3.0 );
-                
-                if ( simple.getCoordinates().length < 2 ) {
-                    return;
-                }
 
-                List<Coordinate> raw = new ArrayList<>();
-                raw.addAll( Arrays.asList( simple.getCoordinates() ) );
-                List<Coordinate> spline = CatmullRom.interpolate( raw, 10 );
+                // Simplification (Douglas-Peucker) no longer happens here on every repaint;
+                // it runs once in finalizeStroke() when the stroke is done. While the stroke
+                // is still being captured, coords already comes smoothed and resampled from
+                // addCoordinate(), so it can be fed to the spline directly.
+                List<Coordinate> spline = CatmullRom.interpolate( coords, 10 );
 
                 for ( Coordinate c : spline ) {
 
@@ -102,27 +105,80 @@ public class BrushCurve extends Shape implements Serializable, Cloneable {
     }
     
     public void addCoordinate( double x, double y ) {
-        
-        coords.add( new Coordinate( x, y ) );
-        
-        if ( coords.size() == 1 ) {
-            xStart = x;
-            xEnd = x;
-        } else if ( x < xStart ) {
-            xStart = x;
-        } else if ( x > xEnd ) {
-            xEnd = x;
+
+        if ( coords.isEmpty() ) {
+
+            // First sample of the stroke: nothing to smooth or resample against yet.
+            smoothedPos = new Coordinate( x, y );
+            appendCoordinate( smoothedPos );
+
+        } else {
+
+            // 1) exponential smoothing damps hand tremor in the raw samples.
+            smoothedPos = FreehandSmoothing.smooth(
+                    smoothedPos, x, y, FreehandSmoothing.DEFAULT_SMOOTHING_FACTOR );
+
+            // 2) arc-length resampling: if the mouse/pen moved fast and the last stored
+            // point is far from this one, fill the gap with synthetic points so no long,
+            // straight segment is ever handed to the Catmull-Rom spline.
+            Coordinate last = coords.get( coords.size() - 1 );
+            for ( Coordinate c : FreehandSmoothing.resample(
+                    last, smoothedPos, FreehandSmoothing.DEFAULT_MAX_SEGMENT_LENGTH ) ) {
+                appendCoordinate( c );
+            }
+
         }
-        
+
+    }
+
+    private void appendCoordinate( Coordinate c ) {
+
+        coords.add( c );
+
         if ( coords.size() == 1 ) {
-            yStart = y;
-            yEnd = y;
-        } else if ( y < yStart ) {
-            yStart = y;
-        } else if ( y > yEnd ) {
-            yEnd = y;
+            xStart = c.x;
+            xEnd = c.x;
+        } else if ( c.x < xStart ) {
+            xStart = c.x;
+        } else if ( c.x > xEnd ) {
+            xEnd = c.x;
         }
-        
+
+        if ( coords.size() == 1 ) {
+            yStart = c.y;
+            yEnd = c.y;
+        } else if ( c.y < yStart ) {
+            yStart = c.y;
+        } else if ( c.y > yEnd ) {
+            yEnd = c.y;
+        }
+
+    }
+
+    /**
+     * Ends the capture of this stroke. Runs Douglas-Peucker simplification once over the
+     * whole (smoothed + resampled) buffer and keeps only the simplified points, instead of
+     * holding onto every raw/synthetic sample captured while dragging. Must be called once,
+     * when the mouse/pen is released.
+     */
+    public void finalizeStroke() {
+
+        if ( finalized ) {
+            return;
+        }
+
+        if ( coords.size() >= 3 ) {
+
+            GeometryFactory f = new GeometryFactory();
+            LineString ls = f.createLineString( coords.toArray( new Coordinate[0] ) );
+            Geometry simple = DouglasPeuckerSimplifier.simplify( ls, SIMPLIFY_TOLERANCE );
+
+            coords = new ArrayList<>( Arrays.asList( simple.getCoordinates() ) );
+
+        }
+
+        finalized = true;
+
     }
     
     @Override

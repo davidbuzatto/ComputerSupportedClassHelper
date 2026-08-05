@@ -1641,10 +1641,18 @@ addWindowListener(new java.awt.event.WindowAdapter() {
             }
 
             if ( currentShape != null ) {
-                
+
+                // Freehand tools (pencil/eraser and brush) accumulate raw/synthetic points
+                // while dragging; simplify once now instead of keeping them all forever.
+                if ( currentShape instanceof Curve ) {
+                    ( (Curve) currentShape ).finalizeStroke();
+                } else if ( currentShape instanceof BrushCurve ) {
+                    ( (BrushCurve) currentShape ).finalizeStroke();
+                }
+
                 drawPanel.setTempShape( null );
                 drawPanel.addShape( currentShape );
-                
+
                 AddShapeChangeAction aca = new AddShapeChangeAction( currentShape, drawPanel.getCurrentDrawPage() );
                 drawPanel.addChangeAction( aca );
                 

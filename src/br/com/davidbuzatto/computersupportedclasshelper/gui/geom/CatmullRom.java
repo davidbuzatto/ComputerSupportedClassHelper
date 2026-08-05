@@ -21,6 +21,23 @@ import org.locationtech.jts.geom.Coordinate;
 public class CatmullRom {
 
     /**
+     * Exponent used to parameterize the knot values (the "time" spacing between control
+     * points) in interpolate(points, index, pointsPerSegment) below.
+     *
+     * alpha = 0.0 -&gt; uniform parameterization. Assumes control points are evenly spaced
+     *                along the curve. When they are not -- e.g. a freehand stroke where the
+     *                mouse/pen accelerates and consecutive samples end up far apart -- this
+     *                produces loops, cusps and overshoot near the uneven points.
+     * alpha = 0.5 -&gt; centripetal parameterization (used here). Spaces the knots by the
+     *                square root of the distance between control points, which keeps the
+     *                curve well-behaved even when the points are unevenly spaced.
+     * alpha = 1.0 -&gt; chordal parameterization.
+     *
+     * See http://www.cemyuksel.com/research/catmullrom_param/catmullrom.pdf
+     */
+    private static final double ALPHA = 0.5;
+
+    /**
      * This method will calculate the Catmull-Rom interpolation curve, returning it as a
      * list of Coordinate coordinate objects. This method in particular adds the first and
      * last control points which are not visible, but required for calculating the spline.
@@ -148,7 +165,9 @@ public class CatmullRom {
         for (int i = 1; i < 4; i++) {
             double dx = x[i] - x[i - 1];
             double dy = y[i] - y[i - 1];
-            total += Math.pow(dx * dx + dy * dy, .25);
+            // pow(distance^2, alpha/2) == pow(distance, alpha), computed from the squared
+            // distance so we don't need an extra sqrt just to square it again.
+            total += Math.pow(dx * dx + dy * dy, ALPHA / 2);
             time[i] = total;
         }
         tstart = time[1];
